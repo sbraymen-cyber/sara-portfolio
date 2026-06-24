@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --coral:      #E8705A;
+  --coral-soft: #F4A08A;
+  --amber:      #C49A5A;
+  --steel:      #6F87BE;
+  --bg:         #111010;
+  --surface:    rgba(255,255,255,0.04);
+  --border:     rgba(255,255,255,0.08);
+  --border-md:  rgba(255,255,255,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  background: var(--bg);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ── Type scale ── */
+.type-display { font-size: clamp(52px, 7.5vw, 88px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.0; }
+.type-h1      { font-size: clamp(28px, 4vw, 40px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+.type-h2      { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.type-h3      { font-size: 17px; font-weight: 500; }
+.type-body-lg { font-size: 18px; font-weight: 400; line-height: 1.65; }
+.type-body-md { font-size: 15px; font-weight: 400; line-height: 1.65; }
+.type-body-sm { font-size: 13px; font-weight: 400; line-height: 1.6; }
+.type-label-lg { font-size: 15px; font-weight: 500; letter-spacing: 0.01em; }
+.type-label-md { font-size: 13px; font-weight: 500; }
+.type-label-sm { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.type-caption  { font-size: 12px; font-weight: 400; }
+.type-stat     { font-size: clamp(36px, 5vw, 56px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+
+/* ── Glass ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }

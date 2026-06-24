@@ -1,0 +1,65 @@
+import { motion } from 'framer-motion';
+import VideoBackground from './VideoBackground';
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] },
+});
+
+const STATS = [
+  { n: '$300M', label: 'Housing aid disbursed', sub: 'FEMA · 3 states' },
+  { n: '100k+', label: 'Users across internal tools', sub: 'Evernorth / Cigna' },
+  { n: '1', label: 'App in TestFlight', sub: 'Sar · NFC receipts' },
+];
+
+export default function Hero() {
+  return (
+    <section style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+      <VideoBackground />
+
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: '0 48px 80px', width: '100%' }}>
+
+        <motion.p {...fadeUp(0.2)} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>
+          UX Design · Product · AI · Boulder, CO
+        </motion.p>
+
+        <motion.h1 {...fadeUp(0.32)} className="type-display" style={{ marginBottom: 28, maxWidth: '18ch' }}>
+          Sara Braymen
+        </motion.h1>
+
+        <motion.p {...fadeUp(0.42)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
+          UX and product — shaping how AI works for 100k+ users at Cigna, building products from scratch alongside startup CEOs, and now vibe-coding my own app.
+        </motion.p>
+
+        <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 80 }}>
+          <a href="#work"
+            style={{ fontSize: 13, fontWeight: 600, color: '#fff', textDecoration: 'none', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: 100, padding: '11px 24px', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+            View work ↓
+          </a>
+          <a href="#contact"
+            style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.15s' }}
+            onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.85)'}
+            onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}>
+            Get in touch →
+          </a>
+        </motion.div>
+
+        <motion.div {...fadeUp(0.6)} style={{ display: 'flex', gap: 0, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          {STATS.map((s, i) => (
+            <div key={i} style={{
+              flex: 1, padding: '28px 0',
+              paddingRight: i < STATS.length - 1 ? 32 : 0,
+              paddingLeft: i > 0 ? 32 : 0,
+              borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+            }}>
+              <p style={{ fontSize: 30, fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', marginBottom: 5 }}>{s.n}</p>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginBottom: 3 }}>{s.label}</p>
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)' }}>{s.sub}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}

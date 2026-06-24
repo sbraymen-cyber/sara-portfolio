@@ -1,0 +1,399 @@
+import { useRef } from 'react';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+
+/* ─── Data ────────────────────────────────────────── */
+export const STUDIES = {
+  'broadstreet-clinical': {
+    slug: 'broadstreet-clinical',
+    company: 'Evernorth / Cigna',
+    title: 'Clinical Intelligence Platform',
+    tagline: "Built from zero — months of discovery, a cross-functional team I merged onto, and a design standard that eventually forced an upgrade of the entire platform it lived in.",
+    role: 'Lead Designer & Product Manager',
+    timeline: '2022 – Present',
+    accent: '#3D9E8C',
+    accentRgb: '61,158,140',
+    tags: ['Healthcare AI', 'Data Visualization', 'Enterprise UX', 'ArcGIS', 'Neo4j'],
+    stats: [
+      { value: '3', label: 'major versions shipped (MVP → Filtering → NLM)' },
+      { value: '182M', label: 'patient records made searchable' },
+      { value: '0→1', label: 'product built from scratch' },
+      { value: '1', label: 'platform redesign triggered across Control Center' },
+    ],
+    challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. The goal was to make that data accessible to anyone in the field, from a seasoned epidemiologist to someone new to clinical research, without dumbing it down for the experts. There was no existing product to iterate on. I started from nothing.',
+    images: [
+      { src: '/case-studies/broadstreet-clinical/img-1.jpg', caption: 'Welcome screen — the first thing a researcher sees' },
+      { src: '/case-studies/broadstreet-clinical/img-2.jpg', caption: 'Data exploration + search filter with patient summary panel' },
+      { src: '/case-studies/broadstreet-clinical/img-3.jpg', caption: 'Search results with geographic choropleth map' },
+      { src: '/case-studies/broadstreet-clinical/img-4.jpg', caption: 'Design evolution: Wizard → Side Panel → AI-Powered Search' },
+    ],
+    approach: [
+      { title: 'Discovery First, Always', body: 'I spent months in deep discovery — interviewing clinicians, researchers, and analysts, then joining weekly syncs with the data and dev team I eventually merged onto. Understanding how data actually flowed through the system wasn\'t optional; it was the entire design foundation. You can\'t design a research tool if you don\'t understand the research.' },
+      { title: 'Geographic Intelligence as the Entry Point', body: 'Researchers think geographically. "Coverage in the Southeast," "gaps in rural areas," "outbreak density by county." I designed a choropleth map as the primary frame using ArcGIS and Neo4j, with progressive filter complexity layered beneath — start with location and diagnosis, add medications and comorbidities only when needed. High-floor for experts, low-ceiling for newcomers.' },
+      { title: 'Raising the Design Bar for a Platform', body: "I worked within Evernorth's Control Center design system — but pushed deliberately outside it where the tool demanded more. The result wasn\'t just a better product: the design standard we set for Broadstreet created pressure that eventually triggered a broader upgrade of the entire Control Center host platform. One well-designed app changed what the whole team thought was possible." },
+    ],
+    evolution: [
+      { era: '2022–2023', label: 'Wizard Flow', body: 'Step-by-step guided search. Users found it constraining — experienced researchers wanted all options visible at once, not locked behind sequential steps.' },
+      { era: '2024–2025', label: 'Side Panel Search', body: 'Filters alongside the map. Faster to first search, but as the filter set expanded, the panel stopped scaling for power users with complex queries.' },
+      { era: '2026–Present', label: 'AI-Powered Search', body: 'Natural language entry — "Find PCOS patients in regions with limited reproductive endocrinologist access." Conversational intent, visual refinement. Early prototypes show strong preference.' },
+    ],
+    pullQuote: 'My design team struggled to understand how data flowed through this tool — and I knew that was the core problem to solve. If your designers can\'t explain the data model, your users never will.',
+    outcome: 'Broadstreet became the core workflow for clinical population research at Evernorth. Three major versions shipped. The design standard we established pushed the entire Control Center platform to raise its bar. The V3 natural language interface is expanding use cases into real-time outbreak detection and regional care gap analysis.',
+  },
+
+  'broadstreet-ai': {
+    slug: 'broadstreet-ai',
+    company: 'Evernorth / Cigna',
+    title: 'Conversational AI Design',
+    tagline: 'Designed a clinical AI agent — named John Snow, after the physician who traced cholera to a pump on Broadstreet — before the industry had a playbook for what that even meant.',
+    role: 'Lead Designer & Product Manager',
+    timeline: '2025 – Present',
+    accent: '#8B6FBE',
+    accentRgb: '139,111,190',
+    tags: ['Conversational AI', 'Design Systems', 'GenAI', 'UX Research', 'Enterprise'],
+    stats: [
+      { value: '96%', label: '"must have" in user validation' },
+      { value: '100k+', label: 'users on the Broadstreet platform' },
+      { value: 'V3', label: 'of the platform — shipped' },
+    ],
+    challenge: "Broadstreet's anonymized claims database is extraordinarily powerful — and deeply underused, because learning to query it takes time most researchers don't have. Training documentation wasn't working. Users needed to learn by doing, with a guide who could hold their hand, make selections for them, and explain what was happening in real time. That's a different design problem than most AI work.",
+    images: [
+      { src: '/case-studies/broadstreet-ai/img-1.jpg', caption: 'John Snow — the AI agent embedded in Broadstreet V3' },
+      { src: '/case-studies/broadstreet-ai/img-2.jpg', caption: 'Conversational search results — where the agent wants users to land' },
+    ],
+    approach: [
+      { title: 'Learning by Experience, Not Documentation', body: "The insight was simple: people don't read training docs, but they'll follow a good guide. John Snow walks users through constructing a search, explains what each filter does in plain language, and makes selections on their behalf when they're stuck. The agent isn't a chatbot — it's a co-pilot that transfers knowledge through demonstration rather than instruction." },
+      { title: 'Designing for Hallucination and Scope Creep', body: "Our biggest challenge wasn't the UI — it was keeping John Snow on task. Context windows, prompt boundaries, and hallucination were real engineering constraints that shaped every design decision. When users got curious about the AI itself and started asking John Snow about its own architecture (it's named after a famous epidemiologist — people got excited), we had to design graceful redirects and populate a dedicated Learn More page. Two devs and I went back and forth on these edge cases for months." },
+      { title: 'Pop-Up Agent Over Sidecar — a Market-Informed Call', body: "I researched current AI assistant patterns extensively before committing to a layout. The dominant trend in enterprise AI in 2025 moved away from persistent sidecars — which compete with content for space — toward focused modal agents that appear at the moment of need and get out of the way. We shipped a pop-up agent. The sidecar pattern may return if Broadstreet expands its artifact surface area, but for the current workflow it was the right call." },
+    ],
+    pullQuote: "We named the agent John Snow — after the physician who traced a cholera outbreak to a water pump on Broadstreet in 1854. The best easter eggs are the ones that reward people who pay attention.",
+    outcome: "John Snow handles the first half of the Broadstreet research workflow — the discovery and query construction phase where users previously churned. 96% of tested users called it a 'must have.' The next frontier: letting the agent decide mid-conversation when a structured UI component is a better response than prose.",
+  },
+
+  'louisiana-housing': {
+    slug: 'louisiana-housing',
+    company: 'Horne LLP',
+    title: 'Emergency Housing Relief',
+    tagline: 'Four dashboards. Four states. $300M in COVID relief that people desperately needed — and no real-time way to track any of it, until there was.',
+    role: 'Data Visualization Designer & Developer',
+    timeline: 'Apr 2021 – Apr 2022',
+    accent: '#BE9A6F',
+    accentRgb: '190,154,111',
+    tags: ['Power BI', 'Data Visualization', 'SQL', 'WCAG Accessibility', 'Emergency Response'],
+    stats: [
+      { value: '$300M', label: 'in COVID relief tracked across 4 states' },
+      { value: '4', label: 'dashboards built end-to-end' },
+      { value: '0', label: 'real-time reporting tools before this' },
+    ],
+    challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
+    images: [
+      { src: '/case-studies/louisiana-housing/img-1.jpg', caption: 'Power BI dashboards — application pipeline, funding distribution, and geographic breakdown by state' },
+    ],
+    approach: [
+      { title: 'SQL Architecture Built for Speed', body: 'Built the data pipeline from scratch — SQL queries connecting the application database to Power BI, optimized for real-time refresh. Each of the four state dashboards tracked the full lifecycle: application submitted → under review → funds disbursed. Three separate relief programs with different eligibility rules, funding caps, and reporting requirements, all surfaced in one coherent system.' },
+      { title: 'Accessible Under Crisis Conditions', body: "WCAG compliance wasn't a checkbox — it was a design constraint that shaped every color decision, every label, every interaction. Administrators were making high-stakes decisions under pressure, sometimes on unfamiliar equipment. The dashboards had to be readable at a glance by someone who'd never seen them before. Demographic data was tracked and surfaced mindfully, with appropriate context." },
+      { title: 'Designed Around What Executives Actually Needed', body: 'I worked directly with program administrators and state officials to understand exactly what decisions they were making and what data would change them. The result was five-page dashboards per state: application pipeline view, funding distribution, demographic breakdown, approval bottleneck analysis, and disbursement status. Information architecture driven entirely by decision flow, not data availability.' },
+    ],
+    pullQuote: "I got to talk to actual applicants. They thanked me. People needed housing during COVID — and they were grateful to get it. That's not an abstraction.",
+    outcome: 'Four states. Real-time visibility for the first time. Administrators went from week-old spreadsheets to live dashboards that showed exactly where every dollar was and where it was stuck. The work mattered in the most direct way possible — families got housing assistance faster because decisions could finally be made on accurate data.',
+  },
+
+  'sar-consumer': {
+    slug: 'sar-consumer',
+    company: 'Sar, Inc. — Founder',
+    title: 'Consumer Receipt Experience',
+    tagline: "Paper receipts cost $0.02, return nothing, and get thrown away in seconds. I built a $0.04 replacement that turns every transaction into a marketing channel.",
+    role: 'Founder, Designer & Engineer',
+    timeline: '2024 – Present',
+    accent: '#6F87BE',
+    accentRgb: '111,135,190',
+    tags: ['NFC', 'iOS', 'Apple Wallet', 'Expo', 'Supabase'],
+    stats: [
+      { value: '$0.04', label: 'per receipt — vs $0.02 for paper that returns nothing' },
+      { value: '0', label: 'apps required at the first tap' },
+      { value: '3+', label: 'live merchant pilots in Boulder & Denver' },
+    ],
+    challenge: "Every \"digital receipt\" product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is the entire reason paper receipts still exist in 2026. The insight wasn't to digitize the receipt — it was to make the digital receipt require less effort than the paper one.",
+    approach: [
+      { title: 'The Reframe: Not a Receipt Product. A Marketing Channel.', body: "The business model is $0.04 per completed digital receipt. But framing it as a cheaper receipt misses the point — paper receipts are already cheap. The real pitch is that every Sar receipt can embed a personalized discount code, a Google Review link, or a product recommendation. A $0.02 paper receipt is a sunk cost. A $0.04 Sar receipt is an automated repeat-visit driver. That's the insight that makes the economics obvious." },
+      { title: 'Why NFC, Not QR', body: "QR codes require the cashier to hold something up, the customer to open their camera, aim, scan, and wait. It adds 10–15 seconds to checkout and requires a behavioral change from staff. NFC is different — it\'s a sticker on the counter that the customer taps, same motion as tap-to-pay, zero staff involvement. The choice wasn\'t aesthetic. It was about removing every possible point of failure between \"customer wants receipt\" and \"receipt appears.\"" },
+      { title: 'Apple Wallet as the Entry Point', body: "The five-step flow: pay normally → cashier says \"tap for your receipt\" → customer taps the Sar sticker → a lightweight App Clip slides up instantly → Face ID authenticates → receipt lands in Apple Wallet before they\'ve put their card away. That evening, one push notification invites them to the full app. Apple Wallet was the right destination because it\'s already on every iPhone, already trusted, requires zero download. It\'s the hook. Receipt history, IRS tax categorization, PDF export, and Expensify/TurboTax integration are the depth that earns the download later." },
+      { title: 'The Design Decisions Behind the Interface', body: "Dark background (#1A1816, warm not cool) because it matches Apple Wallet\'s aesthetic — this app lives next to your boarding passes and credit cards, and it should feel like it belongs there. Email OTP instead of passwords because anyone tapping an NFC sticker at a coffee counter shouldn\'t need to remember credentials. Square first because it has the largest SMB POS market share and the cleanest API for a proof of concept — Toast and Clover are extensions of the same architecture, not rebuilds." },
+      { title: 'Built Solo with Claude Code', body: "The entire product — Expo Router iOS app, Supabase schema and RLS policies, EAS build pipeline, Square integration, Apple Wallet PKPass generation, and the tax categorization keyword engine — was built by me in active collaboration with Claude Code (Anthropic\'s AI CLI). Not as a shortcut. As a proof of concept for what a solo founder-designer-engineer can ship when AI handles implementation and you focus on the product. Zero to TestFlight-ready in days, not months." },
+    ],
+    researchPlan: {
+      title: 'What I\'m Learning Next',
+      items: [
+        { phase: 'First-tap clarity', body: 'In-store intercepts at pilot locations — did the gesture feel obvious? Was Apple Wallet the right destination? What created hesitation?' },
+        { phase: 'Return behavior', body: 'Do customers who tapped once tap again on a return visit? Is this habit-forming or a novelty? That distinction determines the acquisition strategy.' },
+        { phase: 'App download trigger', body: 'What made the TestFlight users cross from Wallet receipt to full app? Feature pull, notification, or something else? That\'s the funnel to optimize.' },
+        { phase: 'Non-tappers', body: 'Exit interviews with customers who walked past the sticker. Awareness gap, trust barrier, or just didn\'t notice? Different problems, different fixes.' },
+      ],
+    },
+    pullQuote: "Everyone told me to add a QR code at the terminal. I said no. The whole point is that the customer doesn't have to aim at anything.",
+    outcome: 'Live pilots in Boulder and Denver, CO. iOS app in TestFlight as of June 2026. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
+  },
+
+  'sar-merchant': {
+    slug: 'sar-merchant',
+    company: 'Sar, Inc. — Founder',
+    title: 'Merchant Platform & POS Integrations',
+    tagline: '$0.04 per receipt. $0.00 if they still want paper. That pricing tells the whole story — so I put it in the biggest type on the page.',
+    role: 'Founder, Designer & Engineer',
+    timeline: '2025 – Present',
+    accent: '#6F87BE',
+    accentRgb: '111,135,190',
+    tags: ['B2B Design', 'Square API', 'Toast', 'Supabase Edge Functions', 'OAuth'],
+    stats: [
+      { value: '$0.04', label: 'per receipt — the number the whole page is built around' },
+      { value: '3+', label: 'active pilots in Boulder & Denver, CO' },
+      { value: '3 POS', label: 'systems normalized into one receipt schema (Square, Toast, Ingenico)' },
+    ],
+    challenge: "Sar serves two completely different audiences with different needs, different fears, and different reasons to care. Merchants want cost savings, faster checkout, customer data, and a sustainability story they can actually use. Consumers want receipts that appear without typing anything at the register. One product, two landing pages, zero crossover confusion — and the backend has to normalize completely different data formats from Square, Toast, and Ingenico into one clean receipt shape before any of that front-end work matters.",
+    approach: [
+      { title: 'Lead With the Number', body: "$0.04 is in the largest type on the merchant page — not buried in a pricing table. Immediately below it: a callout that paper overrides are always $0.00. That second line is the one that closes the room. It answers the objection before anyone can raise it. A merchant who prints 200 receipts a day can opt out of any of them for free. That\'s not a limitation. It\'s a trust signal." },
+      { title: 'Two Pages, One Product', body: "The homepage (sar-app.com) is built for consumers — emotional, minimal, fast. \"Receipt chaos, solved.\" Aurora animation. One CTA. The business page (/business) is the full merchant pitch: comparison table, value prop cards, how it works for staff, sustainability badge, BI dashboard preview, receipt-as-marketing-channel breakdown, cashier scripts, and a signup form split by company size (enterprise gets a contact card, SMBs fill out a form directly). Each page has a subtle nav link to the other. Neither audience gets stuck." },
+      { title: 'Square: OAuth, Webhooks, and a Marketplace App', body: "Merchants connect Square in one click via OAuth 2.0 — tokens stored server-side, auto-refreshed before expiry. From that point, every completed Square payment fires a real-time webhook that generates a digital receipt automatically. No merchant action required after setup. The integration handles payments, refunds, order updates, and customer profile changes. Sar Receipts is now in the Square App Marketplace application process under category: Customer Engagement." },
+      { title: 'Multi-POS Schema Designed for Scale', body: "Square was the proof of concept, but the Supabase schema was generalized from day one: a merchants table, a pos_connections table, and a source column on every receipt. Toast, Clover, Ingenico, and Worldline receipts normalize to the same shape — line items, subtotal, tax, tip, total, payment method — before they ever touch the merchant dashboard. Adding a new POS is a new edge function, not a new data model." },
+      { title: 'Merchant Dashboard & Internal Admin Portal', body: "The merchant dashboard (sar-app.com/dashboard) shows real-time sustainability metrics, revenue charts, monthly breakdowns, and best/least popular items by volume and revenue. Built on Recharts with the same aurora-and-dark-glass design system as the marketing site. Alongside it: an internal admin portal (sar-app.com/admin) that gives Sara a cross-merchant view of Sar earnings, per-merchant billing, and aggregate sustainability impact — the tool that runs the business." },
+      { title: 'Sustainability as Hard ROI, Not Soft Brand', body: "The Certified Paperless badge isn\'t decorative. It shows live metrics — trees saved, pounds of paper eliminated, CO₂ avoided — calculated from that merchant\'s actual transaction volume. Embeddable badge, share-ready social cards, printable certification. Merchants don\'t just feel good about it. They post it. It becomes part of how they talk about their business to neighboring owners, which is where pilot growth has actually come from." },
+      { title: 'Cashier Scripts', body: "The biggest friction in rolling out any new checkout behavior is the 30 seconds where the cashier doesn\'t know what to say. The merchant page includes three ready-to-use scripts for different situations — first-time customer, returning customer, customer who prefers paper. Staff adoption is a UX problem, not a training problem, and this is how you solve it at the point of sale." },
+    ],
+    pullQuote: "The merchant page isn\'t just a sales pitch. It\'s a design artifact — every section answers a specific objection in the order a skeptical business owner would raise it.",
+    outcome: '3+ active pilots in Boulder and Denver. Square OAuth integration live. Toast and Ingenico normalization in progress. Square App Marketplace application filed under Customer Engagement. Pre-revenue — billing activates when pilots convert. The sustainability badge has become a word-of-mouth driver: multiple pilot merchants have mentioned it to neighboring businesses unprompted.',
+    liveUrl: 'https://sar-app.com',
+  },
+};
+
+/* ─── Components ──────────────────────────────────── */
+function Stat({ value, label, accent }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.45 }}>
+      <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', color: accent, lineHeight: 1, marginBottom: 6 }}>{value}</div>
+      <div className="type-caption" style={{ color: 'rgba(255,255,255,0.4)' }}>{label}</div>
+    </motion.div>
+  );
+}
+
+function Section({ label, children }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-50px' });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
+      style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+      <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>{label}</p>
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── Page ────────────────────────────────────────── */
+export default function CaseStudy() {
+  const { slug } = useParams();
+  const study = STUDIES[slug];
+  if (!study) return <Navigate to="/" replace />;
+
+  const { title, company, tagline, role, timeline, accent, accentRgb, tags, stats, challenge, approach, evolution, pullQuote, outcome } = study;
+
+  return (
+    <div style={{ background: '#1A1816', minHeight: '100vh', color: '#fff' }}>
+      {/* Nav */}
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'rgba(26,24,22,0.88)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 32px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Link to="/" className="type-label-sm" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>← Sara Braymen</Link>
+          <span className="type-caption" style={{ color: 'rgba(255,255,255,0.2)' }}>{company}</span>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '120px 32px 100px' }}>
+
+        {/* Hero */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 28 }}>
+            {tags.map(t => (
+              <span key={t} className="type-caption" style={{ background: `rgba(${accentRgb},0.1)`, color: accent, border: `1px solid rgba(${accentRgb},0.2)`, borderRadius: 100, padding: '3px 10px' }}>{t}</span>
+            ))}
+          </div>
+
+          <h1 className="type-display" style={{ marginBottom: 24, maxWidth: '18ch' }}>{title}</h1>
+
+          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 560, marginBottom: 40 }}>{tagline}</p>
+
+          {/* Live CTA — hero placement for Sar Merchant */}
+          {study.liveUrl && (
+            <div style={{ display: 'inline-block', marginBottom: 48 }}>
+              <motion.a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="live-cta-pulse"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 16,
+                  padding: '22px 40px', borderRadius: 24,
+                  background: `linear-gradient(135deg, rgba(${accentRgb},0.18) 0%, rgba(${accentRgb},0.08) 100%)`,
+                  border: `1px solid rgba(${accentRgb},0.35)`,
+                  textDecoration: 'none',
+                }}
+              >
+                <div>
+                  <p className="type-label-sm" style={{ color: `rgba(${accentRgb},0.7)`, marginBottom: 2 }}>Live product</p>
+                  <p style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: '#fff' }}>See it in action ↗</p>
+                </div>
+                <div style={{ width: 1, height: 36, background: `rgba(${accentRgb},0.2)` }} />
+                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.4)' }}>sar-app.com</p>
+              </motion.a>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+            <div>
+              <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Role</p>
+              <p className="type-label-md" style={{ color: '#fff' }}>{role}</p>
+            </div>
+            <div>
+              <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Timeline</p>
+              <p className="type-label-md" style={{ color: '#fff' }}>{timeline}</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Stats */}
+        <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+          {stats.map((s, i) => <Stat key={i} value={s.value} label={s.label} accent={accent} />)}
+        </div>
+
+        {/* Challenge */}
+        <Section label="The Challenge">
+          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 600 }}>{challenge}</p>
+        </Section>
+
+        {/* Screenshots */}
+        {study.images && (
+          <div style={{ marginTop: 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {study.images.map((img, i) => (
+              <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
+              </motion.figure>
+            ))}
+          </div>
+        )}
+
+        {/* Approach */}
+        <Section label="Approach">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {approach.map((a, i) => (
+              <div key={i} style={{ paddingBottom: 32, paddingTop: i > 0 ? 32 : 0, borderTop: i > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10 }}>
+                  <span className="type-caption" style={{ color: accent, opacity: 0.7, minWidth: 24 }}>0{i + 1}</span>
+                  <h3 className="type-label-lg" style={{ color: '#fff' }}>{a.title}</h3>
+                </div>
+                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, paddingLeft: 36 }}>{a.body}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* Evolution */}
+        {evolution && (
+          <Section label="Design Evolution">
+            <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+              {evolution.map((item, i) => (
+                <div key={i} style={{ flex: '1 1 200px', paddingTop: 20, borderTop: `2px solid ${i === evolution.length - 1 ? accent : 'rgba(255,255,255,0.08)'}` }}>
+                  <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 6 }}>{item.era}</p>
+                  <p className="type-label-md" style={{ color: '#fff', marginBottom: 10 }}>{item.label}</p>
+                  <p className="type-body-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* Research Plan (Sar Consumer only) */}
+        {study.researchPlan && (
+          <Section label={study.researchPlan.title}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {study.researchPlan.items.map((item, i) => (
+                <div key={i} style={{ paddingBottom: 24, paddingTop: i > 0 ? 24 : 0, borderTop: i > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                  <p className="type-label-sm" style={{ color: study.accent, marginBottom: 6, opacity: 0.85 }}>{item.phase}</p>
+                  <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560 }}>{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* Pull quote */}
+        <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+          <motion.p
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.4, color: 'rgba(255,255,255,0.85)', maxWidth: 560 }}
+          >
+            <span style={{ color: accent }}>"</span>{pullQuote}<span style={{ color: accent }}>"</span>
+          </motion.p>
+        </div>
+
+        {/* Outcome */}
+        <Section label="Outcome">
+          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.65)', maxWidth: 560 }}>{outcome}</p>
+        </Section>
+
+        {/* Live site CTA (Sar Merchant only) */}
+        {study.liveUrl && (
+          <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+            <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>See it live</p>
+            <motion.a
+              href={study.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 12,
+                padding: '20px 36px', borderRadius: 20,
+                background: `rgba(${study.accentRgb},0.12)`,
+                border: `1px solid rgba(${study.accentRgb},0.3)`,
+                textDecoration: 'none', transition: 'background 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = `rgba(${study.accentRgb},0.2)`}
+              onMouseLeave={e => e.currentTarget.style.background = `rgba(${study.accentRgb},0.12)`}
+            >
+              <span className="type-h2" style={{ color: '#fff' }}>Check it out</span>
+              <span style={{ fontSize: 22, color: study.accent }}>↗</span>
+            </motion.a>
+            <p className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 12 }}>sar-app.com</p>
+          </div>
+        )}
+
+        {/* More */}
+        <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+          <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>More case studies</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {Object.values(STUDIES).filter(s => s.slug !== slug).map(s => (
+              <Link key={s.slug} to={`/work/${s.slug}`}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', textDecoration: 'none', transition: 'opacity 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+              >
+                <div>
+                  <span className="type-caption" style={{ color: s.accent, marginRight: 12 }}>{s.company}</span>
+                  <span className="type-label-md" style={{ color: '#fff' }}>{s.title}</span>
+                </div>
+                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 14 }}>↗</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
