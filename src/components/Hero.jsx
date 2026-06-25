@@ -9,7 +9,7 @@ const fadeUp = (delay = 0) => ({
 
 const STATS = [
   { n: '$300M', label: 'Housing aid disbursed', sub: 'FEMA · 3 states' },
-  { n: '100k+', label: 'Users across internal tools', sub: 'Evernorth / Cigna' },
+  { n: 'M+', label: 'Users on Evernorth Control Center', sub: 'Evernorth / Cigna' },
   { n: '1', label: 'App in TestFlight', sub: 'Sar · NFC receipts' },
 ];
 
@@ -21,7 +21,7 @@ export default function Hero() {
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: '0 48px 80px', width: '100%' }}>
 
         <motion.p {...fadeUp(0.2)} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>
-          UX Design · Product · AI · Boulder, CO
+          Product · Design · AI · Boulder, CO
         </motion.p>
 
         <motion.h1 {...fadeUp(0.32)} className="type-display" style={{ marginBottom: 28, maxWidth: '18ch' }}>

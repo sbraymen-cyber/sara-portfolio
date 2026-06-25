@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 
 const ITEMS = [
   {
-    label: 'Design and engineering, both',
-    body: "I write production React code in addition to doing design work. It changes how I think — I prototype in the real medium, not just in Figma, and I understand the constraints I'm designing within.",
+    label: 'Technical enough to be dangerous',
+    body: "I use AI to write production code, and I understand databases and technical constraints deeply enough to design around them — not into them. Developers never have to re-explain their stack to me. I already know what's happening behind the curtain.",
     accent: 'var(--coral)',
   },
   {
     label: 'Close to the product decisions',
-    body: "I work well alongside PMs and often take on product thinking — scoping, prioritization, stakeholder alignment. At Sar I own those decisions myself as the founder.",
+    body: "I work closely with PMs and leadership on scoping, prioritization, and stakeholder alignment. At Sar I own those decisions myself. Either way, I care about the outcome — not just the deliverable.",
     accent: 'var(--steel)',
   },
   {

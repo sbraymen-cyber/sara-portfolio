@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 const JOBS = [
   { company: 'Prominent Technology', role: 'Senior UX Manager', period: 'Mar 2026 – Present', current: true },
   { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present', founder: true },
-  { company: 'Evernorth Health Services (Cigna)', role: 'Lead UX Designer', period: 'Oct 2023 – Mar 2026', note: 'Broadstreet Clinical + AI platforms' },
+  { company: 'Evernorth Health Services (Cigna)', role: 'Lead Product Manager – UX', period: 'Oct 2023 – Mar 2026', note: 'Broadstreet Clinical + AI platforms' },
   { company: 'Evernorth Health Services (Cigna)', role: 'Senior UX Designer', period: 'Apr 2022 – Oct 2023' },
-  { company: 'Horne LLP', role: 'Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022', note: 'Louisiana + Alabama COVID relief programs' },
+  { company: 'Horne LLP', role: 'Senior Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022', note: 'Louisiana + Alabama COVID relief programs · promoted' },
 ];
 
 const SKILLS = ['Product Strategy', 'Roadmapping', 'AI / GenAI UX', 'Design Systems', 'User Research', 'Figma', 'React', 'TypeScript', 'SQL', 'Power BI', 'Stakeholder Alignment', '0→1 Products', 'Agent UX', 'iOS / NFC', 'Framer'];
