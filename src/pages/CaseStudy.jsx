@@ -22,10 +22,12 @@ export const STUDIES = {
     ],
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. The goal was to make that data accessible to anyone in the field, from a seasoned epidemiologist to someone new to clinical research, without dumbing it down for the experts. There was no existing product to iterate on. I started from nothing.',
     images: [
-      { src: '/case-studies/broadstreet-clinical/img-1.jpg', caption: 'Welcome screen — the first thing a researcher sees' },
-      { src: '/case-studies/broadstreet-clinical/img-2.jpg', caption: 'Data exploration + search filter with patient summary panel' },
-      { src: '/case-studies/broadstreet-clinical/img-3.jpg', caption: 'Search results with geographic choropleth map' },
-      { src: '/case-studies/broadstreet-clinical/img-4.jpg', caption: 'Design evolution: Wizard → Side Panel → AI-Powered Search' },
+      { src: '/case-studies/broadstreet-clinical/screen-1.png', caption: 'V2 side-panel search — filters alongside the patient summary' },
+      { src: '/case-studies/broadstreet-clinical/screen-2.png', caption: 'Result details — geographic choropleth with physician overlay, West Palm Beach' },
+      { src: '/case-studies/broadstreet-clinical/screen-3.png', caption: 'Search results grid — top result with related markets and underserved areas' },
+      { src: '/case-studies/broadstreet-clinical/screen-4.png', caption: 'Saved searches — managing complex, reusable queries across lab and web versions' },
+      { src: '/case-studies/broadstreet-clinical/screen-5.png', caption: 'User persona — Mark, Evernorth data analyst, research goals and frustrations' },
+      { src: '/case-studies/broadstreet-clinical/screen-6.png', caption: 'Discovery: user persona mapping for clinical researcher audience' },
     ],
     approach: [
       { title: 'Discovery First, Always', body: 'I spent months in deep discovery — interviewing clinicians, researchers, and analysts, then joining weekly syncs with the data and dev team I eventually merged onto. Understanding how data actually flowed through the system wasn\'t optional; it was the entire design foundation. You can\'t design a research tool if you don\'t understand the research.' },
@@ -58,8 +60,16 @@ export const STUDIES = {
     ],
     challenge: "Broadstreet's anonymized claims database is extraordinarily powerful — and deeply underused, because learning to query it takes time most researchers don't have. Training documentation wasn't working. Users needed to learn by doing, with a guide who could hold their hand, make selections for them, and explain what was happening in real time. That's a different design problem than most AI work.",
     images: [
-      { src: '/case-studies/broadstreet-ai/img-1.jpg', caption: 'John Snow — the AI agent embedded in Broadstreet V3' },
-      { src: '/case-studies/broadstreet-ai/img-2.jpg', caption: 'Conversational search results — where the agent wants users to land' },
+      { src: '/case-studies/broadstreet-ai/screen-1.png', caption: 'Welcome screen — the entry point before any search begins' },
+      { src: '/case-studies/broadstreet-ai/screen-2.png', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
+      { src: '/case-studies/broadstreet-ai/screen-3.png', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
+      { src: '/case-studies/broadstreet-ai/screen-4.png', caption: 'AI fills cardiovascular filters autonomously from a natural language prompt' },
+      { src: '/case-studies/broadstreet-ai/screen-5.png', caption: 'Agent response — "Help me find patients with Type 2 diabetes" with auto-filled filters' },
+      { src: '/case-studies/broadstreet-ai/screen-6.png', caption: 'PTSD conversation — agent clarifying scope and asking follow-up questions' },
+      { src: '/case-studies/broadstreet-ai/screen-7.png', caption: 'Agent refining PTSD search — narrowing by condition, specialty, and location' },
+      { src: '/case-studies/broadstreet-ai/screen-8.png', caption: 'Complex multi-condition query — cardiovascular + PTSD with female patient filter' },
+      { src: '/case-studies/broadstreet-ai/screen-9.png', caption: 'Final confirmed search — filters locked and ready to run' },
+      { src: '/case-studies/broadstreet-ai/screen-10.png', caption: 'Search results map — geographic distribution of matching patient populations' },
     ],
     approach: [
       { title: 'Learning by Experience, Not Documentation', body: "The insight was simple: people don't read training docs, but they'll follow a good guide. John Snow walks users through constructing a search, explains what each filter does in plain language, and makes selections on their behalf when they're stuck. The agent isn't a chatbot — it's a co-pilot that transfers knowledge through demonstration rather than instruction." },
@@ -87,7 +97,9 @@ export const STUDIES = {
     ],
     challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
     images: [
-      { src: '/case-studies/louisiana-housing/img-1.jpg', caption: 'Power BI dashboards — application pipeline, funding distribution, and geographic breakdown by state' },
+      { src: '/case-studies/louisiana-housing/screen-1.png', caption: 'Louisiana Homeowner Assistance Fund — real-time pipeline, disbursement totals, and parish-level map' },
+      { src: '/case-studies/louisiana-housing/screen-2.png', caption: 'Arkansas dashboard — application stages, funding remaining, and county breakdown' },
+      { src: '/case-studies/louisiana-housing/screen-3.png', caption: 'Homeowner demographics — race, ethnicity, AMI, disability status, and employment data' },
     ],
     approach: [
       { title: 'SQL Architecture Built for Speed', body: 'Built the data pipeline from scratch — SQL queries connecting the application database to Power BI, optimized for real-time refresh. Each of the four state dashboards tracked the full lifecycle: application submitted → under review → funds disbursed. Three separate relief programs with different eligibility rules, funding caps, and reporting requirements, all surfaced in one coherent system.' },
@@ -112,6 +124,12 @@ export const STUDIES = {
       { value: '$0.04', label: 'per receipt — vs $0.02 for paper that returns nothing' },
       { value: '0', label: 'apps required at the first tap' },
       { value: '3+', label: 'live merchant pilots in Boulder & Denver' },
+    ],
+    images: [
+      { src: '/case-studies/sar-consumer/screen-wallet.png', caption: 'Apple Wallet — Sar vault with 123 receipts captured, sitting alongside cards and passes' },
+      { src: '/case-studies/sar-consumer/screen-nfc.png', caption: 'NFC tap flow — "Hold Near Reader" with 123 receipts captured on the pass' },
+      { src: '/case-studies/sar-consumer/screen-signup.png', caption: 'Onboarding — "Welcome to Sar. Let\'s get you signed up." with SSO options' },
+      { src: '/case-studies/sar-consumer/screen-transactions.png', caption: 'Transaction history — categorized by Business, Neutral, Carbon positive' },
     ],
     challenge: "Every \"digital receipt\" product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is the entire reason paper receipts still exist in 2026. The insight wasn't to digitize the receipt — it was to make the digital receipt require less effort than the paper one.",
     approach: [
