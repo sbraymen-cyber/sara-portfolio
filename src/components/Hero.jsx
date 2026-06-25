@@ -29,7 +29,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          UX and product — shaping how AI works for 100k+ users at Cigna, building products from scratch alongside startup CEOs, and now vibe-coding my own app.
+          I help teams figure out the right thing to build — and then help build it. From AI tools for clinicians at Cigna, to housing relief dashboards that got funds to families faster, to my own app in TestFlight.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 80 }}>
