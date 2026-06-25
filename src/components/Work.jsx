@@ -44,7 +44,7 @@ const PROJECTS = [
   },
   {
     slug: 'sar-consumer',
-    company: 'Sar — Founder & PM',
+    company: 'Sar',
     title: 'Consumer Receipt Experience',
     desc: 'Defined the product vision, UX, and go-to-market for a tap-to-wallet receipt experience. No app download. Tap phone at checkout → receipt in Apple Wallet instantly.',
     accent: '#6F87BE',
@@ -57,7 +57,7 @@ const PROJECTS = [
   },
   {
     slug: 'sar-merchant',
-    company: 'Sar — Founder & PM',
+    company: 'Sar',
     title: 'Merchant Platform & POS Integrations',
     desc: 'Set pricing strategy ($0.04/receipt), owned Square API integration roadmap, designed merchant dashboard and sustainability metrics. Multi-POS schema built for Toast and Clover expansion.',
     accent: '#C49A5A',
