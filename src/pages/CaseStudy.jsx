@@ -33,6 +33,7 @@ export const STUDIES = {
       { title: 'Discovery First, Always', body: 'I spent months in deep discovery — interviewing clinicians, researchers, and analysts, then joining weekly syncs with the data and dev team I eventually merged onto. Understanding how data actually flowed through the system wasn\'t optional; it was the entire design foundation. You can\'t design a research tool if you don\'t understand the research.' },
       { title: 'Geographic Intelligence as the Entry Point', body: 'Researchers think geographically. "Coverage in the Southeast," "gaps in rural areas," "outbreak density by county." I designed a choropleth map as the primary frame using ArcGIS and Neo4j, with progressive filter complexity layered beneath — start with location and diagnosis, add medications and comorbidities only when needed. High-floor for experts, low-ceiling for newcomers.' },
       { title: 'Raising the Design Bar for a Platform', body: "I worked within Evernorth's Control Center design system — but pushed deliberately outside it where the tool demanded more. The result wasn\'t just a better product: the design standard we set for Broadstreet created pressure that eventually triggered a broader upgrade of the entire Control Center host platform. One well-designed app changed what the whole team thought was possible." },
+      { title: 'How I Work With Teams', body: "I merged onto a data and engineering team mid-project and had to earn trust fast. That meant showing up to their standups, learning their vocabulary, and asking questions that made them feel heard rather than questioned. I set the product direction in close partnership with my director, kept stakeholders aligned through every pivot, and made sure the engineers knew why each decision mattered — not just what to build. The goal was always to keep momentum without leaving anyone behind." },
     ],
     evolution: [
       { era: '2022–2023', label: 'Wizard Flow', body: 'Step-by-step guided search. Users found it constraining — experienced researchers wanted all options visible at once, not locked behind sequential steps.' },
@@ -75,6 +76,7 @@ export const STUDIES = {
       { title: 'Learning by Experience, Not Documentation', body: "The insight was simple: people don't read training docs, but they'll follow a good guide. John Snow walks users through constructing a search, explains what each filter does in plain language, and makes selections on their behalf when they're stuck. The agent isn't a chatbot — it's a co-pilot that transfers knowledge through demonstration rather than instruction." },
       { title: 'Designing for Hallucination and Scope Creep', body: "Our biggest challenge wasn't the UI — it was keeping John Snow on task. Context windows, prompt boundaries, and hallucination were real engineering constraints that shaped every design decision. When users got curious about the AI itself and started asking John Snow about its own architecture (it's named after a famous epidemiologist — people got excited), we had to design graceful redirects and populate a dedicated Learn More page. Two devs and I went back and forth on these edge cases for months." },
       { title: 'Pop-Up Agent Over Sidecar — a Market-Informed Call', body: "I researched current AI assistant patterns extensively before committing to a layout. The dominant trend in enterprise AI in 2025 moved away from persistent sidecars — which compete with content for space — toward focused modal agents that appear at the moment of need and get out of the way. We shipped a pop-up agent. The sidecar pattern may return if Broadstreet expands its artifact surface area, but for the current workflow it was the right call." },
+      { title: 'Keeping Engineers and Stakeholders Moving Together', body: "This project had real technical complexity — context windows, hallucination boundaries, prompt constraints — and I worked directly with two engineers to turn those constraints into design decisions rather than design blockers. I kept my director informed at every fork, framed tradeoffs clearly, and never let disagreement stall momentum. When the team got excited about the John Snow easter egg and started going down rabbit holes, I kept us focused while making sure everyone felt heard. That balance — protecting the team's energy while staying on target — is something I care a lot about." },
     ],
     pullQuote: "We named the agent John Snow after the physician who traced a cholera outbreak to a water pump on Broadstreet in 1854. It felt right. The tool finds patterns in patient data — so did he.",
     outcome: "John Snow handles the first half of the Broadstreet research workflow — the discovery and query construction phase where users previously churned. 96% of tested users called it a 'must have.' The next frontier: letting the agent decide mid-conversation when a structured UI component is a better response than prose.",
@@ -149,6 +151,7 @@ export const STUDIES = {
       ],
     },
     pullQuote: "Everyone said just add a QR code. But QR codes require the customer to do something. The whole premise of Sar is that they don't have to.",
+    liveUrl: 'https://sar-app.com',
     outcome: 'Live pilots in Boulder and Denver, CO. iOS app in TestFlight as of June 2026. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
   },
 
@@ -239,33 +242,6 @@ export default function CaseStudy() {
 
           <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 560, marginBottom: 40 }}>{tagline}</p>
 
-          {/* Live CTA — hero placement for Sar Merchant */}
-          {study.liveUrl && (
-            <div style={{ display: 'inline-block', marginBottom: 48 }}>
-              <motion.a
-                href={study.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="live-cta-pulse"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 16,
-                  padding: '22px 40px', borderRadius: 24,
-                  background: `linear-gradient(135deg, rgba(${accentRgb},0.18) 0%, rgba(${accentRgb},0.08) 100%)`,
-                  border: `1px solid rgba(${accentRgb},0.35)`,
-                  textDecoration: 'none',
-                }}
-              >
-                <div>
-                  <p className="type-label-sm" style={{ color: `rgba(${accentRgb},0.7)`, marginBottom: 2 }}>Live product</p>
-                  <p style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: '#fff' }}>See it in action ↗</p>
-                </div>
-                <div style={{ width: 1, height: 36, background: `rgba(${accentRgb},0.2)` }} />
-                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.4)' }}>sar-app.com</p>
-              </motion.a>
-            </div>
-          )}
 
           <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
             <div>
@@ -360,34 +336,41 @@ export default function CaseStudy() {
           <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.65)', maxWidth: 560 }}>{outcome}</p>
         </Section>
 
-        {/* Live site CTA (Sar Merchant only) */}
+        {/* Live site CTA */}
         {study.liveUrl && (
-          <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
-            <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>See it live</p>
-            <motion.a
-              href={study.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 12,
-                padding: '20px 36px', borderRadius: 20,
-                background: `rgba(${study.accentRgb},0.12)`,
-                border: `1px solid rgba(${study.accentRgb},0.3)`,
-                textDecoration: 'none', transition: 'background 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = `rgba(${study.accentRgb},0.2)`}
-              onMouseLeave={e => e.currentTarget.style.background = `rgba(${study.accentRgb},0.12)`}
-            >
-              <span className="type-h2" style={{ color: '#fff' }}>Check it out</span>
-              <span style={{ fontSize: 22, color: study.accent }}>↗</span>
-            </motion.a>
-            <p className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 12 }}>sar-app.com</p>
+          <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
+            <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)' }}>See it live</p>
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              {/* Aura glow layers */}
+              <motion.div animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0.0, 0.35] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ position: 'absolute', inset: -18, borderRadius: 36, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.55) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+              <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.1, 0.5] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                style={{ position: 'absolute', inset: -8, borderRadius: 30, background: `rgba(${study.accentRgb},0.18)`, pointerEvents: 'none' }} />
+              <motion.a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                style={{
+                  position: 'relative',
+                  display: 'inline-flex', alignItems: 'center', gap: 14,
+                  padding: '22px 48px', borderRadius: 24,
+                  background: `linear-gradient(135deg, rgba(${study.accentRgb},0.22) 0%, rgba(${study.accentRgb},0.1) 100%)`,
+                  border: `1.5px solid rgba(${study.accentRgb},0.5)`,
+                  boxShadow: `0 0 32px rgba(${study.accentRgb},0.25), inset 0 1px 0 rgba(255,255,255,0.1)`,
+                  textDecoration: 'none',
+                  backdropFilter: 'blur(12px)',
+                }}
+              >
+                <span style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Get started at sar-app.com</span>
+                <span style={{ fontSize: 22, color: study.accent }}>↗</span>
+              </motion.a>
+            </div>
           </div>
         )}
 
