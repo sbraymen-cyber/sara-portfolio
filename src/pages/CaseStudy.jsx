@@ -39,7 +39,7 @@ export const STUDIES = {
       { era: '2024–2025', label: 'Side Panel Search', body: 'Filters alongside the map. Faster to first search, but as the filter set expanded, the panel stopped scaling for power users with complex queries.' },
       { era: '2026–Present', label: 'AI-Powered Search', body: 'Natural language entry — "Find PCOS patients in regions with limited reproductive endocrinologist access." Conversational intent, visual refinement. Early prototypes show strong preference.' },
     ],
-    pullQuote: 'My design team struggled to understand how data flowed through this tool — and I knew that was the core problem to solve. If your designers can\'t explain the data model, your users never will.',
+    pullQuote: "I spent months just learning how the data moved through the system before I touched a single screen. You can't design something you don't understand.",
     outcome: 'Broadstreet became the core workflow for clinical population research at Evernorth. Three major versions shipped. The design standard we established pushed the entire Control Center platform to raise its bar. The V3 natural language interface is expanding use cases into real-time outbreak detection and regional care gap analysis.',
   },
 
@@ -76,7 +76,7 @@ export const STUDIES = {
       { title: 'Designing for Hallucination and Scope Creep', body: "Our biggest challenge wasn't the UI — it was keeping John Snow on task. Context windows, prompt boundaries, and hallucination were real engineering constraints that shaped every design decision. When users got curious about the AI itself and started asking John Snow about its own architecture (it's named after a famous epidemiologist — people got excited), we had to design graceful redirects and populate a dedicated Learn More page. Two devs and I went back and forth on these edge cases for months." },
       { title: 'Pop-Up Agent Over Sidecar — a Market-Informed Call', body: "I researched current AI assistant patterns extensively before committing to a layout. The dominant trend in enterprise AI in 2025 moved away from persistent sidecars — which compete with content for space — toward focused modal agents that appear at the moment of need and get out of the way. We shipped a pop-up agent. The sidecar pattern may return if Broadstreet expands its artifact surface area, but for the current workflow it was the right call." },
     ],
-    pullQuote: "We named the agent John Snow — after the physician who traced a cholera outbreak to a water pump on Broadstreet in 1854. The best easter eggs are the ones that reward people who pay attention.",
+    pullQuote: "We named the agent John Snow after the physician who traced a cholera outbreak to a water pump on Broadstreet in 1854. It felt right. The tool finds patterns in patient data — so did he.",
     outcome: "John Snow handles the first half of the Broadstreet research workflow — the discovery and query construction phase where users previously churned. 96% of tested users called it a 'must have.' The next frontier: letting the agent decide mid-conversation when a structured UI component is a better response than prose.",
   },
 
@@ -106,7 +106,7 @@ export const STUDIES = {
       { title: 'Accessible Under Crisis Conditions', body: "WCAG compliance wasn't a checkbox — it was a design constraint that shaped every color decision, every label, every interaction. Administrators were making high-stakes decisions under pressure, sometimes on unfamiliar equipment. The dashboards had to be readable at a glance by someone who'd never seen them before. Demographic data was tracked and surfaced mindfully, with appropriate context." },
       { title: 'Designed Around What Executives Actually Needed', body: 'I worked directly with program administrators and state officials to understand exactly what decisions they were making and what data would change them. The result was five-page dashboards per state: application pipeline view, funding distribution, demographic breakdown, approval bottleneck analysis, and disbursement status. Information architecture driven entirely by decision flow, not data availability.' },
     ],
-    pullQuote: "I got to talk to actual applicants. They thanked me. People needed housing during COVID — and they were grateful to get it. That's not an abstraction.",
+    pullQuote: "I got to talk to some of the actual applicants. One woman thanked me. She'd been waiting on funds for months. That conversation has stayed with me.",
     outcome: 'Four states. Real-time visibility for the first time. Administrators went from week-old spreadsheets to live dashboards that showed exactly where every dollar was and where it was stuck. The work mattered in the most direct way possible — families got housing assistance faster because decisions could finally be made on accurate data.',
   },
 
@@ -148,7 +148,7 @@ export const STUDIES = {
         { phase: 'Non-tappers', body: 'Exit interviews with customers who walked past the sticker. Awareness gap, trust barrier, or just didn\'t notice? Different problems, different fixes.' },
       ],
     },
-    pullQuote: "Everyone told me to add a QR code at the terminal. I said no. The whole point is that the customer doesn't have to aim at anything.",
+    pullQuote: "Everyone said just add a QR code. But QR codes require the customer to do something. The whole premise of Sar is that they don't have to.",
     outcome: 'Live pilots in Boulder and Denver, CO. iOS app in TestFlight as of June 2026. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
   },
 
@@ -177,7 +177,7 @@ export const STUDIES = {
       { title: 'Sustainability as Hard ROI, Not Soft Brand', body: "The Certified Paperless badge isn\'t decorative. It shows live metrics — trees saved, pounds of paper eliminated, CO₂ avoided — calculated from that merchant\'s actual transaction volume. Embeddable badge, share-ready social cards, printable certification. Merchants don\'t just feel good about it. They post it. It becomes part of how they talk about their business to neighboring owners, which is where pilot growth has actually come from." },
       { title: 'Cashier Scripts', body: "The biggest friction in rolling out any new checkout behavior is the 30 seconds where the cashier doesn\'t know what to say. The merchant page includes three ready-to-use scripts for different situations — first-time customer, returning customer, customer who prefers paper. Staff adoption is a UX problem, not a training problem, and this is how you solve it at the point of sale." },
     ],
-    pullQuote: "The merchant page isn\'t just a sales pitch. It\'s a design artifact — every section answers a specific objection in the order a skeptical business owner would raise it.",
+    pullQuote: "I've pitched this to enough business owners to know exactly when they cross their arms. The page is designed around that moment — every section answers the next objection before they can raise it.",
     outcome: '3+ active pilots in Boulder and Denver. Square OAuth integration live. Toast and Ingenico normalization in progress. Square App Marketplace application filed under Customer Engagement. Pre-revenue — billing activates when pilots convert. The sustainability badge has become a word-of-mouth driver: multiple pilot merchants have mentioned it to neighboring businesses unprompted.',
     liveUrl: 'https://sar-app.com',
   },
