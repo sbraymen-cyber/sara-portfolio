@@ -21,7 +21,7 @@ export default function Hero() {
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: '0 48px 80px', width: '100%' }}>
 
         <motion.p {...fadeUp(0.2)} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>
-          Product · Design · AI · Boulder, CO
+          Senior Product Manager & Designer · Boulder, CO
         </motion.p>
 
         <motion.h1 {...fadeUp(0.32)} className="type-display" style={{ marginBottom: 28, maxWidth: '18ch' }}>
@@ -29,7 +29,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          I help teams figure out the right thing to build — and then help build it. From AI tools for clinicians at Cigna, to housing relief dashboards that got funds to families faster, to my own app in TestFlight.
+          I lead product across the full stack — from discovery and roadmapping to AI architecture and shipping. Enterprise platforms, government data systems, and my own app in TestFlight.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 80 }}>
