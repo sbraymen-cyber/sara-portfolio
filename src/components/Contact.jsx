@@ -63,7 +63,7 @@ export default function Contact() {
           {/* Left — copy */}
           <div>
             <motion.p
-              style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}
+              style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 16 }}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Get in touch
             </motion.p>

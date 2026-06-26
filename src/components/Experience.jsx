@@ -30,7 +30,7 @@ export default function Experience() {
 
           {/* Experience column */}
           <div>
-            <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 32 }}
+            <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 32 }}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Experience
             </motion.p>
@@ -85,7 +85,7 @@ export default function Experience() {
 
           {/* Skills + Education column */}
           <div>
-            <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 32 }}
+            <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 32 }}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
               Skills & Tools
             </motion.p>
@@ -114,7 +114,7 @@ export default function Experience() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.18 }}
             >
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 24 }}>Get in touch</p>
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>Get in touch</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <a href="mailto:sarabraymen@gmail.com" style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.15s' }}
                   onMouseEnter={e => e.target.style.color = '#fff'}

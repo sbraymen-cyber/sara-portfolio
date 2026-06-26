@@ -205,7 +205,7 @@ function Section({ label, children }) {
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
       style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
-      <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>{label}</p>
+      <p className="type-label-sm" style={{ color: 'var(--coral)', marginBottom: 20 }}>{label}</p>
       {children}
     </motion.div>
   );
@@ -343,7 +343,7 @@ export default function CaseStudy() {
         {/* Live site CTA */}
         {study.liveUrl && (
           <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
-            <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)' }}>See it live</p>
+            <p className="type-label-sm" style={{ color: 'var(--coral)' }}>See it live</p>
             <div style={{ position: 'relative', display: 'inline-block' }}>
               {/* Aura glow layers */}
               <motion.div animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0.0, 0.35] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
@@ -380,7 +380,7 @@ export default function CaseStudy() {
 
         {/* More */}
         <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
-          <p className="type-label-sm" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 20 }}>More case studies</p>
+          <p className="type-label-sm" style={{ color: 'var(--coral)', marginBottom: 20 }}>More case studies</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {Object.values(STUDIES).filter(s => s.slug !== slug).map(s => (
               <Link key={s.slug} to={`/work/${s.slug}`}
