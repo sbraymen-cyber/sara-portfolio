@@ -11,7 +11,7 @@ const fadeUp = (delay = 0) => ({
 
 const STATS = [
   { n: '$300M', label: 'Housing aid disbursed', sub: 'FEMA · 3 states' },
-  { n: 'M+', label: 'Users on Evernorth Control Center', sub: 'Evernorth / Cigna' },
+  { n: '100k+', label: 'Users on Evernorth Control Center', sub: 'Evernorth / Cigna' },
   { n: '1', label: 'App in TestFlight', sub: 'Sar · NFC receipts' },
 ];
 
