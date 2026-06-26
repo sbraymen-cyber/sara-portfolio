@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const PROJECTS = [
   {
@@ -71,11 +72,11 @@ const PROJECTS = [
   },
 ];
 
-function Card({ project: p, index }) {
+function Card({ project: p, index, isMobile }) {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
 
-  const isWide = p.span === 2;
+  const isWide = p.span === 2 && !isMobile;
 
   return (
     <motion.article
@@ -98,7 +99,7 @@ function Card({ project: p, index }) {
       }}
     >
       {/* Screenshot */}
-      <div style={{ position: 'relative', overflow: 'hidden', height: isWide ? 320 : 260 }}>
+      <div style={{ position: 'relative', overflow: 'hidden', height: isWide ? 320 : isMobile ? 200 : 260 }}>
         {p.img ? (
           <img src={p.img} alt={p.title} style={{
             width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block',
@@ -145,7 +146,7 @@ function Card({ project: p, index }) {
         </div>
         <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h3>
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, marginBottom: 16 }}>{p.desc}</p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {p.tags.slice(0, 3).map(t => (
               <span key={t} style={{
@@ -165,9 +166,11 @@ function Card({ project: p, index }) {
 }
 
 export default function Work() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const px = isMobile ? 20 : isTablet ? 32 : 48;
+
   return (
-    <section id="work" style={{ maxWidth: 1080, margin: '0 auto', padding: '120px 48px 100px' }}>
-      {/* Section header */}
+    <section id="work" style={{ maxWidth: 1080, margin: '0 auto', padding: `${isMobile ? 80 : 120}px ${px}px ${isMobile ? 60 : 100}px` }}>
       <div style={{ marginBottom: 56 }}>
         <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -180,10 +183,9 @@ export default function Work() {
         </motion.h2>
       </div>
 
-      {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 12 : 16 }}>
         {PROJECTS.map((p, i) => (
-          <Card key={p.slug} project={p} index={i} />
+          <Card key={p.slug} project={p} index={i} isMobile={isMobile} />
         ))}
       </div>
     </section>

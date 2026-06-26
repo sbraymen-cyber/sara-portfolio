@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -72,6 +73,7 @@ export default function SaraBot() {
   const [streaming, setStreaming] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const { isMobile } = useBreakpoint();
 
   useEffect(() => {
     if (open && messages.length === 0) {
@@ -196,12 +198,17 @@ export default function SaraBot() {
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              position: 'fixed', bottom: 90, right: 28, zIndex: 999,
-              width: 380, maxHeight: 540,
+              position: 'fixed',
+              bottom: isMobile ? 0 : 90,
+              right: isMobile ? 0 : 28,
+              left: isMobile ? 0 : 'auto',
+              zIndex: 999,
+              width: isMobile ? '100%' : 380,
+              maxHeight: isMobile ? '75vh' : 540,
+              borderRadius: isMobile ? '20px 20px 0 0' : 20,
               display: 'flex', flexDirection: 'column',
               background: 'rgba(22,20,18,0.96)',
               border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 20,
               backdropFilter: 'blur(32px)',
               boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(111,135,190,0.08)',
               overflow: 'hidden',

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const JOBS = [
   { company: 'Prominent Technology', role: 'Senior UX Manager', period: 'Mar 2026 – Present', current: true },
@@ -11,11 +12,14 @@ const JOBS = [
 const SKILLS = ['Product Strategy', 'Roadmapping', 'AI / GenAI UX', 'Design Systems', 'User Research', 'Figma', 'React', 'TypeScript', 'SQL', 'Power BI', 'Stakeholder Alignment', '0→1 Products', 'Agent UX', 'iOS / NFC', 'Framer'];
 
 export default function Experience() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const px = isMobile ? 20 : isTablet ? 32 : 48;
+
   return (
-    <section id="experience" style={{ maxWidth: 1080, margin: '0 auto', padding: '0 48px 120px' }}>
+    <section id="experience" style={{ maxWidth: 1080, margin: '0 auto', padding: `0 ${px}px ${isMobile ? 80 : 120}px` }}>
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 64 }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 48 : 80, alignItems: 'start' }}>
 
           {/* Experience column */}
           <div>
@@ -33,7 +37,7 @@ export default function Experience() {
                   transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   style={{ paddingBottom: 28, marginBottom: 28, borderBottom: i < JOBS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
                     <span style={{ fontSize: 15, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>{job.role}</span>
                     {job.current && (
                       <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(232,112,90,0.12)', color: 'var(--coral)', border: '1px solid rgba(232,112,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Now</span>
@@ -42,7 +46,7 @@ export default function Experience() {
                       <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(196,154,90,0.12)', color: 'var(--amber)', border: '1px solid rgba(196,154,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Founder</span>
                     )}
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
                     <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
                     <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.period}</span>
                   </div>

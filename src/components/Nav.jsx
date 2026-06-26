@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const LINKS = [
   ['Work', '#work'],
@@ -8,6 +9,7 @@ const LINKS = [
 ];
 
 export default function Nav() {
+  const { isMobile } = useBreakpoint();
   const { scrollY } = useScroll();
   const pillOpacity = useTransform(scrollY, [20, 80], [0, 1]);
   const pillScale = useTransform(scrollY, [20, 80], [0.94, 1]);
@@ -21,7 +23,7 @@ export default function Nav() {
     >
       <div style={{
         maxWidth: 1080, margin: '0 auto',
-        padding: '18px 48px',
+        padding: `18px ${isMobile ? 20 : 48}px`,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
 

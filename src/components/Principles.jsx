@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const ITEMS = [
   {
@@ -19,9 +20,13 @@ const ITEMS = [
 ];
 
 export default function Principles() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const px = isMobile ? 20 : isTablet ? 32 : 48;
+  const cols = isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1fr 1fr 1fr';
+
   return (
-    <section style={{ maxWidth: 1080, margin: '0 auto', padding: '0 48px 120px' }}>
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 64, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 40 }}>
+    <section style={{ maxWidth: 1080, margin: '0 auto', padding: `0 ${px}px ${isMobile ? 80 : 120}px` }}>
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 64, display: 'grid', gridTemplateColumns: cols, gap: isMobile ? 36 : 40 }}>
         {ITEMS.map((item, i) => (
           <motion.div key={i}
             initial={{ opacity: 0, y: 16 }}

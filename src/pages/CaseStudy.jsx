@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 /* ─── Data ────────────────────────────────────────── */
 export const STUDIES = {
@@ -215,6 +216,9 @@ export default function CaseStudy() {
   const { slug } = useParams();
   const study = STUDIES[slug];
   if (!study) return <Navigate to="/" replace />;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { isMobile, isTablet } = useBreakpoint();
+  const px = isMobile ? 20 : isTablet ? 32 : 48;
 
   const { title, company, tagline, role, timeline, accent, accentRgb, tags, stats, challenge, approach, evolution, pullQuote, outcome } = study;
 
@@ -228,7 +232,7 @@ export default function CaseStudy() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '120px 32px 100px' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: `${isMobile ? 80 : 120}px ${px}px ${isMobile ? 60 : 100}px` }}>
 
         {/* Hero */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
@@ -286,7 +290,7 @@ export default function CaseStudy() {
                   <span className="type-caption" style={{ color: accent, opacity: 0.7, minWidth: 24 }}>0{i + 1}</span>
                   <h3 className="type-label-lg" style={{ color: '#fff' }}>{a.title}</h3>
                 </div>
-                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, paddingLeft: 36 }}>{a.body}</p>
+                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, paddingLeft: isMobile ? 0 : 36 }}>{a.body}</p>
               </div>
             ))}
           </div>
@@ -359,7 +363,7 @@ export default function CaseStudy() {
                 style={{
                   position: 'relative',
                   display: 'inline-flex', alignItems: 'center', gap: 14,
-                  padding: '22px 48px', borderRadius: 24,
+                  padding: isMobile ? '18px 28px' : '22px 48px', borderRadius: 24,
                   background: `linear-gradient(135deg, rgba(${study.accentRgb},0.22) 0%, rgba(${study.accentRgb},0.1) 100%)`,
                   border: `1.5px solid rgba(${study.accentRgb},0.5)`,
                   boxShadow: `0 0 32px rgba(${study.accentRgb},0.25), inset 0 1px 0 rgba(255,255,255,0.1)`,
@@ -367,8 +371,8 @@ export default function CaseStudy() {
                   backdropFilter: 'blur(12px)',
                 }}
               >
-                <span style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Get started at sar-app.com</span>
-                <span style={{ fontSize: 22, color: study.accent }}>↗</span>
+                <span style={{ fontSize: isMobile ? 16 : 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Get started at sar-app.com</span>
+                <span style={{ fontSize: isMobile ? 16 : 22, color: study.accent }}>↗</span>
               </motion.a>
             </div>
           </div>

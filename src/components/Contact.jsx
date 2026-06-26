@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -26,7 +27,9 @@ const inputStyle = {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', role: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle');
+  const { isMobile, isTablet } = useBreakpoint();
+  const px = isMobile ? 20 : isTablet ? 32 : 48;
 
   function set(k, v) { setForm(f => ({ ...f, [k]: v })); }
 
@@ -53,9 +56,9 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" style={{ maxWidth: 1080, margin: '0 auto', padding: '0 48px 120px' }}>
+    <section id="contact" style={{ maxWidth: 1080, margin: '0 auto', padding: `0 ${px}px ${isMobile ? 80 : 120}px` }}>
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 64 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'start' }}>
 
           {/* Left — copy */}
           <div>
@@ -65,7 +68,7 @@ export default function Contact() {
               Get in touch
             </motion.p>
             <motion.h2
-              style={{ fontSize: 32, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', marginBottom: 20, lineHeight: 1.2 }}
+              style={{ fontSize: isMobile ? 26 : 32, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', marginBottom: 20, lineHeight: 1.2 }}
               initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.06 }}>
               {"Let's work together."}
