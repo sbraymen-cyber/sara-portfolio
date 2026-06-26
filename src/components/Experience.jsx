@@ -3,10 +3,17 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const JOBS = [
   { company: 'Prominent Technology', role: 'Senior UX Manager', period: 'Mar 2026 – Present', current: true },
-  { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present', founder: true },
-  { company: 'Evernorth Health Services (Cigna)', role: 'Lead Product Manager – UX', period: 'Oct 2023 – Mar 2026', note: 'Broadstreet Clinical + AI platforms' },
-  { company: 'Evernorth Health Services (Cigna)', role: 'Senior UX Designer', period: 'Apr 2022 – Oct 2023' },
-  { company: 'Horne LLP', role: 'Senior Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022', note: 'Louisiana + Alabama COVID relief programs · promoted' },
+  { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present' },
+  {
+    company: 'Evernorth Health Services (Cigna)',
+    period: 'Apr 2022 – Mar 2026',
+    note: 'Broadstreet Clinical + AI platforms',
+    promotionGroup: [
+      { role: 'Lead Product Manager – UX', period: 'Oct 2023 – Mar 2026' },
+      { role: 'Senior UX Designer', period: 'Apr 2022 – Oct 2023' },
+    ],
+  },
+  { company: 'Horne LLP', role: 'Senior Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022', note: 'Louisiana + Alabama COVID relief programs' },
 ];
 
 const SKILLS = ['Product Strategy', 'Roadmapping', 'AI / GenAI UX', 'Design Systems', 'User Research', 'Figma', 'React', 'TypeScript', 'SQL', 'Power BI', 'Stakeholder Alignment', '0→1 Products', 'Agent UX', 'iOS / NFC', 'Framer'];
@@ -37,21 +44,39 @@ export default function Experience() {
                   transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   style={{ paddingBottom: 28, marginBottom: 28, borderBottom: i < JOBS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 15, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>{job.role}</span>
-                    {job.current && (
-                      <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(232,112,90,0.12)', color: 'var(--coral)', border: '1px solid rgba(232,112,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Now</span>
-                    )}
-                    {job.founder && (
-                      <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(196,154,90,0.12)', color: 'var(--amber)', border: '1px solid rgba(196,154,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Founder</span>
-                    )}
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
-                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.period}</span>
-                  </div>
-                  {job.note && (
-                    <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', marginTop: 4, fontStyle: 'italic' }}>{job.note}</p>
+                  {job.promotionGroup ? (
+                    /* Grouped promotion — one company, multiple roles */
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
+                        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.period}</span>
+                      </div>
+                      {job.promotionGroup.map((r, j) => (
+                        <div key={j} style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: j < job.promotionGroup.length - 1 ? 8 : 0 }}>
+                          <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)', flexShrink: 0, marginTop: 2 }} />
+                          <div>
+                            <span style={{ fontSize: 14, fontWeight: 600, color: j === 0 ? '#fff' : 'rgba(255,255,255,0.5)', letterSpacing: '-0.01em' }}>{r.role}</span>
+                            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', marginLeft: 10 }}>{r.period}</span>
+                          </div>
+                        </div>
+                      ))}
+                      {job.note && <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.22)', marginTop: 10 }}>{job.note}</p>}
+                    </>
+                  ) : (
+                    /* Standard single role */
+                    <>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 15, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>{job.role}</span>
+                        {job.current && (
+                          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(232,112,90,0.12)', color: 'var(--coral)', border: '1px solid rgba(232,112,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Now</span>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
+                        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.period}</span>
+                      </div>
+                      {job.note && <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.22)', marginTop: 6 }}>{job.note}</p>}
+                    </>
                   )}
                 </motion.div>
               ))}
