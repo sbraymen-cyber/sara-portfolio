@@ -110,20 +110,6 @@ function Card({ project: p, index, isMobile }) {
           <div style={{ width: '100%', height: '100%', background: `radial-gradient(ellipse at 35% 30%, rgba(${p.accentRgb},0.25) 0%, #0e0c0a 70%)` }} />
         )}
 
-        {/* Metric badge */}
-        <div style={{
-          position: 'absolute', top: 16, right: 16,
-          background: 'rgba(10,8,6,0.82)',
-          backdropFilter: 'blur(16px)',
-          border: `1px solid rgba(${p.accentRgb},0.3)`,
-          borderRadius: 100,
-          padding: '6px 14px',
-          display: 'flex', alignItems: 'baseline', gap: 5,
-        }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>{p.metric}</span>
-          <span style={{ fontSize: 11, color: `rgba(${p.accentRgb},0.9)`, fontWeight: 500 }}>{p.metricLabel}</span>
-        </div>
-
         {/* Bottom gradient */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(22,20,20,1) 0%, rgba(22,20,20,0.2) 40%, transparent 70%)' }} />
       </div>

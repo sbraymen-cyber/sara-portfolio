@@ -11,8 +11,8 @@ const LINKS = [
 export default function Nav() {
   const { isMobile } = useBreakpoint();
   const { scrollY } = useScroll();
-  const pillOpacity = useTransform(scrollY, [20, 80], [0, 1]);
-  const pillScale = useTransform(scrollY, [20, 80], [0.94, 1]);
+  const fadeIn = useTransform(scrollY, [40, 120], [0, 1]);
+  const pillScale = useTransform(scrollY, [40, 120], [0.94, 1]);
 
   return (
     <motion.nav
@@ -27,31 +27,33 @@ export default function Nav() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
 
-        {/* Name */}
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '-0.01em' }}>
-            Sara Braymen
-          </span>
-        </Link>
+        {/* Name — fades in on scroll so it doesn't clash with hero text */}
+        <motion.div style={{ opacity: fadeIn }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.9)', letterSpacing: '-0.01em' }}>
+              Sara Braymen
+            </span>
+          </Link>
+        </motion.div>
 
-        {/* Liquid glass pill — fades in on scroll */}
+        {/* Liquid glass pill */}
         <motion.div style={{
-          opacity: pillOpacity,
+          opacity: fadeIn,
           scale: pillScale,
           display: 'flex', gap: 2, alignItems: 'center',
-          background: 'rgba(255,255,255,0.07)',
-          border: '1px solid rgba(255,255,255,0.14)',
+          background: 'rgba(255,255,255,0.04)',
+          border: '1px solid rgba(255,255,255,0.1)',
           borderRadius: 100,
           padding: '5px 6px',
-          backdropFilter: 'blur(24px) saturate(1.3) brightness(1.1)',
-          WebkitBackdropFilter: 'blur(24px) saturate(1.3) brightness(1.1)',
-          boxShadow: '0 4px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.1)',
+          backdropFilter: 'blur(20px) saturate(1.2)',
+          WebkitBackdropFilter: 'blur(20px) saturate(1.2)',
+          boxShadow: '0 2px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
         }}>
           {LINKS.map(([label, href]) => (
             <a key={label} href={href}
               style={{
                 fontSize: 13, fontWeight: 500,
-                color: 'rgba(255,255,255,0.6)',
+                color: 'rgba(255,255,255,0.55)',
                 textDecoration: 'none',
                 padding: '7px 16px',
                 borderRadius: 100,
@@ -60,10 +62,10 @@ export default function Nav() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.color = '#fff';
-                e.currentTarget.style.background = 'rgba(255,255,255,0.11)';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.09)';
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.color = 'rgba(255,255,255,0.6)';
+                e.currentTarget.style.color = 'rgba(255,255,255,0.55)';
                 e.currentTarget.style.background = 'transparent';
               }}
             >{label}</a>
