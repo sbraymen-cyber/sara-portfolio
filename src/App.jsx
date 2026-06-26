@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Work from './components/Work';
@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import CaseStudy from './pages/CaseStudy';
 import SaraBot from './components/SaraBot';
+import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
 function CursorGlow() {
@@ -68,11 +69,12 @@ function Portfolio() {
 
 export default function App() {
   const { pathname } = useLocation();
+  const { isMobile } = useBreakpoint();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
     <>
-      <CursorGlow />
+      {!isMobile && <CursorGlow />}
       <SaraBot />
       <Routes>
         <Route path="/" element={<Portfolio />} />

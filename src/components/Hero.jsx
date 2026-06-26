@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import VideoBackground from './VideoBackground';
+import Aurora from './Aurora';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const fadeUp = (delay = 0) => ({
@@ -20,7 +21,7 @@ export default function Hero() {
 
   return (
     <section style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-      <VideoBackground />
+      {isMobile ? <Aurora /> : <VideoBackground />}
 
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: `0 ${px}px ${isMobile ? 60 : 80}px`, width: '100%' }}>
 
