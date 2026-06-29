@@ -8,8 +8,8 @@ const ITEMS = [
     accent: 'var(--coral)',
   },
   {
-    label: 'Close to the product decisions',
-    body: "I work closely with PMs and leadership on scoping, prioritization, and stakeholder alignment. At Sar I own those decisions myself. Either way, I care about the outcome — not just the deliverable.",
+    label: 'Business decisions, disguised as simplicity',
+    body: "I make product calls that balance user needs, business goals, and technical reality — then hide all of that complexity behind flows that feel obvious. The best interfaces don't feel designed. They feel inevitable.",
     accent: 'var(--steel)',
   },
   {
