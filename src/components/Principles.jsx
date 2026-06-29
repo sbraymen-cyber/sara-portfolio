@@ -14,7 +14,7 @@ const ITEMS = [
   },
   {
     label: 'Early to AI product work',
-    body: "I designed an AI research agent at Evernorth in 2024 when patterns for this kind of work were still being figured out. It pushed me to think hard about trust, failure states, and what users actually need from AI.",
+    body: "I shipped an AI agent that guides users through a geospatial mapping tool — before the industry had a playbook for it. That meant working directly with our developer to find where design ambition met ArcGIS and Neo4j constraints, and finding solutions that didn't make us compromise on quality.",
     accent: 'var(--amber)',
   },
 ];
