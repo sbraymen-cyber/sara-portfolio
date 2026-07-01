@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useBreakpoint } from '../hooks/useBreakpoint';
@@ -26,7 +26,6 @@ export const STUDIES = {
       { src: '/case-studies/broadstreet-clinical/screen-1.png', caption: 'V2 side-panel search — filters alongside the patient summary' },
       { src: '/case-studies/broadstreet-clinical/screen-2.png', caption: 'Result details — geographic choropleth with physician overlay, West Palm Beach' },
       { src: '/case-studies/broadstreet-clinical/screen-3.png', caption: 'Search results grid — top result with related markets and underserved areas' },
-      { src: '/case-studies/broadstreet-clinical/screen-4.png', caption: 'Saved searches — managing complex, reusable queries across lab and web versions' },
       { src: '/case-studies/broadstreet-clinical/screen-5.png', caption: 'User persona — Mark, Evernorth data analyst, research goals and frustrations' },
       { src: '/case-studies/broadstreet-clinical/screen-6.png', caption: 'Discovery: user persona mapping for clinical researcher audience' },
     ],
@@ -96,13 +95,16 @@ export const STUDIES = {
     stats: [
       { value: '$300M', label: 'in COVID relief tracked across 4 states' },
       { value: '4', label: 'dashboards built end-to-end' },
-      { value: '0', label: 'real-time reporting tools before this' },
+      { value: '4', label: 'happy directors — finally had real-time visibility' },
     ],
     challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
+    carousel: [
+      { src: '/case-studies/louisiana-housing/img-1.png', caption: 'Overview — real-time pipeline, disbursement totals, and parish-level choropleth map' },
+      { src: '/case-studies/louisiana-housing/img-3.png', caption: 'Applications — stage breakdown, dollar forecasts, and LHC/HCA referral pipeline' },
+      { src: '/case-studies/louisiana-housing/img-2.png', caption: 'Demographics — race, gender, employment, AMI, disability status, and veteran data' },
+    ],
     images: [
-      { src: '/case-studies/louisiana-housing/screen-1.png', caption: 'Louisiana Homeowner Assistance Fund — real-time pipeline, disbursement totals, and parish-level map' },
-      { src: '/case-studies/louisiana-housing/screen-2.png', caption: 'Arkansas dashboard — application stages, funding remaining, and county breakdown' },
-      { src: '/case-studies/louisiana-housing/screen-3.png', caption: 'Homeowner demographics — race, ethnicity, AMI, disability status, and employment data' },
+      { src: '/case-studies/louisiana-housing/screen-2.png', caption: 'Arkansas Homeowner Assistance Fund — the same system, adapted for a different state\'s eligibility rules and county structure' },
     ],
     approach: [
       { title: 'SQL Architecture Built for Speed', body: 'Built the data pipeline from scratch — SQL queries connecting the application database to Power BI, optimized for real-time refresh. Each of the four state dashboards tracked the full lifecycle: application submitted → under review → funds disbursed. Three separate relief programs with different eligibility rules, funding caps, and reporting requirements, all surfaced in one coherent system.' },
@@ -211,6 +213,43 @@ function Section({ label, children }) {
   );
 }
 
+function Carousel({ slides, accent, accentRgb }) {
+  const [idx, setIdx] = useState(0);
+  const prev = () => setIdx(i => (i - 1 + slides.length) % slides.length);
+  const next = () => setIdx(i => (i + 1) % slides.length);
+
+  return (
+    <div style={{ marginTop: 56 }}>
+      <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', background: '#111' }}>
+        <motion.img
+          key={idx}
+          src={slides[idx].src}
+          alt={slides[idx].caption}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          style={{ width: '100%', display: 'block' }}
+        />
+        {/* Prev / Next */}
+        <button onClick={prev} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, width: 40, height: 40, color: '#fff', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
+        <button onClick={next} style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, width: 40, height: 40, color: '#fff', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>›</button>
+        {/* Slide label */}
+        <div style={{ position: 'absolute', top: 14, right: 14, background: 'rgba(0,0,0,0.6)', border: `1px solid rgba(${accentRgb},0.3)`, borderRadius: 100, padding: '3px 12px', fontSize: 11, fontWeight: 600, color: accent, letterSpacing: '0.06em', backdropFilter: 'blur(8px)' }}>
+          {idx + 1} / {slides.length}
+        </div>
+      </div>
+      {/* Caption */}
+      <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{slides[idx].caption}</p>
+      {/* Dot indicators */}
+      <div style={{ display: 'flex', gap: 6, marginTop: 14, paddingLeft: 4 }}>
+        {slides.map((_, i) => (
+          <button key={i} onClick={() => setIdx(i)} style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 100, background: i === idx ? accent : 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.25s' }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page ────────────────────────────────────────── */
 export default function CaseStudy() {
   const { slug } = useParams();
@@ -269,9 +308,14 @@ export default function CaseStudy() {
           <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 600 }}>{challenge}</p>
         </Section>
 
+        {/* Carousel (Louisiana dashboard walkthrough) */}
+        {study.carousel && (
+          <Carousel slides={study.carousel} accent={accent} accentRgb={accentRgb} />
+        )}
+
         {/* Screenshots */}
         {study.images && (
-          <div style={{ marginTop: 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ marginTop: study.carousel ? 32 : 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
             {study.images.map((img, i) => (
               <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
                 <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
