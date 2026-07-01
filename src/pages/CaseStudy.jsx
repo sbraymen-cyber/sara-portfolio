@@ -130,11 +130,12 @@ export const STUDIES = {
       { value: '0', label: 'apps required at the first tap' },
       { value: '3+', label: 'live merchant pilots in Boulder & Denver' },
     ],
+    phoneGrid: true,
     images: [
-      { src: '/case-studies/sar-consumer/screen-wallet.png', caption: 'Apple Wallet — Sar vault with 123 receipts captured, sitting alongside cards and passes' },
-      { src: '/case-studies/sar-consumer/screen-nfc.png', caption: 'NFC tap flow — "Hold Near Reader" with 123 receipts captured on the pass' },
-      { src: '/case-studies/sar-consumer/screen-signup.png', caption: 'Onboarding — "Welcome to Sar. Let\'s get you signed up." with SSO options' },
-      { src: '/case-studies/sar-consumer/screen-transactions.png', caption: 'Transaction history — categorized by Business, Neutral, Carbon positive' },
+      { src: '/case-studies/sar-consumer/screen-wallet.png', caption: 'Apple Wallet' },
+      { src: '/case-studies/sar-consumer/screen-nfc.png', caption: 'NFC tap flow' },
+      { src: '/case-studies/sar-consumer/screen-signup.png', caption: 'Onboarding' },
+      { src: '/case-studies/sar-consumer/screen-transactions.png', caption: 'Transactions' },
     ],
     challenge: "Every \"digital receipt\" product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is the entire reason paper receipts still exist in 2026. The insight wasn't to digitize the receipt — it was to make the digital receipt require less effort than the paper one.",
     approach: [
@@ -315,14 +316,26 @@ export default function CaseStudy() {
 
         {/* Screenshots */}
         {study.images && (
-          <div style={{ marginTop: study.carousel ? 32 : 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {study.images.map((img, i) => (
-              <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
-                {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
-              </motion.figure>
-            ))}
-          </div>
+          study.phoneGrid ? (
+            /* Phone mockup grid — 2 columns, smaller */
+            <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
+              {study.images.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                  <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 8, paddingLeft: 2, fontSize: 10 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+          ) : (
+            <div style={{ marginTop: study.carousel ? 32 : 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {study.images.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                  <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+          )
         )}
 
         {/* Approach */}
@@ -389,11 +402,17 @@ export default function CaseStudy() {
           <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
             <p className="type-label-sm" style={{ color: 'var(--coral)' }}>See it live</p>
             <div style={{ position: 'relative', display: 'inline-block' }}>
-              {/* Aura glow layers */}
-              <motion.div animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0.0, 0.35] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ position: 'absolute', inset: -18, borderRadius: 36, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.55) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-              <motion.div animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.1, 0.5] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                style={{ position: 'absolute', inset: -8, borderRadius: 30, background: `rgba(${study.accentRgb},0.18)`, pointerEvents: 'none' }} />
+              {/* Pulse wave rings */}
+              {[0, 0.7, 1.4].map((delay, i) => (
+                <motion.div key={i}
+                  animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
+                  transition={{ duration: 2.1, repeat: Infinity, ease: 'easeOut', delay }}
+                  style={{ position: 'absolute', inset: -4, borderRadius: 28, border: `1.5px solid rgba(${study.accentRgb},0.5)`, pointerEvents: 'none' }}
+                />
+              ))}
+              {/* Aura glow */}
+              <motion.div animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.0, 0.3] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ position: 'absolute', inset: -24, borderRadius: 40, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.45) 0%, transparent 70%)`, pointerEvents: 'none' }} />
               <motion.a
                 href={study.liveUrl}
                 target="_blank"
@@ -433,7 +452,7 @@ export default function CaseStudy() {
                 onMouseLeave={e => e.currentTarget.style.opacity = '1'}
               >
                 <div>
-                  <span className="type-caption" style={{ color: s.accent, marginRight: 12 }}>{s.company}</span>
+                  <span className="type-caption" style={{ color: s.company.includes('Evernorth') ? '#3D9E8C' : s.accent, marginRight: 12 }}>{s.company}</span>
                   <span className="type-label-md" style={{ color: '#fff' }}>{s.title}</span>
                 </div>
                 <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 14 }}>↗</span>

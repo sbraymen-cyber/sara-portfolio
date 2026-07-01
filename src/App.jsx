@@ -7,6 +7,7 @@ import Work from './components/Work';
 import Principles from './components/Principles';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
+import Logos from './components/Logos';
 import CaseStudy from './pages/CaseStudy';
 import SaraBot from './components/SaraBot';
 import { useBreakpoint } from './hooks/useBreakpoint';
@@ -55,6 +56,7 @@ function Portfolio() {
       <main>
         <Hero />
         <Work />
+        <Logos />
         <Principles />
         <Experience />
         <Contact />
