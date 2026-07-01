@@ -45,21 +45,22 @@ export default function Experience() {
                   style={{ paddingBottom: 28, marginBottom: 28, borderBottom: i < JOBS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
                 >
                   {job.promotionGroup ? (
-                    /* Grouped promotion — one company, multiple roles */
+                    /* Grouped promotion — role first, then company + dates */
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', marginBottom: 12 }}>
-                        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
-                        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.period}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 15, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>{job.promotionGroup[0].role}</span>
                       </div>
-                      {job.promotionGroup.map((r, j) => (
-                        <div key={j} style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: j < job.promotionGroup.length - 1 ? 8 : 0 }}>
-                          <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)', flexShrink: 0, marginTop: 2 }} />
-                          <div>
-                            <span style={{ fontSize: 14, fontWeight: 600, color: j === 0 ? '#fff' : 'rgba(255,255,255,0.5)', letterSpacing: '-0.01em' }}>{r.role}</span>
-                            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', marginLeft: 10 }}>{r.period}</span>
-                          </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', marginBottom: 10 }}>
+                        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>{job.company}</span>
+                        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', whiteSpace: 'nowrap' }}>{job.promotionGroup[0].period}</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+                        <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)', flexShrink: 0 }} />
+                        <div>
+                          <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', letterSpacing: '-0.01em' }}>{job.promotionGroup[1].role}</span>
+                          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)', marginLeft: 10 }}>{job.promotionGroup[1].period}</span>
                         </div>
-                      ))}
+                      </div>
                       {job.note && <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.22)', marginTop: 10 }}>{job.note}</p>}
                     </>
                   ) : (
