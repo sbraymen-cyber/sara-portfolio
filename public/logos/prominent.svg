@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 40" fill="none">
-  <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" font-size="22" font-weight="700" fill="white" letter-spacing="-0.5">Prominent</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none">
+  <!-- Circle with inner ring and pin/stem mark -->
+  <circle cx="24" cy="24" r="20" stroke="white" stroke-width="3" fill="none"/>
+  <circle cx="24" cy="24" r="10" stroke="white" stroke-width="2.5" fill="none"/>
+  <line x1="24" y1="34" x2="24" y2="44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <!-- Wordmark -->
+  <text x="56" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700" fill="white" letter-spacing="-0.3">Prominent</text>
 </svg>
