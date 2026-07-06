@@ -14,6 +14,8 @@ import SaraBot from './components/SaraBot';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
+const MAINTENANCE = true;
+
 function CursorGlow() {
   const x = useMotionValue(-800);
   const y = useMotionValue(-800);
@@ -50,6 +52,32 @@ function CursorGlow() {
   );
 }
 
+function Maintenance() {
+  return (
+    <div style={{ background: '#0F0D0C', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        style={{ textAlign: 'center', maxWidth: 480 }}
+      >
+        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>Back shortly</p>
+        <h1 style={{ fontSize: 'clamp(40px, 7vw, 72px)', fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.05, color: '#fff', marginBottom: 20 }}>
+          Sara Braymen
+        </h1>
+        <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.38)', lineHeight: 1.7, marginBottom: 40 }}>
+          Making a few updates. Back up by 5:00 PM MT.
+        </p>
+        <a href="mailto:sarabraymen@gmail.com" style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.25)', textDecoration: 'none', letterSpacing: '0.01em', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: 2, transition: 'color 0.15s' }}
+          onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.6)'}
+          onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.25)'}>
+          sarabraymen@gmail.com
+        </a>
+      </motion.div>
+    </div>
+  );
+}
+
 function Portfolio() {
   return (
     <>
@@ -74,6 +102,8 @@ export default function App() {
   const { pathname } = useLocation();
   const { isMobile } = useBreakpoint();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+
+  if (MAINTENANCE) return <Maintenance />;
 
   return (
     <>
