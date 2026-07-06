@@ -4,7 +4,7 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 const ITEMS = [
   {
     label: 'Technical enough to be dangerous',
-    body: "I use AI to write production code, and I understand databases and technical constraints deeply enough to design around them — not into them. Developers never have to re-explain their stack to me. I already know what's happening behind the curtain.",
+    body: "I use AI to write production code, and I understand databases and technical constraints deeply enough to design around them — not into them. Engineers never have to re-explain their stack to me. I show up to standups. I ask the questions that make them feel like their work matters. Then I defend their time in every stakeholder meeting.",
     accent: 'var(--coral)',
   },
   {
@@ -13,8 +13,8 @@ const ITEMS = [
     accent: 'var(--steel)',
   },
   {
-    label: 'Early to AI product work',
-    body: "I shipped an AI agent that guides users through a geospatial mapping tool — before the industry had a playbook for it. That meant working directly with our developer to find where design ambition met ArcGIS and Neo4j constraints, and finding solutions that didn't make us compromise on quality.",
+    label: 'People remember working with me',
+    body: "I've been told I make hard projects feel lighter. I credit the team publicly, protect them privately, and keep moving when things get uncertain. My former engineers message me when they start new jobs. That's the metric I actually care about.",
     accent: 'var(--amber)',
   },
 ];

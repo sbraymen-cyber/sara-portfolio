@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Logos from './components/Logos';
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
+const Process = lazy(() => import('./pages/Process'));
 import SaraBot from './components/SaraBot';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
@@ -81,6 +82,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/work/:slug" element={<Suspense fallback={null}><CaseStudy /></Suspense>} />
+        <Route path="/process" element={<Suspense fallback={null}><Process /></Suspense>} />
       </Routes>
     </>
   );

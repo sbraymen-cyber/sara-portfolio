@@ -12,7 +12,7 @@ const fadeUp = (delay = 0) => ({
 const STATS = [
   { n: '$300M', label: 'Housing aid disbursed', sub: 'FEMA · 3 states' },
   { n: '100k+', label: 'Users on Evernorth Control Center', sub: 'Evernorth / Cigna' },
-  { n: '1', label: 'App in TestFlight', sub: 'Sar · NFC receipts' },
+  { n: '1', label: 'Company founded', sub: 'Sar · NFC receipts' },
 ];
 
 export default function Hero() {
@@ -34,7 +34,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: isMobile ? 16 : 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          I lead product across the full stack — from discovery and roadmapping to AI architecture and shipping. Enterprise platforms, government data systems, and my own app in TestFlight.
+          I lead product from discovery through shipping — enterprise platforms, government data systems, and my own startup. I'm the PM who actually gets excited when engineers push back.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: isMobile ? 48 : 80 }}>

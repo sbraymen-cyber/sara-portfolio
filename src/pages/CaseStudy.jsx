@@ -143,20 +143,20 @@ export const STUDIES = {
       { title: 'Why NFC, Not QR', body: "QR codes require the cashier to hold something up, the customer to open their camera, aim, scan, and wait. It adds 10–15 seconds to checkout and requires a behavioral change from staff. NFC is different — it\'s a sticker on the counter that the customer taps, same motion as tap-to-pay, zero staff involvement. The choice wasn\'t aesthetic. It was about removing every possible point of failure between \"customer wants receipt\" and \"receipt appears.\"" },
       { title: 'Apple Wallet as the Entry Point', body: "The five-step flow: pay normally → cashier says \"tap for your receipt\" → customer taps the Sar sticker → a lightweight App Clip slides up instantly → Face ID authenticates → receipt lands in Apple Wallet before they\'ve put their card away. That evening, one push notification invites them to the full app. Apple Wallet was the right destination because it\'s already on every iPhone, already trusted, requires zero download. It\'s the hook. Receipt history, IRS tax categorization, PDF export, and Expensify/TurboTax integration are the depth that earns the download later." },
       { title: 'The Design Decisions Behind the Interface', body: "Dark background (#1A1816, warm not cool) because it matches Apple Wallet\'s aesthetic — this app lives next to your boarding passes and credit cards, and it should feel like it belongs there. Email OTP instead of passwords because anyone tapping an NFC sticker at a coffee counter shouldn\'t need to remember credentials. Square first because it has the largest SMB POS market share and the cleanest API for a proof of concept — Toast and Clover are extensions of the same architecture, not rebuilds." },
-      { title: 'Built Solo with Claude Code', body: "The entire product — Expo Router iOS app, Supabase schema and RLS policies, EAS build pipeline, Square integration, Apple Wallet PKPass generation, and the tax categorization keyword engine — was built by me in active collaboration with Claude Code (Anthropic\'s AI CLI). Not as a shortcut. As a proof of concept for what a solo founder-designer-engineer can ship when AI handles implementation and you focus on the product. Zero to TestFlight-ready in days, not months." },
+      { title: 'Built Solo with Claude Code', body: "The entire product — Expo Router iOS app, Supabase schema and RLS policies, EAS build pipeline, Square integration, Apple Wallet PKPass generation, and the tax categorization keyword engine — was built by me in active collaboration with Claude Code (Anthropic\'s AI CLI). Not as a shortcut. As a proof of concept for what a solo founder-designer-engineer can ship when AI handles implementation and you focus on the product. Zero to launch-ready in days, not months." },
     ],
     researchPlan: {
       title: 'What I\'m Learning Next',
       items: [
         { phase: 'First-tap clarity', body: 'In-store intercepts at pilot locations — did the gesture feel obvious? Was Apple Wallet the right destination? What created hesitation?' },
         { phase: 'Return behavior', body: 'Do customers who tapped once tap again on a return visit? Is this habit-forming or a novelty? That distinction determines the acquisition strategy.' },
-        { phase: 'App download trigger', body: 'What made the TestFlight users cross from Wallet receipt to full app? Feature pull, notification, or something else? That\'s the funnel to optimize.' },
+        { phase: 'App download trigger', body: 'What made early users cross from Wallet receipt to full app? Feature pull, notification, or something else? That\'s the funnel to optimize.' },
         { phase: 'Non-tappers', body: 'Exit interviews with customers who walked past the sticker. Awareness gap, trust barrier, or just didn\'t notice? Different problems, different fixes.' },
       ],
     },
     pullQuote: "Everyone said just add a QR code. But QR codes require the customer to do something. The whole premise of Sar is that they don't have to.",
     liveUrl: 'https://sar-app.com',
-    outcome: 'Live pilots in Boulder and Denver, CO. iOS app in TestFlight as of June 2026. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
+    outcome: 'Live pilots in Boulder and Denver, CO. iOS app in early access. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
   },
 
   'sar-merchant': {
