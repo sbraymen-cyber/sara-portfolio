@@ -7,7 +7,6 @@ import Work from './components/Work';
 import Principles from './components/Principles';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
-import Logos from './components/Logos';
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const Process = lazy(() => import('./pages/Process'));
 import SaraBot from './components/SaraBot';
@@ -85,14 +84,13 @@ function Portfolio() {
       <main>
         <Hero />
         <Work />
-        <Logos />
         <Principles />
         <Experience />
         <Contact />
       </main>
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', maxWidth: 1080, margin: '0 auto', padding: '32px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Sara Braymen</span>
-        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.12)' }}>Built by Sara</span>
+        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)' }}>Made with love in Boulder, CO</span>
       </footer>
     </>
   );

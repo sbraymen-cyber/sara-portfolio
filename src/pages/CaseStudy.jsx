@@ -23,10 +23,10 @@ export const STUDIES = {
     ],
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. Broadstreet is a geospatial mapping tool built on ArcGIS, with Neo4j as the underlying graph database. The goal was to make that data accessible to anyone in the field without dumbing it down for experts — and to do it within the real constraints of what ArcGIS and Neo4j would actually support. There was no existing product to iterate on. I started from nothing.',
     images: [
-      { src: '/case-studies/broadstreet-clinical/screen-1.webp', caption: 'V2 side-panel search — filters alongside the patient summary' },
-      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Result details — geographic choropleth with physician overlay, West Palm Beach' },
-      { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Search results grid — top result with related markets and underserved areas' },
-      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'User persona — Mark, Evernorth data analyst, research goals and frustrations' },
+      { src: '/case-studies/broadstreet-clinical/img-1.webp', caption: 'Search results — geographic choropleth with top result and related markets' },
+      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Result details — physician overlay, West Palm Beach' },
+      { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Search results grid — top result with underserved areas' },
+      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'User persona — Mark, Evernorth data analyst' },
       { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Discovery: user persona mapping for clinical researcher audience' },
     ],
     approach: [
@@ -61,7 +61,6 @@ export const STUDIES = {
     ],
     challenge: "Broadstreet's anonymized claims database is extraordinarily powerful — and deeply underused, because learning to query it takes time most researchers don't have. Training documentation wasn't working. Users needed to learn by doing, with a guide who could hold their hand, make selections for them, and explain what was happening in real time. That's a different design problem than most AI work.",
     images: [
-      { src: '/case-studies/broadstreet-ai/screen-1.webp', caption: 'Welcome screen — the entry point before any search begins' },
       { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
       { src: '/case-studies/broadstreet-ai/screen-3.webp', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
       { src: '/case-studies/broadstreet-ai/screen-4.webp', caption: 'AI fills cardiovascular filters autonomously from a natural language prompt' },
@@ -117,11 +116,11 @@ export const STUDIES = {
 
   'sar-consumer': {
     slug: 'sar-consumer',
-    company: 'Sar, Inc. — Founder',
+    company: 'Sar — Passion project',
     title: 'Consumer Receipt Experience',
-    tagline: "Paper receipts cost $0.02, return nothing, and get thrown away in seconds. I built a $0.04 replacement that turns every transaction into a marketing channel.",
+    tagline: "Paper receipts cost $0.02, return nothing, and get thrown away in seconds. I built a $0.04 replacement that turns every transaction into a marketing channel — nights and weekends, alongside full-time work.",
     role: 'Founder, Designer & Engineer',
-    timeline: '2024 – Present',
+    timeline: '2024 – Present (part-time)',
     accent: '#6F87BE',
     accentRgb: '111,135,190',
     tags: ['NFC', 'iOS', 'Apple Wallet', 'Expo', 'Supabase'],
@@ -161,11 +160,11 @@ export const STUDIES = {
 
   'sar-merchant': {
     slug: 'sar-merchant',
-    company: 'Sar, Inc. — Founder',
+    company: 'Sar — Passion project',
     title: 'Merchant Platform & POS Integrations',
-    tagline: '$0.04 per receipt. $0.00 if they still want paper. That pricing tells the whole story — so I put it in the biggest type on the page.',
+    tagline: '$0.04 per receipt. $0.00 if they still want paper. Built nights and weekends alongside full-time work — because the problem was too good to leave alone.',
     role: 'Founder, Designer & Engineer',
-    timeline: '2025 – Present',
+    timeline: '2025 – Present (part-time)',
     accent: '#6F87BE',
     accentRgb: '111,135,190',
     tags: ['B2B Design', 'Square API', 'Toast', 'Supabase Edge Functions', 'OAuth'],

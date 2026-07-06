@@ -5,48 +5,48 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const PROJECTS = [
   {
-    slug: 'broadstreet-clinical',
-    company: 'Evernorth / Cigna',
-    title: 'Clinical Intelligence Platform',
-    desc: '0→1 product for clinical population research across 182M records. Three versions shipped.',
-    accent: '#3D9E8C',
-    accentRgb: '61,158,140',
-    img: '/case-studies/broadstreet-clinical/img-1.webp',
-  },
-  {
     slug: 'broadstreet-ai',
     company: 'Evernorth / Cigna',
     title: 'AI Research Agent — "John Snow"',
     desc: 'Clinical AI agent before the industry had standards for it. Multi-turn, hallucination handling, context-window UX.',
-    accent: '#8B6FBE',
-    accentRgb: '139,111,190',
+    accent: 'var(--steel)',
+    accentRgb: '111,135,190',
     img: '/case-studies/broadstreet-ai/img-1.webp',
+  },
+  {
+    slug: 'broadstreet-clinical',
+    company: 'Evernorth / Cigna',
+    title: 'Clinical Intelligence Platform',
+    desc: '0→1 product for clinical population research across 182M records. Three versions shipped.',
+    accent: 'var(--steel)',
+    accentRgb: '111,135,190',
+    img: '/case-studies/broadstreet-clinical/img-1.webp',
   },
   {
     slug: 'louisiana-housing',
     company: 'Horne LLP',
     title: 'Emergency Housing Relief',
     desc: 'Four real-time dashboards across four states. $300M in COVID mortgage relief tracked to the day.',
-    accent: '#BE7A6F',
-    accentRgb: '190,122,111',
+    accent: 'var(--amber)',
+    accentRgb: '196,154,90',
     img: '/case-studies/louisiana-housing/img-1.webp',
   },
   {
     slug: 'sar-consumer',
-    company: 'Sar — Founder',
+    company: 'Sar — Passion project',
     title: 'Consumer Receipt Experience',
-    desc: 'Tap phone at checkout. Receipt in Apple Wallet. No app required.',
-    accent: '#6F87BE',
-    accentRgb: '111,135,190',
+    desc: 'Tap phone at checkout. Receipt in Apple Wallet. No app required. Built alongside full-time work.',
+    accent: 'var(--coral)',
+    accentRgb: '200,80,60',
     img: '/case-studies/sar-consumer/img-1.webp',
   },
   {
     slug: 'sar-merchant',
-    company: 'Sar — Founder',
+    company: 'Sar — Passion project',
     title: 'Merchant Platform & POS',
-    desc: '$0.04 per receipt. Pricing, Square integration, merchant dashboard, sustainability badge.',
-    accent: '#C49A5A',
-    accentRgb: '196,154,90',
+    desc: '$0.04 per receipt. Pricing, Square integration, merchant dashboard. A side project with real traction.',
+    accent: 'var(--coral)',
+    accentRgb: '200,80,60',
     img: '/case-studies/sar-merchant/img-1.webp',
   },
 ];
@@ -73,7 +73,7 @@ function Card({ project: p, index, isMobile }) {
         overflow: 'hidden',
         borderRadius: 8,
         height: isMobile ? 200 : 260,
-        background: `radial-gradient(ellipse at 40% 40%, rgba(${p.accentRgb},0.18) 0%, #141210 70%)`,
+        background: '#141210',
         marginBottom: 20,
       }}>
         {p.img && (
@@ -84,12 +84,14 @@ function Card({ project: p, index, isMobile }) {
           }} />
         )}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(14,12,10,0.55) 0%, transparent 50%)' }} />
+        {/* Accent line */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: p.accent, opacity: hovered ? 1 : 0.4, transition: 'opacity 0.3s' }} />
       </div>
 
       {/* Meta row */}
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
-          <span style={{ fontSize: 11, fontWeight: 600, color: `rgba(${p.accentRgb},0.55)`, letterSpacing: '0.01em' }}>{num}</span>
+          <span style={{ fontSize: 11, fontWeight: 600, color: p.accent, letterSpacing: '0.01em', opacity: 0.7 }}>{num}</span>
           <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)' }}>{p.company}</span>
         </div>
         <span style={{
@@ -99,7 +101,6 @@ function Card({ project: p, index, isMobile }) {
         }}>View →</span>
       </div>
 
-      {/* Title + desc */}
       <h3 style={{ fontSize: isMobile ? 19 : 21, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', lineHeight: 1.2, marginBottom: 8 }}>
         {p.title}
       </h3>
