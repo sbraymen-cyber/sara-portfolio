@@ -35,7 +35,7 @@ export default function Principles() {
             transition={{ duration: 0.55, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
           >
             <div style={{ width: 28, height: 2, background: item.accent, borderRadius: 2, marginBottom: 20 }} />
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 19, fontWeight: 500, color: '#fff', marginBottom: 10, letterSpacing: '-0.01em' }}>{item.label}</p>
+            <p style={{ fontSize: 19, fontWeight: 600, color: '#fff', marginBottom: 10, letterSpacing: '-0.02em' }}>{item.label}</p>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7 }}>{item.body}</p>
           </motion.div>
         ))}

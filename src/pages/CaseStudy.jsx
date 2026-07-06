@@ -196,7 +196,7 @@ function Stat({ value, label, accent }) {
   const inView = useInView(ref, { once: true, margin: '-40px' });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.45 }}>
-      <div style={{ fontFamily: 'var(--serif)', fontSize: 42, fontWeight: 500, letterSpacing: '-0.01em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
+      <div style={{ fontSize: 42, fontWeight: 700, letterSpacing: '-0.035em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
       <div className="type-caption" style={{ color: 'rgba(255,255,255,0.38)' }}>{label}</div>
     </motion.div>
   );
@@ -386,7 +386,7 @@ export default function CaseStudy() {
         <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
           <motion.p
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 400, fontStyle: 'italic', letterSpacing: '-0.01em', lineHeight: 1.45, color: 'rgba(255,255,255,0.82)', maxWidth: 600 }}
+            style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, letterSpacing: '-0.015em', lineHeight: 1.5, color: 'rgba(255,255,255,0.82)', maxWidth: 600 }}
           >
             <span style={{ color: accent, fontStyle: 'normal' }}>"</span>{pullQuote}<span style={{ color: accent, fontStyle: 'normal' }}>"</span>
           </motion.p>

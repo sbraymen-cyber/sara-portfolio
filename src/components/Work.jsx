@@ -115,7 +115,7 @@ function Card({ project: p, index, isMobile }) {
             Read →
           </span>
         </div>
-        <h3 style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 20 : 22, fontWeight: 500, letterSpacing: '-0.01em', color: '#fff', lineHeight: 1.2 }}>
+        <h3 style={{ fontSize: isMobile ? 20 : 22, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', lineHeight: 1.2 }}>
           {p.title}
         </h3>
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, marginTop: 2 }}>{p.desc}</p>

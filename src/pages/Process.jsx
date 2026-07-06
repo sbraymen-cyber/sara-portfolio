@@ -63,7 +63,7 @@ export default function Process() {
         {/* Header */}
         <motion.div {...fade(0.1)} style={{ marginBottom: 80 }}>
           <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 20 }}>The back room</p>
-          <h1 style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 40 : 64, fontWeight: 500, fontStyle: 'italic', letterSpacing: '-0.01em', lineHeight: 1.05, color: '#fff', marginBottom: 28 }}>
+          <h1 style={{ fontSize: isMobile ? 40 : 64, fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.05, color: '#fff', marginBottom: 28 }}>
             How I actually work
           </h1>
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, maxWidth: 520 }}>
@@ -78,7 +78,7 @@ export default function Process() {
               paddingTop: 36, paddingBottom: 36,
               borderTop: '1px solid rgba(255,255,255,0.06)',
             }}>
-              <p style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 18 : 22, fontWeight: 500, color: '#fff', marginBottom: 12, lineHeight: 1.25 }}>{item.label}</p>
+              <p style={{ fontSize: isMobile ? 18 : 22, fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', marginBottom: 12, lineHeight: 1.25 }}>{item.label}</p>
               <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, maxWidth: 580 }}>{item.body}</p>
             </div>
           ))}
@@ -99,7 +99,7 @@ export default function Process() {
 
         {/* Closing */}
         <motion.div {...fade(0.4)} style={{ paddingTop: 48, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <p style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 20 : 26, fontStyle: 'italic', fontWeight: 400, color: 'rgba(255,255,255,0.6)', lineHeight: 1.5, maxWidth: 520, marginBottom: 32 }}>
+          <p style={{ fontSize: isMobile ? 18 : 24, fontWeight: 400, letterSpacing: '-0.015em', color: 'rgba(255,255,255,0.6)', lineHeight: 1.55, maxWidth: 520, marginBottom: 32 }}>
             "The work looks effortless because I do the effortful part before anyone's watching."
           </p>
           <Link to="/" style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.35)', textDecoration: 'none', letterSpacing: '0.02em', transition: 'color 0.15s' }}
