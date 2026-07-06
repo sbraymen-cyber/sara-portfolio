@@ -14,7 +14,7 @@ const PROJECTS = [
     tags: ['Healthcare AI', '0→1', 'Enterprise UX'],
     metric: '23% → 89%',
     metricLabel: 'adoption',
-    img: '/case-studies/broadstreet-clinical/img-1.png',
+    img: '/case-studies/broadstreet-clinical/img-1.webp',
     span: 1,
   },
   {
@@ -27,7 +27,7 @@ const PROJECTS = [
     tags: ['AI Product', 'Agent UX', 'GenAI'],
     metric: '96%',
     metricLabel: '"must have"',
-    img: '/case-studies/broadstreet-ai/img-1.png',
+    img: '/case-studies/broadstreet-ai/img-1.webp',
     span: 1,
   },
   {
@@ -40,7 +40,7 @@ const PROJECTS = [
     tags: ['Data Product', 'Power BI', 'Crisis Response'],
     metric: '$300M',
     metricLabel: 'tracked in real time',
-    img: '/case-studies/louisiana-housing/img-1.png',
+    img: '/case-studies/louisiana-housing/img-1.webp',
     span: 1,
   },
   {
@@ -53,7 +53,7 @@ const PROJECTS = [
     tags: ['Consumer Product', 'NFC', 'iOS'],
     metric: '3+',
     metricLabel: 'live pilots',
-    img: '/case-studies/sar-consumer/img-1.png',
+    img: '/case-studies/sar-consumer/img-1.webp',
     span: 1,
   },
   {
@@ -66,7 +66,7 @@ const PROJECTS = [
     tags: ['B2B Product', 'Roadmap', 'Square API'],
     metric: '4×',
     metricLabel: 'retention lift',
-    img: '/case-studies/sar-merchant/img-1.png',
+    img: '/case-studies/sar-merchant/img-1.webp',
     liveUrl: 'https://sar-app.com',
     span: 2,
   },
@@ -101,7 +101,7 @@ function Card({ project: p, index, isMobile }) {
       {/* Screenshot */}
       <div style={{ position: 'relative', overflow: 'hidden', height: isWide ? 320 : isMobile ? 200 : 260 }}>
         {p.img ? (
-          <img src={p.img} alt={p.title} style={{
+          <img src={p.img} alt={p.title} loading="lazy" style={{
             width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block',
             transition: 'transform 0.5s ease',
             transform: hovered ? 'scale(1.03)' : 'scale(1)',

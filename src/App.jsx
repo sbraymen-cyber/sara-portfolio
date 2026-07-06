@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import Nav from './components/Nav';
@@ -8,7 +8,7 @@ import Principles from './components/Principles';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Logos from './components/Logos';
-import CaseStudy from './pages/CaseStudy';
+const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 import SaraBot from './components/SaraBot';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
@@ -80,7 +80,7 @@ export default function App() {
       <SaraBot />
       <Routes>
         <Route path="/" element={<Portfolio />} />
-        <Route path="/work/:slug" element={<CaseStudy />} />
+        <Route path="/work/:slug" element={<Suspense fallback={null}><CaseStudy /></Suspense>} />
       </Routes>
     </>
   );

@@ -23,11 +23,11 @@ export const STUDIES = {
     ],
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. Broadstreet is a geospatial mapping tool built on ArcGIS, with Neo4j as the underlying graph database. The goal was to make that data accessible to anyone in the field without dumbing it down for experts — and to do it within the real constraints of what ArcGIS and Neo4j would actually support. There was no existing product to iterate on. I started from nothing.',
     images: [
-      { src: '/case-studies/broadstreet-clinical/screen-1.png', caption: 'V2 side-panel search — filters alongside the patient summary' },
-      { src: '/case-studies/broadstreet-clinical/screen-2.png', caption: 'Result details — geographic choropleth with physician overlay, West Palm Beach' },
-      { src: '/case-studies/broadstreet-clinical/screen-3.png', caption: 'Search results grid — top result with related markets and underserved areas' },
-      { src: '/case-studies/broadstreet-clinical/screen-5.png', caption: 'User persona — Mark, Evernorth data analyst, research goals and frustrations' },
-      { src: '/case-studies/broadstreet-clinical/screen-6.png', caption: 'Discovery: user persona mapping for clinical researcher audience' },
+      { src: '/case-studies/broadstreet-clinical/screen-1.webp', caption: 'V2 side-panel search — filters alongside the patient summary' },
+      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Result details — geographic choropleth with physician overlay, West Palm Beach' },
+      { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Search results grid — top result with related markets and underserved areas' },
+      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'User persona — Mark, Evernorth data analyst, research goals and frustrations' },
+      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Discovery: user persona mapping for clinical researcher audience' },
     ],
     approach: [
       { title: 'Discovery First, Always', body: 'I spent months in deep discovery — interviewing clinicians, researchers, and analysts, then joining weekly syncs with the data and dev team I eventually merged onto. Understanding how data actually flowed through the system wasn\'t optional; it was the entire design foundation. You can\'t design a research tool if you don\'t understand the research.' },
@@ -61,16 +61,16 @@ export const STUDIES = {
     ],
     challenge: "Broadstreet's anonymized claims database is extraordinarily powerful — and deeply underused, because learning to query it takes time most researchers don't have. Training documentation wasn't working. Users needed to learn by doing, with a guide who could hold their hand, make selections for them, and explain what was happening in real time. That's a different design problem than most AI work.",
     images: [
-      { src: '/case-studies/broadstreet-ai/screen-1.png', caption: 'Welcome screen — the entry point before any search begins' },
-      { src: '/case-studies/broadstreet-ai/screen-2.png', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
-      { src: '/case-studies/broadstreet-ai/screen-3.png', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
-      { src: '/case-studies/broadstreet-ai/screen-4.png', caption: 'AI fills cardiovascular filters autonomously from a natural language prompt' },
-      { src: '/case-studies/broadstreet-ai/screen-5.png', caption: 'Agent response — "Help me find patients with Type 2 diabetes" with auto-filled filters' },
-      { src: '/case-studies/broadstreet-ai/screen-6.png', caption: 'PTSD conversation — agent clarifying scope and asking follow-up questions' },
-      { src: '/case-studies/broadstreet-ai/screen-7.png', caption: 'Agent refining PTSD search — narrowing by condition, specialty, and location' },
-      { src: '/case-studies/broadstreet-ai/screen-8.png', caption: 'Complex multi-condition query — cardiovascular + PTSD with female patient filter' },
-      { src: '/case-studies/broadstreet-ai/screen-9.png', caption: 'Final confirmed search — filters locked and ready to run' },
-      { src: '/case-studies/broadstreet-ai/screen-10.png', caption: 'Search results map — geographic distribution of matching patient populations' },
+      { src: '/case-studies/broadstreet-ai/screen-1.webp', caption: 'Welcome screen — the entry point before any search begins' },
+      { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
+      { src: '/case-studies/broadstreet-ai/screen-3.webp', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
+      { src: '/case-studies/broadstreet-ai/screen-4.webp', caption: 'AI fills cardiovascular filters autonomously from a natural language prompt' },
+      { src: '/case-studies/broadstreet-ai/screen-5.webp', caption: 'Agent response — "Help me find patients with Type 2 diabetes" with auto-filled filters' },
+      { src: '/case-studies/broadstreet-ai/screen-6.webp', caption: 'PTSD conversation — agent clarifying scope and asking follow-up questions' },
+      { src: '/case-studies/broadstreet-ai/screen-7.webp', caption: 'Agent refining PTSD search — narrowing by condition, specialty, and location' },
+      { src: '/case-studies/broadstreet-ai/screen-8.webp', caption: 'Complex multi-condition query — cardiovascular + PTSD with female patient filter' },
+      { src: '/case-studies/broadstreet-ai/screen-9.webp', caption: 'Final confirmed search — filters locked and ready to run' },
+      { src: '/case-studies/broadstreet-ai/screen-10.webp', caption: 'Search results map — geographic distribution of matching patient populations' },
     ],
     approach: [
       { title: 'Learning by Experience, Not Documentation', body: "The insight was simple: people don't read training docs, but they'll follow a good guide. John Snow walks users through constructing a search, explains what each filter does in plain language, and makes selections on their behalf when they're stuck. The agent isn't a chatbot — it's a co-pilot that transfers knowledge through demonstration rather than instruction." },
@@ -99,12 +99,12 @@ export const STUDIES = {
     ],
     challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
     carousel: [
-      { src: '/case-studies/louisiana-housing/img-1.png', caption: 'Overview — real-time pipeline, disbursement totals, and parish-level choropleth map' },
-      { src: '/case-studies/louisiana-housing/img-3.png', caption: 'Applications — stage breakdown, dollar forecasts, and LHC/HCA referral pipeline' },
-      { src: '/case-studies/louisiana-housing/img-2.png', caption: 'Demographics — race, gender, employment, AMI, disability status, and veteran data' },
+      { src: '/case-studies/louisiana-housing/img-1.webp', caption: 'Overview — real-time pipeline, disbursement totals, and parish-level choropleth map' },
+      { src: '/case-studies/louisiana-housing/img-3.webp', caption: 'Applications — stage breakdown, dollar forecasts, and LHC/HCA referral pipeline' },
+      { src: '/case-studies/louisiana-housing/img-2.webp', caption: 'Demographics — race, gender, employment, AMI, disability status, and veteran data' },
     ],
     images: [
-      { src: '/case-studies/louisiana-housing/screen-2.png', caption: 'Arkansas Homeowner Assistance Fund — the same system, adapted for a different state\'s eligibility rules and county structure' },
+      { src: '/case-studies/louisiana-housing/screen-2.webp', caption: 'Arkansas Homeowner Assistance Fund — the same system, adapted for a different state\'s eligibility rules and county structure' },
     ],
     approach: [
       { title: 'SQL Architecture Built for Speed', body: 'Built the data pipeline from scratch — SQL queries connecting the application database to Power BI, optimized for real-time refresh. Each of the four state dashboards tracked the full lifecycle: application submitted → under review → funds disbursed. Three separate relief programs with different eligibility rules, funding caps, and reporting requirements, all surfaced in one coherent system.' },
@@ -132,10 +132,10 @@ export const STUDIES = {
     ],
     phoneGrid: true,
     images: [
-      { src: '/case-studies/sar-consumer/screen-wallet.png', caption: 'Apple Wallet' },
-      { src: '/case-studies/sar-consumer/screen-nfc.png', caption: 'NFC tap flow' },
-      { src: '/case-studies/sar-consumer/screen-signup.png', caption: 'Onboarding' },
-      { src: '/case-studies/sar-consumer/screen-transactions.png', caption: 'Transactions' },
+      { src: '/case-studies/sar-consumer/screen-wallet.webp', caption: 'Apple Wallet' },
+      { src: '/case-studies/sar-consumer/screen-nfc.webp', caption: 'NFC tap flow' },
+      { src: '/case-studies/sar-consumer/screen-signup.webp', caption: 'Onboarding' },
+      { src: '/case-studies/sar-consumer/screen-transactions.webp', caption: 'Transactions' },
     ],
     challenge: "Every \"digital receipt\" product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is the entire reason paper receipts still exist in 2026. The insight wasn't to digitize the receipt — it was to make the digital receipt require less effort than the paper one.",
     approach: [
@@ -229,7 +229,7 @@ function Carousel({ slides, accent, accentRgb }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          style={{ width: '100%', display: 'block' }}
+          loading="lazy" style={{ width: '100%', display: 'block' }}
         />
         {/* Prev / Next */}
         <button onClick={prev} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, width: 40, height: 40, color: '#fff', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
@@ -321,7 +321,7 @@ export default function CaseStudy() {
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
               {study.images.map((img, i) => (
                 <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
                   {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 8, paddingLeft: 2, fontSize: 10 }}>{img.caption}</figcaption>}
                 </motion.figure>
               ))}
@@ -330,7 +330,7 @@ export default function CaseStudy() {
             <div style={{ marginTop: study.carousel ? 32 : 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
               {study.images.map((img, i) => (
                 <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
                   {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
                 </motion.figure>
               ))}
