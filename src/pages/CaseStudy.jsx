@@ -196,8 +196,8 @@ function Stat({ value, label, accent }) {
   const inView = useInView(ref, { once: true, margin: '-40px' });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.45 }}>
-      <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.03em', color: accent, lineHeight: 1, marginBottom: 6 }}>{value}</div>
-      <div className="type-caption" style={{ color: 'rgba(255,255,255,0.4)' }}>{label}</div>
+      <div style={{ fontFamily: 'var(--serif)', fontSize: 42, fontWeight: 500, letterSpacing: '-0.01em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
+      <div className="type-caption" style={{ color: 'rgba(255,255,255,0.38)' }}>{label}</div>
     </motion.div>
   );
 }
@@ -386,9 +386,9 @@ export default function CaseStudy() {
         <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
           <motion.p
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            style={{ fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.4, color: 'rgba(255,255,255,0.85)', maxWidth: 560 }}
+            style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 400, fontStyle: 'italic', letterSpacing: '-0.01em', lineHeight: 1.45, color: 'rgba(255,255,255,0.82)', maxWidth: 600 }}
           >
-            <span style={{ color: accent }}>"</span>{pullQuote}<span style={{ color: accent }}>"</span>
+            <span style={{ color: accent, fontStyle: 'normal' }}>"</span>{pullQuote}<span style={{ color: accent, fontStyle: 'normal' }}>"</span>
           </motion.p>
         </div>
 
@@ -402,17 +402,8 @@ export default function CaseStudy() {
           <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
             <p className="type-label-sm" style={{ color: 'var(--coral)' }}>See it live</p>
             <div style={{ position: 'relative', display: 'inline-block' }}>
-              {/* Pulse wave rings */}
-              {[0, 0.7, 1.4].map((delay, i) => (
-                <motion.div key={i}
-                  animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
-                  transition={{ duration: 2.1, repeat: Infinity, ease: 'easeOut', delay }}
-                  style={{ position: 'absolute', inset: -4, borderRadius: 28, border: `1.5px solid rgba(${study.accentRgb},0.5)`, pointerEvents: 'none' }}
-                />
-              ))}
-              {/* Aura glow */}
-              <motion.div animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.0, 0.3] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ position: 'absolute', inset: -24, borderRadius: 40, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.45) 0%, transparent 70%)`, pointerEvents: 'none' }} />
+              {/* Glow */}
+              <div style={{ position: 'absolute', inset: -32, borderRadius: 48, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.2) 0%, transparent 70%)`, pointerEvents: 'none' }} />
               <motion.a
                 href={study.liveUrl}
                 target="_blank"

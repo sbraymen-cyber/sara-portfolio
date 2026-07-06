@@ -60,9 +60,9 @@ export default function Hero() {
               borderRight: !isMobile && i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
               borderBottom: isMobile && i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
             }}>
-              <p style={{ fontSize: isMobile ? 26 : 30, fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', marginBottom: 5 }}>{s.n}</p>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', marginBottom: 3 }}>{s.label}</p>
-              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)' }}>{s.sub}</p>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: isMobile ? 30 : 36, fontWeight: 500, letterSpacing: '-0.01em', color: 'var(--amber)', marginBottom: 6 }}>{s.n}</p>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>{s.label}</p>
+              <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)' }}>{s.sub}</p>
             </div>
           ))}
         </motion.div>

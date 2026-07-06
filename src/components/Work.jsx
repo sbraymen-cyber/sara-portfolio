@@ -130,7 +130,7 @@ function Card({ project: p, index, isMobile }) {
             {p.company}
           </span>
         </div>
-        <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', marginBottom: 8, lineHeight: 1.3 }}>{p.title}</h3>
+        <h3 style={{ fontFamily: 'var(--serif)', fontSize: 22, fontWeight: 500, letterSpacing: '-0.01em', color: '#fff', marginBottom: 8, lineHeight: 1.25 }}>{p.title}</h3>
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, marginBottom: 16 }}>{p.desc}</p>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
