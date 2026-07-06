@@ -11,7 +11,7 @@ const PROJECTS = [
     desc: 'Clinical AI agent before the industry had standards for it. Multi-turn, hallucination handling, context-window UX.',
     accent: 'var(--steel)',
     accentRgb: '111,135,190',
-    img: '/case-studies/broadstreet-ai/img-1.webp',
+    img: '/case-studies/broadstreet-ai/screen-2.webp',
   },
   {
     slug: 'broadstreet-clinical',
@@ -38,7 +38,7 @@ const PROJECTS = [
     desc: 'Tap phone at checkout. Receipt in Apple Wallet. No app required. Built alongside full-time work.',
     accent: 'var(--coral)',
     accentRgb: '200,80,60',
-    img: '/case-studies/sar-consumer/img-1.webp',
+    img: '/case-studies/sar-consumer/screen-wallet.webp',
   },
   {
     slug: 'sar-merchant',
