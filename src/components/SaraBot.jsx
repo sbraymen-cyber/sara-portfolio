@@ -101,8 +101,11 @@ export default function SaraBot() {
     try {
       if (!supabase) throw new Error('not_configured');
       const { data: { session } } = await supabase.auth.getSession();
-      const headers = { 'Content-Type': 'application/json' };
-      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
+      const headers = {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${session?.access_token ?? SUPABASE_ANON_KEY}`,
+      };
 
       const res = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/sara-chat`,
