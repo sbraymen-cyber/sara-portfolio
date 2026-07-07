@@ -3,18 +3,18 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const ITEMS = [
   {
-    label: 'Technical enough to be dangerous',
-    body: "I use AI to write production code, and I understand databases and technical constraints deeply enough to design around them — not into them. Engineers never have to re-explain their stack to me. I show up to standups. I ask the questions that make them feel like their work matters. Then I defend their time in every stakeholder meeting.",
+    label: 'I speak engineer',
+    body: "SQL, APIs, webhooks, context windows — I don't need things translated for me. I show up to standups, ask the questions nobody else asks, and defend my team's time in every stakeholder meeting. Engineers don't dread working with me. A few have followed me across companies.",
     accent: 'var(--coral)',
   },
   {
-    label: 'Business decisions, disguised as simplicity',
-    body: "I make product calls that balance user needs, business goals, and technical reality — then hide all of that complexity behind flows that feel obvious. The best interfaces don't feel designed. They feel inevitable.",
+    label: 'Simplicity is the hard part',
+    body: "The complexity doesn't disappear — it moves into the decisions. I make the messy product calls so users never have to feel them. The best interface isn't the one with the most options. It's the one that makes the right choice feel obvious.",
     accent: 'var(--steel)',
   },
   {
-    label: 'People remember working with me',
-    body: "I've been told I make hard projects feel lighter. I credit the team publicly, protect them privately, and keep moving when things get uncertain. My former engineers message me when they start new jobs. That's the metric I actually care about.",
+    label: 'People like working with me',
+    body: "I've been told I make hard projects feel lighter. I give credit loudly and take blame quietly. I keep my sense of humor when the timeline slips. My former engineers still text me when they ship something cool. That's the review I care about.",
     accent: 'var(--amber)',
   },
 ];

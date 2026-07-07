@@ -16,7 +16,6 @@ const JOBS = [
   { company: 'Horne LLP', role: 'Senior Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022', note: 'Louisiana + Alabama COVID relief programs' },
 ];
 
-const SKILLS = ['Product Strategy', 'Roadmapping', 'AI / GenAI UX', 'Design Systems', 'User Research', 'Figma', 'React', 'TypeScript', 'SQL', 'Power BI', 'Stakeholder Alignment', '0→1 Products', 'Agent UX', 'iOS / NFC', 'Framer'];
 
 export default function Experience() {
   const { isMobile, isTablet } = useBreakpoint();
@@ -86,29 +85,6 @@ export default function Experience() {
 
           {/* Skills + Education column */}
           <div>
-            <motion.p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 32 }}
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-              Skills & Tools
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 48 }}
-            >
-              {SKILLS.map(s => (
-                <span key={s} style={{
-                  fontSize: 12, fontWeight: 500,
-                  color: 'rgba(255,255,255,0.55)',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: 100, padding: '5px 14px',
-                }}>{s}</span>
-              ))}
-            </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}

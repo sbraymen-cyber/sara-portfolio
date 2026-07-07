@@ -10,9 +10,8 @@ const fadeUp = (delay = 0) => ({
 });
 
 const STATS = [
-  { n: '$300M', label: 'Housing aid disbursed', sub: 'FEMA · 3 states' },
-  { n: '100k+', label: 'Users on Evernorth Control Center', sub: 'Evernorth / Cigna' },
-  { n: '1', label: 'Company founded', sub: 'Sar · NFC receipts' },
+  { n: '$300M', label: 'in housing aid tracked to the dollar' },
+  { n: '100k+', label: 'users on products I designed and shipped' },
 ];
 
 export default function Hero() {
@@ -34,7 +33,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: isMobile ? 16 : 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          I lead product from discovery through shipping — enterprise platforms, government data systems, and my own startup. I'm the PM who actually gets excited when engineers push back.
+          I lead product from discovery to shipped — enterprise platforms, government data systems, my own startup. I get excited when engineers push back, and I make hard projects feel lighter.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: isMobile ? 48 : 80 }}>
@@ -61,8 +60,7 @@ export default function Hero() {
               borderBottom: isMobile && i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
             }}>
               <p style={{ fontSize: isMobile ? 30 : 36, fontWeight: 600, letterSpacing: '-0.03em', color: 'var(--amber)', marginBottom: 6 }}>{s.n}</p>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>{s.label}</p>
-              <p style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)' }}>{s.sub}</p>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>{s.label}</p>
             </div>
           ))}
         </motion.div>

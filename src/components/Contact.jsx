@@ -71,13 +71,13 @@ export default function Contact() {
               style={{ fontSize: isMobile ? 26 : 32, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', marginBottom: 20, lineHeight: 1.2 }}
               initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.06 }}>
-              {"Let's work together."}
+              Say hi.
             </motion.h2>
             <motion.p
               style={{ fontSize: 15, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7, marginBottom: 32 }}
               initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.1 }}>
-              {"I'm open to Senior PM, Product Design, and AI product roles. If you're building something hard and interesting, I'd love to hear about it."}
+              {"I'm looking for Senior PM, Product Design, and AI product roles. If you're building something genuinely hard, I'd love to hear about it — even if the timing isn't right yet."}
             </motion.p>
             <motion.div
               style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
