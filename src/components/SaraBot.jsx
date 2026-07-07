@@ -10,10 +10,10 @@ const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
   : null;
 
 const STARTERS = [
-  'What has Sara built?',
-  'Tell me about her AI work',
-  'How does Sar work?',
-  'What roles is she looking for?',
+  'What makes Sara a strong PM?',
+  'How does she work with engineers?',
+  'Tell me about her AI product work',
+  'What kind of team would she thrive in?',
 ];
 
 function Message({ role, content }) {
