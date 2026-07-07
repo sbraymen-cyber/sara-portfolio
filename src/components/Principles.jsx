@@ -14,7 +14,7 @@ const ITEMS = [
   },
   {
     label: 'People like working with me',
-    body: "I've been told I make hard projects feel lighter. I give credit loudly and take blame quietly. I keep my sense of humor when the timeline slips. My former engineers still text me when they ship something cool. That's the review I care about.",
+    body: "I've been told I make hard projects feel lighter. I give credit loudly and take blame quietly. I keep a good attitude when the timeline slips. My former engineers still reach out when they ship something new. That's the review I care about.",
     accent: 'var(--amber)',
   },
 ];

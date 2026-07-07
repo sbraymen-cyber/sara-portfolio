@@ -3,7 +3,7 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const JOBS = [
   { company: 'Prominent Technology', role: 'Senior UX Manager', period: 'Mar 2026 – Present', current: true },
-  { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present' },
+  { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present', current: true, passionProject: true },
   {
     company: 'Evernorth Health Services (Cigna)',
     period: 'Apr 2022 – Mar 2026',
@@ -69,6 +69,9 @@ export default function Experience() {
                         <span style={{ fontSize: 15, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>{job.role}</span>
                         {job.current && (
                           <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(232,112,90,0.12)', color: 'var(--coral)', border: '1px solid rgba(232,112,90,0.25)', borderRadius: 100, padding: '2px 8px' }}>Now</span>
+                        )}
+                        {job.passionProject && (
+                          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'rgba(196,154,90,0.1)', color: 'var(--amber)', border: '1px solid rgba(196,154,90,0.2)', borderRadius: 100, padding: '2px 8px' }}>Passion project</span>
                         )}
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>

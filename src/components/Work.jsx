@@ -34,20 +34,20 @@ const PROJECTS = [
   {
     slug: 'sar-consumer',
     company: 'Sar — Passion project',
-    title: 'Consumer Receipt Experience',
-    desc: 'Tap phone at checkout. Receipt in Apple Wallet. No app required. Built alongside full-time work.',
-    accent: 'var(--coral)',
-    accentRgb: '200,80,60',
-    img: '/case-studies/sar-consumer/screen-wallet.webp',
-  },
-  {
-    slug: 'sar-merchant',
-    company: 'Sar — Passion project',
     title: 'Merchant Platform & POS',
     desc: '$0.04 per receipt. Pricing, Square integration, merchant dashboard. A side project with real traction.',
     accent: 'var(--coral)',
     accentRgb: '200,80,60',
     img: '/case-studies/sar-merchant/img-1.webp',
+  },
+  {
+    slug: 'sar-consumer',
+    company: 'Sar — Passion project',
+    title: 'Consumer Receipt Experience',
+    desc: 'Tap phone at checkout. Receipt in Apple Wallet. No app required. Built alongside full-time work.',
+    accent: 'var(--coral)',
+    accentRgb: '200,80,60',
+    img: '/case-studies/sar-consumer/img-1.webp',
   },
 ];
 
