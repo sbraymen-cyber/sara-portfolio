@@ -98,12 +98,11 @@ export const STUDIES = {
     ],
     challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
     carousel: [
-      { src: '/case-studies/louisiana-housing/img-1.webp', caption: 'Overview — real-time pipeline, disbursement totals, and parish-level choropleth map' },
-      { src: '/case-studies/louisiana-housing/img-3.webp', caption: 'Applications — stage breakdown, dollar forecasts, and LHC/HCA referral pipeline' },
-      { src: '/case-studies/louisiana-housing/img-2.webp', caption: 'Demographics — race, gender, employment, AMI, disability status, and veteran data' },
-    ],
-    images: [
-      { src: '/case-studies/louisiana-housing/screen-2.webp', caption: 'Arkansas Homeowner Assistance Fund — the same system, adapted for a different state\'s eligibility rules and county structure' },
+      { src: '/case-studies/louisiana-housing/dash-1.webp', caption: 'Louisiana — overview dashboard: disbursements, pipeline, parish-level map' },
+      { src: '/case-studies/louisiana-housing/dash-2.webp', caption: 'Louisiana — applications: stage breakdown, arrearage, LHC/HCA referrals' },
+      { src: '/case-studies/louisiana-housing/dash-3.webp', caption: 'Louisiana — statewide view: top parishes by applications and disbursement' },
+      { src: '/case-studies/louisiana-housing/dash-4.webp', caption: 'Louisiana — mortgages: servicer breakdown, delinquency days, federal loan program' },
+      { src: '/case-studies/louisiana-housing/dash-5.webp', caption: 'Louisiana — demographics: employment, race, gender, veteran status, disability' },
     ],
     approach: [
       { title: 'SQL Architecture Built for Speed', body: 'Built the data pipeline from scratch — SQL queries connecting the application database to Power BI, optimized for real-time refresh. Each of the four state dashboards tracked the full lifecycle: application submitted → under review → funds disbursed. Three separate relief programs with different eligibility rules, funding caps, and reporting requirements, all surfaced in one coherent system.' },

@@ -13,7 +13,7 @@ import SaraBot from './components/SaraBot';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
-const MAINTENANCE = true;
+const MAINTENANCE = false;
 
 function CursorGlow() {
   const x = useMotionValue(-800);

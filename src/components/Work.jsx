@@ -11,7 +11,7 @@ const PROJECTS = [
     desc: 'Clinical AI agent before the industry had standards for it. Multi-turn, hallucination handling, context-window UX.',
     accent: 'var(--steel)',
     accentRgb: '111,135,190',
-    img: '/case-studies/broadstreet-ai/screen-2.webp',
+    img: '/case-studies/broadstreet-ai/cover.webp',
   },
   {
     slug: 'broadstreet-clinical',
@@ -20,7 +20,7 @@ const PROJECTS = [
     desc: '0→1 product for clinical population research across 182M records. Three versions shipped.',
     accent: 'var(--steel)',
     accentRgb: '111,135,190',
-    img: '/case-studies/broadstreet-clinical/img-1.webp',
+    img: '/case-studies/broadstreet-clinical/cover.webp',
   },
   {
     slug: 'louisiana-housing',
@@ -29,7 +29,7 @@ const PROJECTS = [
     desc: 'Four real-time dashboards across four states. $300M in COVID mortgage relief tracked to the day.',
     accent: 'var(--amber)',
     accentRgb: '196,154,90',
-    img: '/case-studies/louisiana-housing/img-1.webp',
+    img: '/case-studies/louisiana-housing/dash-1.webp',
   },
   {
     slug: 'sar-consumer',
