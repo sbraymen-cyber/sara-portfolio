@@ -23,10 +23,20 @@ export const STUDIES = {
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. Broadstreet is a geospatial mapping tool built on ArcGIS, with Neo4j as the underlying graph database. The goal was to make that data accessible to anyone in the field without dumbing it down for experts — and to do it within the real constraints of what ArcGIS and Neo4j would actually support. There was no existing product to iterate on. I started from nothing.',
     images: [
       { src: '/case-studies/broadstreet-clinical/screen-clean.webp', caption: 'Broadstreet — welcome screen and product entry point' },
+    ],
+    discoveryHeading: 'Becoming the Subject Matter Expert',
+    discoveryBody: [
+      "Before I touched a single screen, I spent months embedded with clinicians, researchers, and data analysts learning how they actually worked. I sat in on weekly syncs with the dev team I eventually merged onto. I asked questions no one else was asking — not about requirements, but about the data itself. How does a clinical researcher think about a patient population? What does 'coverage gap' mean when you're an analyst at Evernorth versus a physician in the field?",
+      "The persona work wasn't a deliverable. It was how I learned to think like the people I was designing for. Mark — a data analyst with deep SQL fluency and zero patience for wizards — became my mental model for every decision. If Mark would skip it, I cut it. If Mark would question it, I explained it. Understanding his frustrations, his workflows, and his expectations of enterprise software shaped every interaction pattern in the product.",
+      "That immersion also taught me where the real design problem was: not making the data simpler, but making the complexity legible. There's a difference. Users didn't want to be protected from the complexity of 182 million patient records — they wanted tools that respected how expert they already were.",
+    ],
+    discoveryImages: [
+      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'User persona — Mark, Evernorth data analyst' },
+      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Discovery: persona mapping for clinical researcher audience' },
+    ],
+    finalImages: [
       { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Result details — physician overlay, West Palm Beach' },
       { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Search results grid — top result with underserved areas' },
-      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'User persona — Mark, Evernorth data analyst' },
-      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Discovery: user persona mapping for clinical researcher audience' },
     ],
     approach: [
       { title: 'Discovery First, Always', body: 'I spent months in deep discovery — interviewing clinicians, researchers, and analysts, then joining weekly syncs with the data and dev team I eventually merged onto. Understanding how data actually flowed through the system wasn\'t optional; it was the entire design foundation. You can\'t design a research tool if you don\'t understand the research.' },
@@ -332,6 +342,37 @@ export default function CaseStudy() {
               ))}
             </div>
           )
+        )}
+
+        {/* Discovery / Research section — persona build-up before final screens */}
+        {study.discoveryImages && (
+          <>
+            <Section label={study.discoveryHeading || 'Discovery'}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                {(study.discoveryBody || []).map((para, i) => (
+                  <p key={i} className="type-body-lg" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 620 }}>{para}</p>
+                ))}
+              </div>
+            </Section>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {study.discoveryImages.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+            {study.finalImages && (
+              <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {study.finalImages.map((img, i) => (
+                  <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                    <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
+                    {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
+                  </motion.figure>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         {/* Approach */}
