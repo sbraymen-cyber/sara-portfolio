@@ -50,7 +50,7 @@ export const STUDIES = {
       { era: '2026–Present', label: 'AI-Powered Search', body: 'Natural language entry — "Find PCOS patients in regions with limited reproductive endocrinologist access." Conversational intent, visual refinement. Early prototypes show strong preference.' },
     ],
     pullQuote: "I spent months just learning how the data moved through the system before I touched a single screen. You can't design something you don't understand.",
-    outcome: 'Broadstreet became the core workflow for clinical population research at Evernorth. Three major versions shipped. The design standard we established pushed the entire Control Center platform to raise its bar. The V3 natural language interface is expanding use cases into real-time outbreak detection and regional care gap analysis.',
+    outcome: 'Broadstreet became the core workflow for clinical population research at Evernorth. Three major versions shipped. The design standard we established pushed the entire Control Center platform to raise its bar. The next phase is expanding it beyond internal use — evolving Broadstreet into an external tool available to health systems, payers, and research institutions who need the same depth of clinical population intelligence without building it themselves.',
   },
 
   'broadstreet-ai': {
@@ -102,9 +102,9 @@ export const STUDIES = {
     stats: [
       { value: '$300M', label: 'in COVID relief tracked across 4 states' },
       { value: '4', label: 'dashboards built end-to-end' },
-      { value: '4', label: 'happy directors — finally had real-time visibility' },
+      { value: '9', label: 'C-suite and program directors with live visibility for the first time' },
     ],
-    challenge: "States were receiving COVID-19 housing assistance applications by the thousands, and the database existed — but there was no feasible way for executives and program managers to see what was actually happening. Reports were manual, delayed, and nearly impossible to act on. People who'd lost jobs during the pandemic were waiting on housing funds while the people approving them were flying blind.",
+    challenge: "States were processing COVID-19 housing assistance applications by the thousands. The data existed — it just lived inside a database that required a SQL query to reach. Executives and program managers had the database but not the means to interrogate it, so oversight meant waiting for reports that were already a week old by the time they landed. Families who'd lost jobs during the pandemic were waiting on housing funds while the people accountable for releasing them were navigating blind.",
     carousel: [
       { src: '/case-studies/louisiana-housing/dash-1.webp', caption: 'Louisiana — overview dashboard: disbursements, pipeline, parish-level map' },
       { src: '/case-studies/louisiana-housing/dash-2.webp', caption: 'Louisiana — applications: stage breakdown, arrearage, LHC/HCA referrals' },
@@ -117,7 +117,7 @@ export const STUDIES = {
       { title: 'Information architecture driven by decisions, not data', body: "I sat with program administrators and state officials before I built anything. The question wasn't 'what data do we have?' — it was 'what decision are you trying to make right now, and what would change it?' The answer shaped everything: five views per state, each one answering a specific question an executive might walk in with. Application bottlenecks. Disbursement velocity. Parish-level gaps. Demographic equity. Nothing made it in because it was available. Everything made it in because someone needed it." },
       { title: 'Readable under pressure, accessible by default', body: "Administrators were making high-stakes calls under stress, often on equipment they didn't choose. WCAG compliance wasn't a checkbox — it was a constraint that shaped every color, every label, every contrast ratio. Demographic data was surfaced mindfully. The dashboards had to be understood at a glance by someone who'd never seen them. That's a higher bar than 'looks good in a demo.'" },
     ],
-    pullQuote: "I got to talk to some of the actual applicants. One woman thanked me. She'd been waiting on funds for months. That conversation has stayed with me.",
+    pullQuote: "Partway through the project I got to speak with a few of the people actually applying. One woman mentioned she'd been waiting months. I don't think she knew who I was or what I was building — she was just sharing. That stayed with me longer than any stakeholder review.",
     outcome: 'Four states. Real-time visibility for the first time. Administrators went from week-old spreadsheets to live dashboards that showed exactly where every dollar was and where it was stuck. The work mattered in the most direct way possible — families got housing assistance faster because decisions could finally be made on accurate data.',
   },
 
@@ -306,7 +306,7 @@ export default function CaseStudy() {
         </motion.div>
 
         {/* Stats */}
-        <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+        <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', paddingTop: 72, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 72 }}>
           {stats.map((s, i) => <Stat key={i} value={s.value} label={s.label} accent={accent} />)}
         </div>
 

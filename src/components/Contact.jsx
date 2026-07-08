@@ -36,23 +36,13 @@ export default function Contact() {
   async function submit(e) {
     e.preventDefault();
     setStatus('sending');
-
-    try {
-      const res = await fetch(`${SUPABASE_URL}/functions/v1/portfolio-contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error(await res.text());
+    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name}${form.role ? ` — ${form.role}` : ''}`);
+    const body = encodeURIComponent(`${form.message}\n\n—\n${form.name}\n${form.email}${form.role ? `\n${form.role}` : ''}`);
+    window.location.href = `mailto:sarabraymen@gmail.com?subject=${subject}&body=${body}`;
+    setTimeout(() => {
       setStatus('success');
       setForm({ name: '', email: '', role: '', message: '' });
-    } catch {
-      setStatus('error');
-    }
+    }, 500);
   }
 
   return (

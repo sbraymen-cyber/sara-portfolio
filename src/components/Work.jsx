@@ -53,7 +53,6 @@ const PROJECTS = [
 
 function Card({ project: p, index, isMobile }) {
   const navigate = useNavigate();
-  const [hovered, setHovered] = useState(false);
   const num = String(index + 1).padStart(2, '0');
 
   return (
@@ -62,10 +61,9 @@ function Card({ project: p, index, isMobile }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       onClick={() => navigate(`/work/${p.slug}`)}
       style={{ cursor: 'pointer', borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 28 }}
+      whileHover="hovered"
     >
       {/* Image */}
       <div style={{
@@ -77,15 +75,22 @@ function Card({ project: p, index, isMobile }) {
         marginBottom: 20,
       }}>
         {p.img && (
-          <img src={p.img} alt={p.title} loading="lazy" style={{
-            width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center',
-            transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)',
-            transform: hovered ? 'scale(1.04)' : 'scale(1)',
-          }} />
+          <motion.img
+            src={p.img}
+            alt={p.title}
+            loading="lazy"
+            variants={{ hovered: { opacity: 0.85 } }}
+            transition={{ duration: 0.3 }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', opacity: 1 }}
+          />
         )}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(14,12,10,0.55) 0%, transparent 50%)' }} />
-        {/* Accent line */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: p.accent, opacity: hovered ? 1 : 0.4, transition: 'opacity 0.3s' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(14,12,10,0.6) 0%, transparent 55%)' }} />
+        {/* Accent line — expands on hover */}
+        <motion.div
+          variants={{ hovered: { scaleX: 1, opacity: 1 } }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: p.accent, opacity: 0.35, transformOrigin: 'left', scaleX: 1 }}
+        />
       </div>
 
       {/* Meta row */}
@@ -94,16 +99,20 @@ function Card({ project: p, index, isMobile }) {
           <span style={{ fontSize: 11, fontWeight: 600, color: p.accent, letterSpacing: '0.01em', opacity: 0.7 }}>{num}</span>
           <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)' }}>{p.company}</span>
         </div>
-        <span style={{
-          fontSize: 11, fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase',
-          color: hovered ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.15)',
-          transition: 'color 0.2s',
-        }}>View →</span>
+        <motion.span
+          variants={{ hovered: { color: 'rgba(255,255,255,0.6)', x: 3 } }}
+          transition={{ duration: 0.2 }}
+          style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.15)' }}
+        >View →</motion.span>
       </div>
 
-      <h3 style={{ fontSize: isMobile ? 19 : 21, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', lineHeight: 1.2, marginBottom: 8 }}>
+      <motion.h3
+        variants={{ hovered: { color: 'rgba(255,255,255,1)' } }}
+        transition={{ duration: 0.2 }}
+        style={{ fontSize: isMobile ? 19 : 21, fontWeight: 600, letterSpacing: '-0.025em', color: 'rgba(255,255,255,0.88)', lineHeight: 1.2, marginBottom: 8 }}
+      >
         {p.title}
-      </h3>
+      </motion.h3>
       <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>{p.desc}</p>
     </motion.article>
   );
@@ -130,7 +139,7 @@ export default function Work() {
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 0 : '0 48px' }}>
         {PROJECTS.map((p, i) => (
-          <Card key={p.slug} project={p} index={i} isMobile={isMobile} />
+          <Card key={`${p.slug}-${i}`} project={p} index={i} isMobile={isMobile} />
         ))}
       </div>
     </section>
