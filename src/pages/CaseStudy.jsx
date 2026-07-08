@@ -19,7 +19,6 @@ export const STUDIES = {
       { value: '3', label: 'major versions shipped (MVP → Filtering → NLM)' },
       { value: '182M', label: 'patient records made searchable' },
       { value: '0→1', label: 'product built from scratch' },
-      { value: '1', label: 'platform redesign triggered across Control Center' },
     ],
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only way in was writing SQL. Broadstreet is a geospatial mapping tool built on ArcGIS, with Neo4j as the underlying graph database. The goal was to make that data accessible to anyone in the field without dumbing it down for experts — and to do it within the real constraints of what ArcGIS and Neo4j would actually support. There was no existing product to iterate on. I started from nothing.',
     images: [
