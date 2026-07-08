@@ -1,6 +1,8 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts';
 
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')!;
+const GMAIL_USER = Deno.env.get('GMAIL_USER')!;     // sarabraymen@gmail.com
+const GMAIL_PASS = Deno.env.get('GMAIL_APP_PASS')!; // Gmail App Password
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -19,39 +21,35 @@ serve(async (req) => {
       });
     }
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
+    const client = new SMTPClient({
+      connection: {
+        hostname: 'smtp.gmail.com',
+        port: 465,
+        tls: true,
+        auth: { username: GMAIL_USER, password: GMAIL_PASS },
       },
-      body: JSON.stringify({
-        from: 'Portfolio Contact <onboarding@resend.dev>',
-        to: 'sarabraymen@gmail.com',
-        reply_to: email,
-        subject: `Portfolio message from ${name}${role ? ` — ${role}` : ''}`,
-        html: `
-          <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px;color:#111">
-            <h2 style="margin:0 0 24px;font-size:20px">New message from your portfolio</h2>
-            <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
-              <tr><td style="padding:8px 0;color:#666;width:80px">Name</td><td style="padding:8px 0;font-weight:600">${name}</td></tr>
-              <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#2563eb">${email}</a></td></tr>
-              ${role ? `<tr><td style="padding:8px 0;color:#666">Role</td><td style="padding:8px 0">${role}</td></tr>` : ''}
-            </table>
-            <div style="background:#f5f5f5;border-radius:8px;padding:20px;font-size:15px;line-height:1.6;white-space:pre-wrap">${message}</div>
-            <p style="margin-top:24px;font-size:12px;color:#999">Sent from sarabraymen.com — reply directly to this email to respond.</p>
-          </div>
-        `,
-      }),
     });
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend error:', err);
-      return new Response(JSON.stringify({ error: 'Failed to send email' }), {
-        status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+    await client.send({
+      from: GMAIL_USER,
+      to: GMAIL_USER,
+      replyTo: email,
+      subject: `Portfolio message from ${name}${role ? ` — ${role}` : ''}`,
+      html: `
+        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px;color:#111">
+          <h2 style="margin:0 0 24px;font-size:20px">New message from your portfolio</h2>
+          <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
+            <tr><td style="padding:8px 0;color:#666;width:80px">Name</td><td style="padding:8px 0;font-weight:600">${name}</td></tr>
+            <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td></tr>
+            ${role ? `<tr><td style="padding:8px 0;color:#666">Role</td><td style="padding:8px 0">${role}</td></tr>` : ''}
+          </table>
+          <div style="background:#f5f5f5;border-radius:8px;padding:20px;font-size:15px;line-height:1.6;white-space:pre-wrap">${message}</div>
+          <p style="margin-top:24px;font-size:12px;color:#999">Sent from sarabraymen.com — hit reply to respond directly.</p>
+        </div>
+      `,
+    });
+
+    await client.close();
 
     return new Response(JSON.stringify({ ok: true }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
