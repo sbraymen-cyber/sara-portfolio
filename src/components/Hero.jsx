@@ -33,7 +33,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: isMobile ? 16 : 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          I design products that are rigorous under the hood and feel effortless to use — enterprise platforms, AI tools, government data systems. I think in systems, work closely with engineers, and make hard projects feel lighter.
+          I design products that are rigorous under the hood and feel effortless to use — enterprise platforms, AI tools, government data systems. I think in systems, work closely with engineers, and make complex problems feel simple.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: isMobile ? 48 : 80 }}>
