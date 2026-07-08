@@ -90,7 +90,7 @@ function Portfolio() {
       </main>
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', maxWidth: 1080, margin: '0 auto', padding: '32px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Sara Braymen</span>
-        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)' }}>Made with love in Boulder, CO</span>
+        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)' }}>Made with ❤️ in Boulder, CO</span>
       </footer>
     </>
   );

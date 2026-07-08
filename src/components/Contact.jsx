@@ -67,7 +67,7 @@ export default function Contact() {
               style={{ fontSize: 15, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7, marginBottom: 32 }}
               initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.1 }}>
-              {"I'm looking for Senior PM, Product Design, and AI product roles. If you're building something genuinely hard, I'd love to hear about it — even if the timing isn't right yet."}
+              {"I'm open to Senior Product Design, PM, and AI product roles. I'd love to hear more about what you're building and how I can help."}
             </motion.p>
             <motion.div
               style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
