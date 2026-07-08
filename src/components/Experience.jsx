@@ -39,7 +39,7 @@ export default function Experience() {
                 <motion.div key={i}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-30px' }}
+                  viewport={{ once: true, amount: 0.05 }}
                   transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   style={{ paddingBottom: 28, marginBottom: 28, borderBottom: i < JOBS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
                 >

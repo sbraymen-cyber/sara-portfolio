@@ -59,7 +59,7 @@ function Card({ project: p, index, isMobile }) {
     <motion.article
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       onClick={() => navigate(`/work/${p.slug}`)}
       style={{ cursor: 'pointer', borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 28 }}

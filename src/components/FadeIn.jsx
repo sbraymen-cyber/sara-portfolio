@@ -3,7 +3,7 @@ import { useRef } from 'react';
 
 export default function FadeIn({ children, delay = 0, y = 32, className = '' }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
     <motion.div

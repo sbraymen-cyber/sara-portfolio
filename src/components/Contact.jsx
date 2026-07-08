@@ -63,24 +63,24 @@ export default function Contact() {
           <div>
             <motion.p
               style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 16 }}
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.05 }}>
               Get in touch
             </motion.p>
             <motion.h2
               style={{ fontSize: isMobile ? 26 : 32, fontWeight: 600, letterSpacing: '-0.025em', color: '#fff', marginBottom: 20, lineHeight: 1.2 }}
-              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: 0.06 }}>
               Say hi.
             </motion.h2>
             <motion.p
               style={{ fontSize: 15, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7, marginBottom: 32 }}
-              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: 0.1 }}>
               {"I'm open to Senior Product Design, PM, and AI product roles. I'd love to hear more about what you're building and how I can help."}
             </motion.p>
             <motion.div
               style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.05 }}
               transition={{ delay: 0.14 }}>
               <a href="mailto:sarabraymen@gmail.com"
                 style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.15s' }}
@@ -99,7 +99,7 @@ export default function Contact() {
 
           {/* Right — form */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.5, delay: 0.1 }}>
 
             <AnimatePresence mode="wait">

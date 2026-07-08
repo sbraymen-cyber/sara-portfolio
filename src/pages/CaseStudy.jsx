@@ -200,7 +200,7 @@ export const STUDIES = {
 /* ─── Components ──────────────────────────────────── */
 function Stat({ value, label, accent }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.45 }}>
       <div style={{ fontSize: 42, fontWeight: 700, letterSpacing: '-0.035em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
@@ -211,7 +211,7 @@ function Stat({ value, label, accent }) {
 
 function Section({ label, children }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
       style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
@@ -416,24 +416,16 @@ export default function CaseStudy() {
         {/* Screenshots */}
         {study.images && (
           study.phoneGrid ? (
-            /* Phone mockup grid — 2 columns, smaller */
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
               {study.images.map((img, i) => (
-                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
                   <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
                   {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 8, paddingLeft: 2, fontSize: 10 }}>{img.caption}</figcaption>}
                 </motion.figure>
               ))}
             </div>
           ) : (
-            <div style={{ marginTop: study.carousel ? 32 : 56, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {study.images.map((img, i) => (
-                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
-                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
-                </motion.figure>
-              ))}
-            </div>
+            <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} />
           )
         )}
 
@@ -447,24 +439,7 @@ export default function CaseStudy() {
                 ))}
               </div>
             </Section>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {study.discoveryImages.map((img, i) => (
-                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
-                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
-                </motion.figure>
-              ))}
-            </div>
-            {study.finalImages && (
-              <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {study.finalImages.map((img, i) => (
-                  <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                    <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
-                    {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{img.caption}</figcaption>}
-                  </motion.figure>
-                ))}
-              </div>
-            )}
+            <Carousel slides={[...study.discoveryImages, ...(study.finalImages || [])]} accent={accent} accentRgb={accentRgb} />
           </>
         )}
 
