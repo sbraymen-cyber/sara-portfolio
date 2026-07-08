@@ -69,7 +69,6 @@ export const STUDIES = {
       { src: '/case-studies/broadstreet-ai/screen-7.webp', caption: 'Agent refining PTSD search — narrowing by condition, specialty, and location' },
       { src: '/case-studies/broadstreet-ai/screen-8.webp', caption: 'Complex multi-condition query — cardiovascular + PTSD with female patient filter' },
       { src: '/case-studies/broadstreet-ai/screen-9.webp', caption: 'Final confirmed search — filters locked and ready to run' },
-      { src: '/case-studies/broadstreet-ai/screen-10.webp', caption: 'Search results map — geographic distribution of matching patient populations' },
     ],
     approach: [
       { title: 'Learning by Experience, Not Documentation', body: "The insight was simple: people don't read training docs, but they'll follow a good guide. John Snow walks users through constructing a search, explains what each filter does in plain language, and makes selections on their behalf when they're stuck. The agent isn't a chatbot — it's a co-pilot that transfers knowledge through demonstration rather than instruction." },

@@ -18,6 +18,7 @@ const STARTERS = [
 
 function Message({ role, content }) {
   const isUser = role === 'user';
+  if (!content) return null;
   return (
     <div style={{
       display: 'flex',
