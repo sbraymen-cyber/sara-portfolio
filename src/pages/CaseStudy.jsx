@@ -69,6 +69,7 @@ export const STUDIES = {
       { value: 'V3', label: 'of the platform — shipped' },
     ],
     challenge: "Broadstreet's anonymized claims database is extraordinarily powerful — and deeply underused, because learning to query it takes time most researchers don't have. Training documentation wasn't working. Users needed to learn by doing, with a guide who could hold their hand, make selections for them, and explain what was happening in real time. That's a different design problem than most AI work.",
+    agentMap: true,
     images: [
       { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
       { src: '/case-studies/broadstreet-ai/screen-3.webp', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
@@ -220,6 +221,95 @@ function Section({ label, children }) {
   );
 }
 
+function AgentMap({ accent }) {
+  const nodes = [
+    { id: 'input',     x: 50,  y: 10,  label: 'User prompt',        sub: '"Find PCOS patients in rural Colorado"',  type: 'input' },
+    { id: 'intent',    x: 50,  y: 26,  label: 'Intent parsing',      sub: 'Condition · Geography · Specialty',        type: 'process' },
+    { id: 'scope',     x: 18,  y: 42,  label: 'Off-topic?',          sub: 'Redirect gracefully',                      type: 'decision-no' },
+    { id: 'clarify',   x: 50,  y: 42,  label: 'Needs clarification?',sub: 'Ask 1 follow-up question',                 type: 'decision' },
+    { id: 'fill',      x: 82,  y: 42,  label: 'Confident mapping',   sub: 'Auto-fill filters silently',               type: 'decision-yes' },
+    { id: 'confirm',   x: 50,  y: 62,  label: 'Show user filters',   sub: 'Explain each choice in plain language',    type: 'process' },
+    { id: 'edit',      x: 22,  y: 78,  label: 'User edits',          sub: 'Return to clarify loop',                   type: 'branch' },
+    { id: 'run',       x: 78,  y: 78,  label: 'Confirm & run',       sub: 'Filters locked · search executes',         type: 'output' },
+  ];
+  const edges = [
+    ['input','intent'], ['intent','scope'], ['intent','clarify'], ['intent','fill'],
+    ['scope','confirm'], ['clarify','confirm'], ['fill','confirm'],
+    ['confirm','edit'], ['confirm','run'],
+  ];
+
+  const W = 700, H = 420;
+  const px = (pct) => (pct / 100) * W;
+  const py = (pct) => (pct / 100) * H;
+
+  const nodeMap = Object.fromEntries(nodes.map(n => [n.id, n]));
+
+  const typeStyle = {
+    'input':        { bg: 'rgba(139,111,190,0.18)', border: accent, labelColor: '#fff' },
+    'process':      { bg: 'rgba(255,255,255,0.05)', border: 'rgba(255,255,255,0.15)', labelColor: '#fff' },
+    'decision':     { bg: 'rgba(196,154,90,0.12)', border: 'rgba(196,154,90,0.5)', labelColor: 'var(--amber)' },
+    'decision-yes': { bg: 'rgba(61,158,140,0.12)', border: 'rgba(61,158,140,0.5)', labelColor: '#3D9E8C' },
+    'decision-no':  { bg: 'rgba(200,80,60,0.12)', border: 'rgba(200,80,60,0.4)', labelColor: 'var(--coral)' },
+    'branch':       { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.1)', labelColor: 'rgba(255,255,255,0.6)' },
+    'output':       { bg: 'rgba(139,111,190,0.2)', border: accent, labelColor: '#fff' },
+  };
+
+  return (
+    <Section label="Agent Decision Map">
+      <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, marginBottom: 32 }}>
+        How John Snow processes a user prompt — from natural language to executed search. Every branch was a design decision, and every edge case (scope creep, hallucination, ambiguous intent) required months of iteration with two engineers.
+      </p>
+      <div style={{ overflowX: 'auto', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', minWidth: 480, display: 'block', padding: '16px 0' }}>
+          {/* Edges */}
+          {edges.map(([a, b], i) => {
+            const n1 = nodeMap[a], n2 = nodeMap[b];
+            return (
+              <line key={i}
+                x1={px(n1.x)} y1={py(n1.y) + 22}
+                x2={px(n2.x)} y2={py(n2.y) - 22}
+                stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 3"
+              />
+            );
+          })}
+
+          {/* Edge labels for key branches */}
+          <text x={px(18) + 4} y={py(34)} fill="rgba(200,80,60,0.7)" fontSize="9" fontFamily="inherit">off-topic</text>
+          <text x={px(50) + 4} y={py(34)} fill="rgba(196,154,90,0.7)" fontSize="9" fontFamily="inherit">unclear</text>
+          <text x={px(82) - 28} y={py(34)} fill="rgba(61,158,140,0.8)" fontSize="9" fontFamily="inherit">clear</text>
+          <text x={px(30)} y={py(70)} fill="rgba(255,255,255,0.25)" fontSize="9" fontFamily="inherit">revise</text>
+          <text x={px(65)} y={py(70)} fill="rgba(255,255,255,0.25)" fontSize="9" fontFamily="inherit">approve</text>
+
+          {/* Nodes */}
+          {nodes.map(n => {
+            const s = typeStyle[n.type];
+            const cx = px(n.x), cy = py(n.y);
+            const w = 130, h = 44;
+            return (
+              <g key={n.id}>
+                <rect
+                  x={cx - w / 2} y={cy - h / 2}
+                  width={w} height={h}
+                  rx="8"
+                  fill={s.bg}
+                  stroke={s.border}
+                  strokeWidth="1"
+                />
+                <text x={cx} y={cy - 5} textAnchor="middle" fill={s.labelColor} fontSize="11" fontWeight="600" fontFamily="inherit">
+                  {n.label}
+                </text>
+                <text x={cx} y={cy + 10} textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="8.5" fontFamily="inherit">
+                  {n.sub}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </Section>
+  );
+}
+
 function Carousel({ slides, accent, accentRgb }) {
   const [idx, setIdx] = useState(0);
   const prev = () => setIdx(i => (i - 1 + slides.length) % slides.length);
@@ -314,6 +404,9 @@ export default function CaseStudy() {
         <Section label="The Challenge">
           <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 600 }}>{challenge}</p>
         </Section>
+
+        {/* Agent decision map — Broadstreet AI */}
+        {study.agentMap && <AgentMap accent={accent} />}
 
         {/* Carousel (Louisiana dashboard walkthrough) */}
         {study.carousel && (
