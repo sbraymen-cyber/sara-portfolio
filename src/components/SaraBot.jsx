@@ -10,7 +10,7 @@ const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
   : null;
 
 const STARTERS = [
-  'What makes Sara a strong PM?',
+  'Tell me about her design process',
   'How does she work with engineers?',
   'Tell me about her AI product work',
   'What kind of team would she thrive in?',

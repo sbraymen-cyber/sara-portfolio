@@ -25,7 +25,7 @@ export default function Hero() {
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: `0 ${px}px ${isMobile ? 60 : 80}px`, width: '100%' }}>
 
         <motion.p {...fadeUp(0.2)} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>
-          Senior Product Manager & Designer · Boulder, CO
+          Senior Product Designer & Manager · Boulder, CO
         </motion.p>
 
         <motion.h1 {...fadeUp(0.32)} className="type-display" style={{ marginBottom: 28, maxWidth: '18ch' }}>
@@ -33,7 +33,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p {...fadeUp(0.42)} style={{ fontSize: isMobile ? 16 : 18, color: 'rgba(255,255,255,0.58)', maxWidth: 540, marginBottom: 48, lineHeight: 1.7, fontWeight: 400 }}>
-          I lead product from discovery to shipped — enterprise platforms, government data systems, my own startup. I get excited when engineers push back, and I make hard projects feel lighter.
+          I design products that are rigorous under the hood and feel effortless to use — enterprise platforms, AI tools, government data systems. I think in systems, work closely with engineers, and make hard projects feel lighter.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: isMobile ? 48 : 80 }}>
