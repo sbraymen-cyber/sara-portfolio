@@ -12,8 +12,8 @@ export const STUDIES = {
     tagline: "Built from zero — months of discovery, a cross-functional team I merged onto, and a design standard that eventually forced an upgrade of the entire platform it lived in.",
     role: 'Lead Designer & Product Manager',
     timeline: '2022 – Present',
-    accent: '#3D9E8C',
-    accentRgb: '61,158,140',
+    accent: '#2D6B5E',
+    accentRgb: '45,107,94',
     tags: ['Healthcare AI', 'Data Visualization', 'Enterprise UX', 'ArcGIS', 'Neo4j'],
     stats: [
       { value: '3', label: 'major versions shipped (MVP → Filtering → NLM)' },
@@ -60,8 +60,8 @@ export const STUDIES = {
     tagline: 'Designed a clinical AI agent — named John Snow, after the physician who traced cholera to a pump on Broadstreet — before the industry had a playbook for what that even meant.',
     role: 'Lead Designer & Product Manager',
     timeline: '2025 – Present',
-    accent: '#8B6FBE',
-    accentRgb: '139,111,190',
+    accent: '#5B4F8C',
+    accentRgb: '91,79,140',
     tags: ['Conversational AI', 'Design Systems', 'GenAI', 'UX Research', 'Enterprise'],
     stats: [
       { value: '96%', label: '"must have" in user validation' },
@@ -97,8 +97,8 @@ export const STUDIES = {
     tagline: 'Four dashboards. Four states. $300M in COVID relief that people desperately needed — and no real-time way to track any of it, until there was.',
     role: 'Data Visualization Designer & Developer',
     timeline: 'Apr 2021 – Apr 2022',
-    accent: '#BE9A6F',
-    accentRgb: '190,154,111',
+    accent: '#8B6230',
+    accentRgb: '139,98,48',
     tags: ['Power BI', 'Data Visualization', 'SQL', 'WCAG Accessibility', 'Emergency Response'],
     stats: [
       { value: '$300M', label: 'in COVID relief tracked across 4 states' },
@@ -125,32 +125,33 @@ export const STUDIES = {
   'sar-consumer': {
     slug: 'sar-consumer',
     company: 'Sar — Passion project',
-    title: 'Consumer Receipt Experience',
-    tagline: "Paper receipts cost $0.02, return nothing, and get thrown away in seconds. I built a $0.04 replacement that turns every transaction into a marketing channel — nights and weekends, alongside full-time work.",
+    title: 'Sar: Receipt Platform',
+    tagline: "Every purchase in the US generates a piece of waste or a spam email nobody asked for. Thermal paper receipts are toxic, unrecyclable, and discard the most valuable data a merchant collects. Sar replaces them — for both sides of the counter.",
     role: 'Founder, Designer & Engineer',
     timeline: '2024 – Present (part-time)',
-    accent: '#6F87BE',
-    accentRgb: '111,135,190',
-    tags: ['NFC', 'iOS', 'Apple Wallet', 'Expo', 'Supabase'],
+    accent: '#3D5E8C',
+    accentRgb: '61,94,140',
+    tags: ['NFC', 'iOS', 'Apple Wallet', 'Square API', 'Supabase', 'Expo'],
     stats: [
-      { value: '$0.04', label: 'per receipt — vs $0.02 for paper that returns nothing' },
-      { value: '0', label: 'apps required at the first tap' },
-      { value: '3+', label: 'live merchant pilots in Boulder & Denver' },
+      { value: '$800M+', label: 'spent annually in the US printing thermal paper receipts — money that returns zero customer data' },
+      { value: '~11.4B', label: 'paper receipts printed per year in the US — the vast majority discarded within seconds' },
+      { value: '3+', label: 'active pilots in Boulder & Denver, CO' },
     ],
-    phoneGrid: true,
+    compactCarousel: true,
     images: [
       { src: '/case-studies/sar-consumer/screen-wallet.webp', caption: 'Apple Wallet' },
       { src: '/case-studies/sar-consumer/screen-nfc.webp', caption: 'NFC tap flow' },
       { src: '/case-studies/sar-consumer/screen-signup.webp', caption: 'Onboarding' },
-      { src: '/case-studies/sar-consumer/screen-transactions.webp', caption: 'Transactions' },
     ],
-    challenge: "Every \"digital receipt\" product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is the entire reason paper receipts still exist in 2026. The insight wasn't to digitize the receipt — it was to make the digital receipt require less effort than the paper one.",
+    challenge: "Every digital receipt product before Sar made the same mistake: they asked the customer to do something. Type an email. Download an app. Create an account. That friction is why paper receipts still exist. At the same time, merchants need a sustainability story, real customer data, and a system that doesn't require retraining staff. One product, two audiences, zero crossover confusion — and the backend has to normalize completely different data formats from Square, Toast, and Ingenico into one clean receipt shape before any of that matters.",
     approach: [
-      { title: 'The Reframe: Not a Receipt Product. A Marketing Channel.', body: "The business model is $0.04 per completed digital receipt. But framing it as a cheaper receipt misses the point — paper receipts are already cheap. The real pitch is that every Sar receipt can embed a personalized discount code, a Google Review link, or a product recommendation. A $0.02 paper receipt is a sunk cost. A $0.04 Sar receipt is an automated repeat-visit driver. That's the insight that makes the economics obvious." },
-      { title: 'Why NFC, Not QR', body: "QR codes require the cashier to hold something up, the customer to open their camera, aim, scan, and wait. It adds 10–15 seconds to checkout and requires a behavioral change from staff. NFC is different — it\'s a sticker on the counter that the customer taps, same motion as tap-to-pay, zero staff involvement. The choice wasn\'t aesthetic. It was about removing every possible point of failure between \"customer wants receipt\" and \"receipt appears.\"" },
-      { title: 'Apple Wallet as the Entry Point', body: "The five-step flow: pay normally → cashier says \"tap for your receipt\" → customer taps the Sar sticker → a lightweight App Clip slides up instantly → Face ID authenticates → receipt lands in Apple Wallet before they\'ve put their card away. That evening, one push notification invites them to the full app. Apple Wallet was the right destination because it\'s already on every iPhone, already trusted, requires zero download. It\'s the hook. Receipt history, IRS tax categorization, PDF export, and Expensify/TurboTax integration are the depth that earns the download later." },
-      { title: 'The Design Decisions Behind the Interface', body: "Dark background (#1A1816, warm not cool) because it matches Apple Wallet\'s aesthetic — this app lives next to your boarding passes and credit cards, and it should feel like it belongs there. Email OTP instead of passwords because anyone tapping an NFC sticker at a coffee counter shouldn\'t need to remember credentials. Square first because it has the largest SMB POS market share and the cleanest API for a proof of concept — Toast and Clover are extensions of the same architecture, not rebuilds." },
-      { title: 'Built Solo with Claude Code', body: "The entire product — Expo Router iOS app, Supabase schema and RLS policies, EAS build pipeline, Square integration, Apple Wallet PKPass generation, and the tax categorization keyword engine — was built by me in active collaboration with Claude Code (Anthropic\'s AI CLI). Not as a shortcut. As a proof of concept for what a solo founder-designer-engineer can ship when AI handles implementation and you focus on the product. Zero to launch-ready in days, not months." },
+      { title: 'The Data Is Already There', body: "Every transaction generates itemized purchase data that currently goes nowhere. Organized and surfaced correctly, it's valuable to both sides — merchants understand what's selling and when, consumers have a searchable record of everything they've bought. Sar is the layer that finally makes use of it." },
+      { title: 'NFC Is Already Built Into the POS', body: "Modern POS systems have NFC built in. The same reader that processes tap-to-pay is the one Sar uses to deliver the receipt — no new hardware, no staff behavior change required. The customer taps their phone the same way they'd tap a card. A receipt appears in Apple Wallet. The infrastructure investment was already made. We're using it." },
+      { title: 'Apple Wallet as the Entry Point', body: "The flow: customer pays → taps phone to POS NFC reader → App Clip slides up instantly → Face ID authenticates → receipt lands in Apple Wallet before they've put their card away. Apple Wallet was the right destination because it's on every iPhone, already trusted, requires zero download. Receipt history, IRS tax categorization, PDF export, and Expensify/TurboTax integration are the depth that earns the full app download later." },
+      { title: 'Two Pages, One Product', body: "The consumer site is emotional and minimal — one CTA, aurora animation, done. The merchant page (/business) is the full pitch: $0.04 per receipt in the largest type on the page, comparison table, sustainability badge, dashboard preview, and a signup form split by company size. Neither audience gets stuck in the wrong place." },
+      { title: 'Square OAuth, Webhooks, and a Marketplace App', body: "Merchants connect Square in one click via OAuth 2.0. Every completed payment fires a real-time webhook that generates a receipt automatically — no merchant action after setup. Sar Receipts is in the Square App Marketplace application process under Customer Engagement. Toast and Ingenico normalization are in progress." },
+      { title: 'Multi-POS Schema Built for Scale', body: "The Supabase schema was generalized from day one: a merchants table, a pos_connections table, and a source column on every receipt. Square, Toast, Clover, and Ingenico all normalize to the same shape — line items, subtotal, tax, tip, total, payment method — before they touch the dashboard. Adding a new POS is a new edge function, not a new data model." },
+      { title: 'Built Solo with Claude Code', body: "The entire product — Expo Router iOS app, Supabase schema and RLS policies, EAS build pipeline, Square integration, Apple Wallet PKPass generation, and the tax categorization keyword engine — was built in active collaboration with Claude Code. Not as a shortcut. As a proof of concept for what a solo founder-designer-engineer can ship when AI handles implementation and you focus on the product." },
     ],
     researchPlan: {
       title: 'What I\'m Learning Next',
@@ -158,147 +159,138 @@ export const STUDIES = {
         { phase: 'First-tap clarity', body: 'In-store intercepts at pilot locations — did the gesture feel obvious? Was Apple Wallet the right destination? What created hesitation?' },
         { phase: 'Return behavior', body: 'Do customers who tapped once tap again on a return visit? Is this habit-forming or a novelty? That distinction determines the acquisition strategy.' },
         { phase: 'App download trigger', body: 'What made early users cross from Wallet receipt to full app? Feature pull, notification, or something else? That\'s the funnel to optimize.' },
-        { phase: 'Non-tappers', body: 'Exit interviews with customers who walked past the sticker. Awareness gap, trust barrier, or just didn\'t notice? Different problems, different fixes.' },
+        { phase: 'Non-tappers', body: "Exit interviews with customers who didn't tap the NFC reader. Awareness gap, trust barrier, or just didn't notice? Different problems, different fixes." },
       ],
     },
-    pullQuote: "Everyone said just add a QR code. But QR codes require the customer to do something. The whole premise of Sar is that they don't have to.",
+    pullQuote: "I've pitched this to enough business owners to know exactly when they cross their arms. Every section of the merchant page is designed to answer the next objection before they can raise it.",
     liveUrl: 'https://sar-app.com',
-    outcome: 'Live pilots in Boulder and Denver, CO. iOS app in early access. Square POS integration live — silently intercepts the transaction payload on payment completion. Coming next: Apple App Clip for the NFC tap flow, PKPass via Supabase Edge Function, App Store submission, Google Wallet, Toast and Clover integrations.',
-  },
-
-  'sar-merchant': {
-    slug: 'sar-merchant',
-    company: 'Sar — Passion project',
-    title: 'Merchant Platform & POS Integrations',
-    tagline: '$0.04 per receipt. $0.00 if they still want paper. Built nights and weekends alongside full-time work — because the problem was too good to leave alone.',
-    role: 'Founder, Designer & Engineer',
-    timeline: '2025 – Present (part-time)',
-    accent: '#6F87BE',
-    accentRgb: '111,135,190',
-    tags: ['B2B Design', 'Square API', 'Toast', 'Supabase Edge Functions', 'OAuth'],
-    stats: [
-      { value: '$0.04', label: 'per receipt — the number the whole page is built around' },
-      { value: '3+', label: 'active pilots in Boulder & Denver, CO' },
-      { value: '3 POS', label: 'systems normalized into one receipt schema (Square, Toast, Ingenico)' },
-    ],
-    challenge: "Sar serves two completely different audiences with different needs, different fears, and different reasons to care. Merchants want cost savings, faster checkout, customer data, and a sustainability story they can actually use. Consumers want receipts that appear without typing anything at the register. One product, two landing pages, zero crossover confusion — and the backend has to normalize completely different data formats from Square, Toast, and Ingenico into one clean receipt shape before any of that front-end work matters.",
-    approach: [
-      { title: 'Lead With the Number', body: "$0.04 is in the largest type on the merchant page — not buried in a pricing table. Immediately below it: a callout that paper overrides are always $0.00. That second line is the one that closes the room. It answers the objection before anyone can raise it. A merchant who prints 200 receipts a day can opt out of any of them for free. That\'s not a limitation. It\'s a trust signal." },
-      { title: 'Two Pages, One Product', body: "The homepage (sar-app.com) is built for consumers — emotional, minimal, fast. \"Receipt chaos, solved.\" Aurora animation. One CTA. The business page (/business) is the full merchant pitch: comparison table, value prop cards, how it works for staff, sustainability badge, BI dashboard preview, receipt-as-marketing-channel breakdown, cashier scripts, and a signup form split by company size (enterprise gets a contact card, SMBs fill out a form directly). Each page has a subtle nav link to the other. Neither audience gets stuck." },
-      { title: 'Square: OAuth, Webhooks, and a Marketplace App', body: "Merchants connect Square in one click via OAuth 2.0 — tokens stored server-side, auto-refreshed before expiry. From that point, every completed Square payment fires a real-time webhook that generates a digital receipt automatically. No merchant action required after setup. The integration handles payments, refunds, order updates, and customer profile changes. Sar Receipts is now in the Square App Marketplace application process under category: Customer Engagement." },
-      { title: 'Multi-POS Schema Designed for Scale', body: "Square was the proof of concept, but the Supabase schema was generalized from day one: a merchants table, a pos_connections table, and a source column on every receipt. Toast, Clover, Ingenico, and Worldline receipts normalize to the same shape — line items, subtotal, tax, tip, total, payment method — before they ever touch the merchant dashboard. Adding a new POS is a new edge function, not a new data model." },
-      { title: 'Merchant Dashboard & Internal Admin Portal', body: "The merchant dashboard (sar-app.com/dashboard) shows real-time sustainability metrics, revenue charts, monthly breakdowns, and best/least popular items by volume and revenue. Built on Recharts with the same aurora-and-dark-glass design system as the marketing site. Alongside it: an internal admin portal (sar-app.com/admin) that gives Sara a cross-merchant view of Sar earnings, per-merchant billing, and aggregate sustainability impact — the tool that runs the business." },
-      { title: 'Sustainability as Hard ROI, Not Soft Brand', body: "The Certified Paperless badge isn\'t decorative. It shows live metrics — trees saved, pounds of paper eliminated, CO₂ avoided — calculated from that merchant\'s actual transaction volume. Embeddable badge, share-ready social cards, printable certification. Merchants don\'t just feel good about it. They post it. It becomes part of how they talk about their business to neighboring owners, which is where pilot growth has actually come from." },
-      { title: 'Cashier Scripts', body: "The biggest friction in rolling out any new checkout behavior is the 30 seconds where the cashier doesn\'t know what to say. The merchant page includes three ready-to-use scripts for different situations — first-time customer, returning customer, customer who prefers paper. Staff adoption is a UX problem, not a training problem, and this is how you solve it at the point of sale." },
-    ],
-    pullQuote: "I've pitched this to enough business owners to know exactly when they cross their arms. The page is designed around that moment — every section answers the next objection before they can raise it.",
-    outcome: '3+ active pilots in Boulder and Denver. Square OAuth integration live. Toast and Ingenico normalization in progress. Square App Marketplace application filed under Customer Engagement. Pre-revenue — billing activates when pilots convert. The sustainability badge has become a word-of-mouth driver: multiple pilot merchants have mentioned it to neighboring businesses unprompted.',
-    liveUrl: 'https://sar-app.com',
+    outcome: 'Continuing to develop POS marketplace integrations over the summer and expanding pilot partnerships in Boulder and Denver.',
   },
 };
 
 /* ─── Components ──────────────────────────────────── */
 function Stat({ value, label, accent }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.05 });
+  const inView = useInView(ref, { once: true, amount: 0, margin: "0px 0px 200px 0px" });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.45 }}>
-      <div style={{ fontSize: 42, fontWeight: 700, letterSpacing: '-0.035em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
-      <div className="type-caption" style={{ color: 'rgba(255,255,255,0.38)' }}>{label}</div>
+      <div style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: 'clamp(32px, 6vw, 42px)', fontWeight: 400, letterSpacing: '-0.03em', color: accent, lineHeight: 1, marginBottom: 8 }}>{value}</div>
+      <div style={{ fontSize: 12, color: 'var(--text-3)', lineHeight: 1.5 }}>{label}</div>
     </motion.div>
   );
 }
 
 function Section({ label, children }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.05 });
+  const inView = useInView(ref, { once: true, amount: 0, margin: "0px 0px 200px 0px" });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
-      style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
-      <p className="type-label-sm" style={{ color: 'var(--coral)', marginBottom: 20 }}>{label}</p>
+      style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
+      <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 20 }}>{label}</p>
       {children}
     </motion.div>
   );
 }
 
 function AgentMap({ accent }) {
+  const W = 760, H = 520;
+  const NW = 188, NH = 58;
+
   const nodes = [
-    { id: 'input',     x: 50,  y: 10,  label: 'User prompt',        sub: '"Find PCOS patients in rural Colorado"',  type: 'input' },
-    { id: 'intent',    x: 50,  y: 26,  label: 'Intent parsing',      sub: 'Condition · Geography · Specialty',        type: 'process' },
-    { id: 'scope',     x: 18,  y: 42,  label: 'Off-topic?',          sub: 'Redirect gracefully',                      type: 'decision-no' },
-    { id: 'clarify',   x: 50,  y: 42,  label: 'Needs clarification?',sub: 'Ask 1 follow-up question',                 type: 'decision' },
-    { id: 'fill',      x: 82,  y: 42,  label: 'Confident mapping',   sub: 'Auto-fill filters silently',               type: 'decision-yes' },
-    { id: 'confirm',   x: 50,  y: 62,  label: 'Show user filters',   sub: 'Explain each choice in plain language',    type: 'process' },
-    { id: 'edit',      x: 22,  y: 78,  label: 'User edits',          sub: 'Return to clarify loop',                   type: 'branch' },
-    { id: 'run',       x: 78,  y: 78,  label: 'Confirm & run',       sub: 'Filters locked · search executes',         type: 'output' },
-  ];
-  const edges = [
-    ['input','intent'], ['intent','scope'], ['intent','clarify'], ['intent','fill'],
-    ['scope','confirm'], ['clarify','confirm'], ['fill','confirm'],
-    ['confirm','edit'], ['confirm','run'],
+    { id: 'input',   cx: 380, cy: 56,  label: 'User prompt',         sub: '"Find PCOS patients in rural Colorado"', type: 'input' },
+    { id: 'intent',  cx: 380, cy: 158, label: 'Intent parsing',       sub: 'Condition · Geography · Specialty',      type: 'process' },
+    { id: 'scope',   cx: 104, cy: 274, label: 'Off-topic',            sub: 'Redirect gracefully',                    type: 'decision-no' },
+    { id: 'clarify', cx: 380, cy: 274, label: 'Needs clarification',  sub: 'Ask 1 follow-up question',               type: 'decision' },
+    { id: 'fill',    cx: 656, cy: 274, label: 'Confident mapping',    sub: 'Auto-fill filters silently',             type: 'decision-yes' },
+    { id: 'confirm', cx: 380, cy: 382, label: 'Show user filters',    sub: 'Explain each choice in plain language',  type: 'process' },
+    { id: 'edit',    cx: 164, cy: 470, label: 'User edits',           sub: 'Return to clarify loop',                 type: 'branch' },
+    { id: 'run',     cx: 596, cy: 470, label: 'Confirm & run',        sub: 'Filters locked · search executes',       type: 'output' },
   ];
 
-  const W = 700, H = 420;
-  const px = (pct) => (pct / 100) * W;
-  const py = (pct) => (pct / 100) * H;
+  const typeStyle = {
+    'input':        { bg: 'rgba(91,79,140,0.15)',  border: '#5B4F8C',              label: '#1A1D1A', sub: '#5C605C' },
+    'process':      { bg: 'rgba(26,29,26,0.04)',   border: 'rgba(26,29,26,0.18)', label: '#1A1D1A', sub: '#5C605C' },
+    'decision':     { bg: 'rgba(196,154,90,0.12)', border: 'rgba(196,154,90,0.5)', label: '#8B6230', sub: '#5C605C' },
+    'decision-yes': { bg: 'rgba(45,107,94,0.12)',  border: 'rgba(45,107,94,0.5)', label: '#2D6B5E',  sub: '#5C605C' },
+    'decision-no':  { bg: 'rgba(200,80,60,0.1)',   border: 'rgba(200,80,60,0.4)', label: '#B04030',  sub: '#5C605C' },
+    'branch':       { bg: 'rgba(26,29,26,0.03)',   border: 'rgba(26,29,26,0.12)', label: '#1A1D1A',  sub: '#5C605C' },
+    'output':       { bg: 'rgba(91,79,140,0.18)',  border: '#5B4F8C',              label: '#1A1D1A',  sub: '#5C605C' },
+  };
 
   const nodeMap = Object.fromEntries(nodes.map(n => [n.id, n]));
 
-  const typeStyle = {
-    'input':        { bg: 'rgba(139,111,190,0.18)', border: accent, labelColor: '#fff' },
-    'process':      { bg: 'rgba(255,255,255,0.05)', border: 'rgba(255,255,255,0.15)', labelColor: '#fff' },
-    'decision':     { bg: 'rgba(196,154,90,0.12)', border: 'rgba(196,154,90,0.5)', labelColor: 'var(--amber)' },
-    'decision-yes': { bg: 'rgba(61,158,140,0.12)', border: 'rgba(61,158,140,0.5)', labelColor: '#3D9E8C' },
-    'decision-no':  { bg: 'rgba(200,80,60,0.12)', border: 'rgba(200,80,60,0.4)', labelColor: 'var(--coral)' },
-    'branch':       { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.1)', labelColor: 'rgba(255,255,255,0.6)' },
-    'output':       { bg: 'rgba(139,111,190,0.2)', border: accent, labelColor: '#fff' },
-  };
+  const edges = [
+    ['input',  'intent',  null,        null],
+    ['intent', 'scope',   'off-topic', '#B04030'],
+    ['intent', 'clarify', 'unclear',   '#8B6230'],
+    ['intent', 'fill',    'clear',     '#2D6B5E'],
+    ['scope',  'confirm', null,        null],
+    ['clarify','confirm', null,        null],
+    ['fill',   'confirm', null,        null],
+    ['confirm','edit',    'revise',    '#8C908B'],
+    ['confirm','run',     'approve',   '#8C908B'],
+  ];
+
+  function edgePath(n1, n2) {
+    const x1 = n1.cx, y1 = n1.cy + NH / 2;
+    const x2 = n2.cx, y2 = n2.cy - NH / 2;
+    const my = (y1 + y2) / 2;
+    return `M ${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`;
+  }
 
   return (
     <Section label="Agent Decision Map">
-      <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, marginBottom: 32 }}>
-        How John Snow processes a user prompt — from natural language to executed search. Every branch was a design decision, and every edge case (scope creep, hallucination, ambiguous intent) required months of iteration with two engineers.
+      <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 560, marginBottom: 32, lineHeight: 1.65 }}>
+        How John Snow routes a user prompt — from natural language to executed search. Every branch was a deliberate design decision; scope creep, hallucination, and ambiguous intent each required months of iteration.
       </p>
-      <div style={{ overflowX: 'auto', borderRadius: 16, border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.02)' }}>
-        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', minWidth: 480, display: 'block', padding: '16px 0' }}>
-          {/* Edges */}
-          {edges.map(([a, b], i) => {
+      <div style={{ overflowX: 'auto', borderRadius: 16, border: '1px solid var(--border-md)', background: 'var(--bg-surface)', padding: '16px 0' }}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          style={{ width: '100%', minWidth: 580, display: 'block' }}
+          aria-label="Agent decision map showing how user prompts are routed through intent parsing to search execution"
+          role="img"
+        >
+          <defs>
+            <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <path d="M0,0 L0,7 L7,3.5 z" fill="rgba(26,29,26,0.22)" />
+            </marker>
+          </defs>
+
+          {edges.map(([a, b, label, labelColor], i) => {
             const n1 = nodeMap[a], n2 = nodeMap[b];
+            const d = edgePath(n1, n2);
+            const mx = (n1.cx + n2.cx) / 2;
+            const my = (n1.cy + NH / 2 + n2.cy - NH / 2) / 2;
             return (
-              <line key={i}
-                x1={px(n1.x)} y1={py(n1.y) + 22}
-                x2={px(n2.x)} y2={py(n2.y) - 22}
-                stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 3"
-              />
+              <g key={i}>
+                <path d={d} fill="none" stroke="rgba(26,29,26,0.18)" strokeWidth="1.5"
+                  strokeDasharray="5 4" markerEnd="url(#arrow)" />
+                {label && (
+                  <text x={mx} y={my - 5} textAnchor="middle"
+                    fill={labelColor} fontSize="11" fontWeight="600" fontFamily="inherit"
+                    letterSpacing="0.04em">
+                    {label}
+                  </text>
+                )}
+              </g>
             );
           })}
 
-          {/* Edge labels for key branches */}
-          <text x={px(18) + 4} y={py(34)} fill="rgba(200,80,60,0.7)" fontSize="9" fontFamily="inherit">off-topic</text>
-          <text x={px(50) + 4} y={py(34)} fill="rgba(196,154,90,0.7)" fontSize="9" fontFamily="inherit">unclear</text>
-          <text x={px(82) - 28} y={py(34)} fill="rgba(61,158,140,0.8)" fontSize="9" fontFamily="inherit">clear</text>
-          <text x={px(30)} y={py(70)} fill="rgba(255,255,255,0.25)" fontSize="9" fontFamily="inherit">revise</text>
-          <text x={px(65)} y={py(70)} fill="rgba(255,255,255,0.25)" fontSize="9" fontFamily="inherit">approve</text>
-
-          {/* Nodes */}
           {nodes.map(n => {
             const s = typeStyle[n.type];
-            const cx = px(n.x), cy = py(n.y);
-            const w = 130, h = 44;
             return (
               <g key={n.id}>
                 <rect
-                  x={cx - w / 2} y={cy - h / 2}
-                  width={w} height={h}
-                  rx="8"
-                  fill={s.bg}
-                  stroke={s.border}
-                  strokeWidth="1"
+                  x={n.cx - NW / 2} y={n.cy - NH / 2}
+                  width={NW} height={NH} rx="10"
+                  fill={s.bg} stroke={s.border} strokeWidth="1.25"
                 />
-                <text x={cx} y={cy - 5} textAnchor="middle" fill={s.labelColor} fontSize="11" fontWeight="600" fontFamily="inherit">
+                <text x={n.cx} y={n.cy - 9} textAnchor="middle"
+                  fill={s.label} fontSize="13" fontWeight="600" fontFamily="inherit">
                   {n.label}
                 </text>
-                <text x={cx} y={cy + 10} textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="8.5" fontFamily="inherit">
+                <text x={n.cx} y={n.cy + 12} textAnchor="middle"
+                  fill={s.sub} fontSize="10.5" fontFamily="inherit">
                   {n.sub}
                 </text>
               </g>
@@ -310,14 +302,14 @@ function AgentMap({ accent }) {
   );
 }
 
-function Carousel({ slides, accent, accentRgb }) {
+function Carousel({ slides, accent, accentRgb, compact }) {
   const [idx, setIdx] = useState(0);
   const prev = () => setIdx(i => (i - 1 + slides.length) % slides.length);
   const next = () => setIdx(i => (i + 1) % slides.length);
 
   return (
-    <div style={{ marginTop: 56 }}>
-      <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', background: '#111' }}>
+    <div style={{ marginTop: 56, maxWidth: compact ? 320 : '100%' }}>
+      <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-md)', background: 'var(--bg-surface)' }}>
         <motion.img
           key={idx}
           src={slides[idx].src}
@@ -327,20 +319,16 @@ function Carousel({ slides, accent, accentRgb }) {
           transition={{ duration: 0.3 }}
           loading="lazy" style={{ width: '100%', display: 'block' }}
         />
-        {/* Prev / Next */}
-        <button onClick={prev} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, width: 40, height: 40, color: '#fff', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
-        <button onClick={next} style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 100, width: 40, height: 40, color: '#fff', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>›</button>
-        {/* Slide label */}
-        <div style={{ position: 'absolute', top: 14, right: 14, background: 'rgba(0,0,0,0.6)', border: `1px solid rgba(${accentRgb},0.3)`, borderRadius: 100, padding: '3px 12px', fontSize: 11, fontWeight: 600, color: accent, letterSpacing: '0.06em', backdropFilter: 'blur(8px)' }}>
+        <button onClick={prev} aria-label="Previous" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
+        <button onClick={next} aria-label="Next" style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>›</button>
+        <div style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: `1px solid rgba(${accentRgb},0.25)`, borderRadius: 100, padding: '3px 12px', fontSize: 11, fontWeight: 600, color: accent, letterSpacing: '0.06em', backdropFilter: 'blur(8px)' }}>
           {idx + 1} / {slides.length}
         </div>
       </div>
-      {/* Caption */}
-      <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginTop: 10, paddingLeft: 4 }}>{slides[idx].caption}</p>
-      {/* Dot indicators */}
+      <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, paddingLeft: 4 }}>{slides[idx].caption}</p>
       <div style={{ display: 'flex', gap: 6, marginTop: 14, paddingLeft: 4 }}>
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setIdx(i)} style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 100, background: i === idx ? accent : 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.25s' }} />
+          <button key={i} onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 100, background: i === idx ? accent : 'var(--border-md)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.25s' }} />
         ))}
       </div>
     </div>
@@ -354,55 +342,61 @@ export default function CaseStudy() {
   if (!study) return <Navigate to="/" replace />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isMobile, isTablet } = useBreakpoint();
-  const px = isMobile ? 20 : isTablet ? 32 : 48;
+  const px = isMobile ? 16 : isTablet ? 28 : 48;
 
   const { title, company, tagline, role, timeline, accent, accentRgb, tags, stats, challenge, approach, evolution, pullQuote, outcome } = study;
 
   return (
-    <div style={{ background: '#1A1816', minHeight: '100vh', color: '#fff' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--text-1)' }}>
       {/* Nav */}
-      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'rgba(26,24,22,0.88)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 32px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link to="/" className="type-label-sm" style={{ color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>← Sara Braymen</Link>
-          <span className="type-caption" style={{ color: 'rgba(255,255,255,0.2)' }}>{company}</span>
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'rgba(247,246,242,0.88)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto', padding: `0 ${px}px`, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <Link to="/" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-2)', textDecoration: 'none', whiteSpace: 'nowrap', transition: 'color 0.15s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text-1)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}>← Sara Braymen</Link>
+          <span style={{ fontSize: 12, color: 'var(--text-3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{company}</span>
         </div>
       </div>
 
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: `${isMobile ? 80 : 120}px ${px}px ${isMobile ? 60 : 100}px` }}>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: `${isMobile ? 72 : 120}px ${px}px ${isMobile ? 60 : 100}px` }}>
 
         {/* Hero */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 28 }}>
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 24 }}>
             {tags.map(t => (
-              <span key={t} className="type-caption" style={{ background: `rgba(${accentRgb},0.1)`, color: accent, border: `1px solid rgba(${accentRgb},0.2)`, borderRadius: 100, padding: '3px 10px' }}>{t}</span>
+              <span key={t} style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.05em', background: `rgba(${accentRgb},0.08)`, color: accent, border: `1px solid rgba(${accentRgb},0.2)`, borderRadius: 100, padding: '3px 10px' }}>{t}</span>
             ))}
           </div>
 
-          <h1 className="type-display" style={{ marginBottom: 24, maxWidth: '18ch' }}>{title}</h1>
+          <h1 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 'clamp(32px, 8vw, 48px)' : 'clamp(40px, 6vw, 64px)', fontWeight: 400, letterSpacing: '-0.025em', color: 'var(--text-1)', marginBottom: 20, lineHeight: 1.1, maxWidth: '18ch' }}>{title}</h1>
 
-          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 560, marginBottom: 40 }}>{tagline}</p>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 560, marginBottom: 36, lineHeight: 1.7 }}>{tagline}</p>
 
-
-          <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: isMobile ? 24 : 40, flexWrap: 'wrap' }}>
             <div>
-              <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Role</p>
-              <p className="type-label-md" style={{ color: '#fff' }}>{role}</p>
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-3)', marginBottom: 4 }}>Role</p>
+              <p style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-1)' }}>{role}</p>
             </div>
             <div>
-              <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Timeline</p>
-              <p className="type-label-md" style={{ color: '#fff' }}>{timeline}</p>
+              <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-3)', marginBottom: 4 }}>Timeline</p>
+              <p style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-1)' }}>{timeline}</p>
             </div>
           </div>
         </motion.div>
 
         {/* Stats */}
-        <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', paddingTop: 72, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 72 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr 1fr' : `repeat(${stats.length}, 1fr)`,
+          gap: isMobile ? '24px 16px' : 32,
+          paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56
+        }}>
           {stats.map((s, i) => <Stat key={i} value={s.value} label={s.label} accent={accent} />)}
         </div>
 
         {/* Challenge */}
         <Section label="The Challenge">
-          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 600 }}>{challenge}</p>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7 }}>{challenge}</p>
         </Section>
 
         {/* Agent decision map — Broadstreet AI */}
@@ -418,24 +412,24 @@ export default function CaseStudy() {
           study.phoneGrid ? (
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
               {study.images.map((img, i) => (
-                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }} />
-                  {img.caption && <figcaption className="type-caption" style={{ color: 'rgba(255,255,255,0.25)', marginTop: 8, paddingLeft: 2, fontSize: 10 }}>{img.caption}</figcaption>}
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid var(--border)', display: 'block' }} />
+                  {img.caption && <figcaption style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 8, paddingLeft: 2 }}>{img.caption}</figcaption>}
                 </motion.figure>
               ))}
             </div>
           ) : (
-            <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} />
+            <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} compact={study.compactCarousel} />
           )
         )}
 
-        {/* Discovery / Research section — persona build-up before final screens */}
+        {/* Discovery / Research section */}
         {study.discoveryImages && (
           <>
             <Section label={study.discoveryHeading || 'Discovery'}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 {(study.discoveryBody || []).map((para, i) => (
-                  <p key={i} className="type-body-lg" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 620 }}>{para}</p>
+                  <p key={i} style={{ fontSize: isMobile ? 15 : 16, color: 'var(--text-2)', maxWidth: 620, lineHeight: 1.7 }}>{para}</p>
                 ))}
               </div>
             </Section>
@@ -447,12 +441,12 @@ export default function CaseStudy() {
         <Section label="Approach">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {approach.map((a, i) => (
-              <div key={i} style={{ paddingBottom: 32, paddingTop: i > 0 ? 32 : 0, borderTop: i > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10 }}>
-                  <span className="type-caption" style={{ color: accent, opacity: 0.7, minWidth: 24 }}>0{i + 1}</span>
-                  <h3 className="type-label-lg" style={{ color: '#fff' }}>{a.title}</h3>
+              <div key={i} style={{ paddingBottom: 32, paddingTop: i > 0 ? 32 : 0, borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10, flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: accent, opacity: 0.7, minWidth: 24, letterSpacing: '0.04em' }}>0{i + 1}</span>
+                  <h3 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 18 : 20, fontWeight: 400, color: 'var(--text-1)', letterSpacing: '-0.01em' }}>{a.title}</h3>
                 </div>
-                <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560, paddingLeft: isMobile ? 0 : 36 }}>{a.body}</p>
+                <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 560, paddingLeft: isMobile ? 0 : 36, lineHeight: 1.7 }}>{a.body}</p>
               </div>
             ))}
           </div>
@@ -461,12 +455,12 @@ export default function CaseStudy() {
         {/* Evolution */}
         {evolution && (
           <Section label="Design Evolution">
-            <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
               {evolution.map((item, i) => (
-                <div key={i} style={{ flex: '1 1 200px', paddingTop: 20, borderTop: `2px solid ${i === evolution.length - 1 ? accent : 'rgba(255,255,255,0.08)'}` }}>
-                  <p className="type-caption" style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 6 }}>{item.era}</p>
-                  <p className="type-label-md" style={{ color: '#fff', marginBottom: 10 }}>{item.label}</p>
-                  <p className="type-body-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{item.body}</p>
+                <div key={i} style={{ flex: '1 1 180px', paddingTop: 20, borderTop: `2px solid ${i === evolution.length - 1 ? accent : 'var(--border-md)'}` }}>
+                  <p style={{ fontSize: 11, color: 'var(--text-3)', marginBottom: 6, fontWeight: 600, letterSpacing: '0.04em' }}>{item.era}</p>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-1)', marginBottom: 10 }}>{item.label}</p>
+                  <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.65 }}>{item.body}</p>
                 </div>
               ))}
             </div>
@@ -476,11 +470,18 @@ export default function CaseStudy() {
         {/* Research Plan (Sar Consumer only) */}
         {study.researchPlan && (
           <Section label={study.researchPlan.title}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            <div style={{ borderRadius: 12, border: '1px solid var(--border-md)', overflow: 'hidden' }}>
               {study.researchPlan.items.map((item, i) => (
-                <div key={i} style={{ paddingBottom: 24, paddingTop: i > 0 ? 24 : 0, borderTop: i > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                  <p className="type-label-sm" style={{ color: study.accent, marginBottom: 6, opacity: 0.85 }}>{item.phase}</p>
-                  <p className="type-body-md" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 560 }}>{item.body}</p>
+                <div key={i} style={{
+                  display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '160px 1fr',
+                  gap: isMobile ? 4 : 0,
+                  padding: '16px 20px',
+                  borderTop: i > 0 ? '1px solid var(--border)' : 'none',
+                  background: i % 2 === 0 ? 'var(--bg-surface)' : 'transparent',
+                  alignItems: 'start',
+                }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: accent, paddingTop: 2 }}>{item.phase}</span>
+                  <span style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.65 }}>{item.body}</span>
                 </div>
               ))}
             </div>
@@ -488,70 +489,61 @@ export default function CaseStudy() {
         )}
 
         {/* Pull quote */}
-        <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
+        <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
           <motion.p
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            style={{ fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, letterSpacing: '-0.015em', lineHeight: 1.5, color: 'rgba(255,255,255,0.82)', maxWidth: 600 }}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }}
+            style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 'clamp(18px, 4vw, 24px)' : 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, letterSpacing: '-0.015em', lineHeight: 1.5, color: 'var(--text-1)', maxWidth: 600 }}
           >
-            <span style={{ color: accent, fontStyle: 'normal' }}>"</span>{pullQuote}<span style={{ color: accent, fontStyle: 'normal' }}>"</span>
+            <span style={{ color: accent }}>"</span>{pullQuote}<span style={{ color: accent }}>"</span>
           </motion.p>
         </div>
 
         {/* Outcome */}
         <Section label="Outcome">
-          <p className="type-body-lg" style={{ color: 'rgba(255,255,255,0.65)', maxWidth: 560 }}>{outcome}</p>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 560, lineHeight: 1.7 }}>{outcome}</p>
         </Section>
 
         {/* Live site CTA */}
         {study.liveUrl && (
-          <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
-            <p className="type-label-sm" style={{ color: 'var(--coral)' }}>See it live</p>
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-              {/* Glow */}
-              <div style={{ position: 'absolute', inset: -32, borderRadius: 48, background: `radial-gradient(ellipse at center, rgba(${study.accentRgb},0.2) 0%, transparent 70%)`, pointerEvents: 'none' }} />
-              <motion.a
-                href={study.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                style={{
-                  position: 'relative',
-                  display: 'inline-flex', alignItems: 'center', gap: 14,
-                  padding: isMobile ? '18px 28px' : '22px 48px', borderRadius: 24,
-                  background: `linear-gradient(135deg, rgba(${study.accentRgb},0.22) 0%, rgba(${study.accentRgb},0.1) 100%)`,
-                  border: `1.5px solid rgba(${study.accentRgb},0.5)`,
-                  boxShadow: `0 0 32px rgba(${study.accentRgb},0.25), inset 0 1px 0 rgba(255,255,255,0.1)`,
-                  textDecoration: 'none',
-                  backdropFilter: 'blur(12px)',
-                }}
-              >
-                <span style={{ fontSize: isMobile ? 16 : 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Get started at sar-app.com</span>
-                <span style={{ fontSize: isMobile ? 16 : 22, color: study.accent }}>↗</span>
-              </motion.a>
-            </div>
+          <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 20 }}>
+            <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)' }}>See it live</p>
+            <motion.a
+              href={study.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                padding: isMobile ? '14px 24px' : '16px 36px', borderRadius: 100,
+                background: accent,
+                textDecoration: 'none',
+              }}
+            >
+              <span style={{ fontSize: isMobile ? 14 : 16, fontWeight: 600, color: '#fff' }}>Sign up ↗</span>
+            </motion.a>
           </div>
         )}
 
         {/* More */}
-        <div style={{ paddingTop: 56, borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: 56 }}>
-          <p className="type-label-sm" style={{ color: 'var(--coral)', marginBottom: 20 }}>More case studies</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
+          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 20 }}>More case studies</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {Object.values(STUDIES).filter(s => s.slug !== slug).map(s => (
               <Link key={s.slug} to={`/work/${s.slug}`}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', textDecoration: 'none', transition: 'opacity 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', borderBottom: '1px solid var(--border)', textDecoration: 'none', transition: 'opacity 0.15s', gap: 12 }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.65'}
                 onMouseLeave={e => e.currentTarget.style.opacity = '1'}
               >
-                <div>
-                  <span className="type-caption" style={{ color: s.company.includes('Evernorth') ? '#3D9E8C' : s.accent, marginRight: 12 }}>{s.company}</span>
-                  <span className="type-label-md" style={{ color: '#fff' }}>{s.title}</span>
+                <div style={{ minWidth: 0 }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: s.accent, marginRight: 12 }}>{s.company}</span>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-1)' }}>{s.title}</span>
                 </div>
-                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 14 }}>↗</span>
+                <span style={{ color: 'var(--text-3)', fontSize: 14, flexShrink: 0 }}>↗</span>
               </Link>
             ))}
           </div>

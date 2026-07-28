@@ -36,7 +36,7 @@ function CursorGlow() {
         x: '-50%', y: '-50%',
         width: 600, height: 500,
         borderRadius: '60% 40% 55% 45% / 50% 55% 45% 50%',
-        background: 'radial-gradient(ellipse, rgba(232,112,90,0.04) 0%, rgba(111,135,190,0.03) 50%, transparent 70%)',
+        background: 'radial-gradient(ellipse, rgba(138,155,142,0.06) 0%, rgba(45,64,48,0.03) 50%, transparent 70%)',
         filter: 'blur(40px)',
       }} />
       <motion.div style={{
@@ -44,8 +44,8 @@ function CursorGlow() {
         x: '-50%', y: '-50%',
         width: 5, height: 5,
         borderRadius: '50%',
-        background: 'rgba(232,112,90,0.6)',
-        boxShadow: '0 0 8px 2px rgba(232,112,90,0.25)',
+        background: 'rgba(45,64,48,0.5)',
+        boxShadow: '0 0 8px 2px rgba(45,64,48,0.15)',
       }} />
     </div>
   );
@@ -53,23 +53,23 @@ function CursorGlow() {
 
 function Maintenance() {
   return (
-    <div style={{ background: '#0F0D0C', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         style={{ textAlign: 'center', maxWidth: 480 }}
       >
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--coral)', marginBottom: 24 }}>Back shortly</p>
-        <h1 style={{ fontSize: 'clamp(40px, 7vw, 72px)', fontWeight: 700, letterSpacing: '-0.035em', lineHeight: 1.05, color: '#fff', marginBottom: 20 }}>
+        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 24 }}>Back shortly</p>
+        <h1 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: 'clamp(40px, 7vw, 72px)', fontWeight: 400, letterSpacing: '-0.035em', lineHeight: 1.05, color: 'var(--text-1)', marginBottom: 20 }}>
           Sara Braymen
         </h1>
-        <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.38)', lineHeight: 1.7, marginBottom: 40 }}>
+        <p style={{ fontSize: 16, color: 'var(--text-3)', lineHeight: 1.7, marginBottom: 40 }}>
           Making a few updates. Back up by 5:00 PM MT.
         </p>
-        <a href="mailto:sarabraymen@gmail.com" style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.25)', textDecoration: 'none', letterSpacing: '0.01em', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: 2, transition: 'color 0.15s' }}
-          onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.6)'}
-          onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.25)'}>
+        <a href="mailto:sarabraymen@gmail.com" style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-3)', textDecoration: 'none', letterSpacing: '0.01em', borderBottom: '1px solid var(--border)', paddingBottom: 2, transition: 'color 0.15s' }}
+          onMouseEnter={e => e.target.style.color = 'var(--text-1)'}
+          onMouseLeave={e => e.target.style.color = 'var(--text-3)'}>
           sarabraymen@gmail.com
         </a>
       </motion.div>
@@ -88,9 +88,9 @@ function Portfolio() {
         <Experience />
         <Contact />
       </main>
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', maxWidth: 1080, margin: '0 auto', padding: '32px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)' }}>© 2026 Sara Braymen</span>
-        <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)' }}>Made with ❤️ in Boulder, CO</span>
+      <footer style={{ borderTop: '1px solid var(--border)', maxWidth: 1080, margin: '0 auto', padding: '32px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+        <span style={{ fontSize: 12, color: 'var(--text-3)' }}>© 2026 Sara Braymen</span>
+        <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Made with love in Boulder, CO</span>
       </footer>
     </>
   );
