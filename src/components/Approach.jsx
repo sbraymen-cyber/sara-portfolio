@@ -60,7 +60,7 @@ export default function Approach() {
             }}
           >
             <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--accent)', marginBottom: 12, letterSpacing: '-0.01em' }}>{p.label}</p>
-            <p className="type-body-md" style={{ color: 'var(--text-2)', lineHeight: 1.65 }}>{p.body}</p>
+            <p style={{ fontSize: 15, color: 'var(--text-2)', lineHeight: 1.75 }}>{p.body}</p>
           </motion.div>
         ))}
       </div>

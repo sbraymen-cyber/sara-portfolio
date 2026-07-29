@@ -16,6 +16,18 @@ const STARTERS = [
   'What kind of team would she thrive in?',
 ];
 
+function renderMarkdown(text) {
+  return text.split('\n').map((line, li) => {
+    const parts = line.split(/\*\*(.+?)\*\*/g);
+    return (
+      <span key={li}>
+        {parts.map((part, i) => i % 2 === 1 ? <strong key={i}>{part}</strong> : part)}
+        {li < text.split('\n').length - 1 && <br />}
+      </span>
+    );
+  });
+}
+
 function Message({ role, content }) {
   const isUser = role === 'user';
   if (!content) return null;
@@ -23,22 +35,19 @@ function Message({ role, content }) {
     <div style={{
       display: 'flex',
       justifyContent: isUser ? 'flex-end' : 'flex-start',
-      marginBottom: 12,
+      marginBottom: 10,
     }}>
       <div style={{
         maxWidth: '82%',
-        padding: '10px 14px',
+        padding: '9px 13px',
         borderRadius: isUser ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-        background: isUser
-          ? 'rgba(111,135,190,0.22)'
-          : 'rgba(255,255,255,0.06)',
-        border: `1px solid ${isUser ? 'rgba(111,135,190,0.3)' : 'rgba(255,255,255,0.08)'}`,
-        fontSize: 14,
-        lineHeight: 1.55,
-        color: isUser ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.78)',
-        whiteSpace: 'pre-wrap',
+        background: isUser ? 'var(--accent)' : 'var(--bg-surface)',
+        border: `1px solid ${isUser ? 'transparent' : 'var(--border-md)'}`,
+        fontSize: 13,
+        lineHeight: 1.65,
+        color: isUser ? '#fff' : 'var(--text-1)',
       }}>
-        {content}
+        {isUser ? content : renderMarkdown(content)}
       </div>
     </div>
   );
@@ -46,18 +55,18 @@ function Message({ role, content }) {
 
 function TypingDots() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 12 }}>
+    <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 10 }}>
       <div style={{
         padding: '12px 16px',
         borderRadius: '16px 16px 16px 4px',
-        background: 'rgba(255,255,255,0.06)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: 'var(--bg-surface)',
+        border: '1px solid var(--border-md)',
         display: 'flex', gap: 4, alignItems: 'center',
       }}>
         {[0, 1, 2].map(i => (
           <motion.div
             key={i}
-            style={{ width: 5, height: 5, borderRadius: '50%', background: 'rgba(111,135,190,0.6)' }}
+            style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--accent-sage)' }}
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{ duration: 1.2, delay: i * 0.2, repeat: Infinity }}
           />
@@ -95,8 +104,6 @@ export default function SaraBot() {
     const next = [...messages, { role: 'user', content: userText }];
     setMessages(next);
     setStreaming(true);
-
-    // Add empty assistant message that we'll fill as we stream
     setMessages(m => [...m, { role: 'assistant', content: '' }]);
 
     try {
@@ -137,15 +144,13 @@ export default function SaraBot() {
                 return copy;
               });
             }
-          } catch {
-            // skip malformed SSE lines
-          }
+          } catch { /* skip malformed SSE lines */ }
         }
       }
-    } catch (err) {
+    } catch {
       setMessages(m => {
         const copy = [...m];
-        copy[copy.length - 1] = { role: 'assistant', content: "Sorry, something went wrong. Try refreshing or email Sara directly at sarabraymen@gmail.com." };
+        copy[copy.length - 1] = { role: 'assistant', content: "Sorry, something went wrong. Try refreshing or email Sara at sarabraymen@gmail.com." };
         return copy;
       });
     } finally {
@@ -158,37 +163,39 @@ export default function SaraBot() {
   }
 
   const showStarters = messages.length <= 1 && !streaming;
+  const canSend = input.trim() && !streaming;
 
   return (
     <>
       {/* Floating button */}
       <motion.button
         onClick={() => setOpen(o => !o)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
+        aria-label={open ? 'Close chat' : 'Ask about Sara'}
         style={{
           position: 'fixed', bottom: 28, right: 28, zIndex: 1000,
-          display: 'flex', alignItems: 'center', gap: 10,
-          padding: '14px 22px',
+          display: 'flex', alignItems: 'center', gap: 9,
+          padding: '12px 20px',
           borderRadius: 100,
-          background: 'rgba(255,255,255,0.07)',
-          border: '1px solid rgba(255,255,255,0.18)',
-          backdropFilter: 'blur(28px) saturate(1.5)',
-          WebkitBackdropFilter: 'blur(28px) saturate(1.5)',
-          color: '#fff', cursor: 'pointer',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.45), 0 0 0 0.5px rgba(232,112,90,0.2)',
+          background: 'var(--accent)',
+          border: 'none',
+          color: '#fff',
+          cursor: 'pointer',
+          boxShadow: '0 4px 20px rgba(45,64,48,0.25)',
+          fontFamily: 'inherit',
         }}
       >
         <AnimatePresence mode="wait">
           {open ? (
             <motion.span key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0 }}
-              style={{ fontSize: 18, lineHeight: 1 }}>✕</motion.span>
+              style={{ fontSize: 14, lineHeight: 1 }}>✕</motion.span>
           ) : (
             <motion.span key="icon" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              style={{ fontSize: 16 }}>✦</motion.span>
+              style={{ fontSize: 14 }}>✦</motion.span>
           )}
         </AnimatePresence>
-        <span style={{ fontSize: 13, fontWeight: 500, letterSpacing: '0.01em', color: 'rgba(255,255,255,0.85)' }}>
+        <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.01em' }}>
           {open ? 'Close' : 'Ask about Sara'}
         </span>
       </motion.button>
@@ -197,52 +204,51 @@ export default function SaraBot() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.97 }}
+            initial={{ opacity: 0, y: 16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: 12, scale: 0.97 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'fixed',
-              bottom: isMobile ? 0 : 90,
+              bottom: isMobile ? 0 : 88,
               right: isMobile ? 0 : 28,
               left: isMobile ? 0 : 'auto',
               zIndex: 999,
               width: isMobile ? '100%' : 380,
-              maxHeight: isMobile ? '75vh' : 540,
-              borderRadius: isMobile ? '20px 20px 0 0' : 20,
+              maxHeight: isMobile ? '78vh' : 540,
+              borderRadius: isMobile ? '20px 20px 0 0' : 16,
               display: 'flex', flexDirection: 'column',
-              background: 'rgba(22,20,18,0.96)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              backdropFilter: 'blur(32px)',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(111,135,190,0.08)',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-md)',
+              boxShadow: '0 16px 48px rgba(26,29,26,0.14), 0 4px 12px rgba(26,29,26,0.06)',
               overflow: 'hidden',
             }}
           >
             {/* Header */}
             <div style={{
-              padding: '16px 20px',
-              borderBottom: '1px solid rgba(255,255,255,0.07)',
+              padding: '14px 18px',
+              borderBottom: '1px solid var(--border)',
               display: 'flex', alignItems: 'center', gap: 12,
+              background: 'var(--bg-elevated)',
             }}>
               <div style={{
                 width: 32, height: 32, borderRadius: '50%',
-                background: 'linear-gradient(135deg, rgba(111,135,190,0.4), rgba(139,111,190,0.3))',
-                border: '1px solid rgba(111,135,190,0.3)',
+                background: 'var(--accent)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 14, fontWeight: 600, color: '#6F87BE',
+                fontSize: 13, fontWeight: 600, color: '#fff', flexShrink: 0,
               }}>S</div>
-              <div>
-                <p style={{ fontSize: 13, fontWeight: 600, color: '#fff', lineHeight: 1 }}>Sara's Portfolio Agent</p>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', marginTop: 3 }}>Ask me anything about her work</p>
+              <div style={{ minWidth: 0 }}>
+                <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-1)', lineHeight: 1 }}>Sara's Portfolio Agent</p>
+                <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 3 }}>Ask me anything about her work</p>
               </div>
-              <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#4CAF80' }} />
-                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)' }}>Online</span>
+              <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#3D9E6E' }} />
+                <span style={{ fontSize: 11, color: 'var(--text-3)' }}>Online</span>
               </div>
             </div>
 
             {/* Messages */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 8px', minHeight: 0 }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 14px 8px', minHeight: 0 }}>
               {messages.map((m, i) => <Message key={i} role={m.role} content={m.content} />)}
               {streaming && messages[messages.length - 1]?.content === '' && <TypingDots />}
               <div ref={messagesEndRef} />
@@ -253,14 +259,19 @@ export default function SaraBot() {
               {showStarters && (
                 <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  style={{ padding: '0 16px 12px', display: 'flex', flexWrap: 'wrap', gap: 6 }}
+                  style={{ padding: '0 14px 10px', display: 'flex', flexWrap: 'wrap', gap: 6 }}
                 >
                   {STARTERS.map(s => (
                     <button key={s} onClick={() => send(s)} style={{
                       padding: '6px 12px', borderRadius: 100, cursor: 'pointer',
-                      background: 'rgba(111,135,190,0.1)', border: '1px solid rgba(111,135,190,0.2)',
-                      color: 'rgba(255,255,255,0.65)', fontSize: 12, fontWeight: 500,
-                    }}>{s}</button>
+                      background: 'var(--bg-surface)',
+                      border: '1px solid var(--border-md)',
+                      color: 'var(--text-2)', fontSize: 12, fontWeight: 500,
+                      fontFamily: 'inherit', transition: 'background 0.15s',
+                    }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-hover)'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-surface)'}
+                    >{s}</button>
                   ))}
                 </motion.div>
               )}
@@ -269,8 +280,9 @@ export default function SaraBot() {
             {/* Input */}
             <div style={{
               padding: '10px 12px',
-              borderTop: '1px solid rgba(255,255,255,0.07)',
+              borderTop: '1px solid var(--border)',
               display: 'flex', gap: 8, alignItems: 'flex-end',
+              background: 'var(--bg-elevated)',
             }}>
               <textarea
                 ref={inputRef}
@@ -279,25 +291,36 @@ export default function SaraBot() {
                 onKeyDown={handleKey}
                 placeholder="Ask about Sara's work…"
                 rows={1}
+                aria-label="Message input"
                 style={{
-                  flex: 1, background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12,
-                  padding: '9px 13px', color: '#fff', fontSize: 13, resize: 'none',
+                  flex: 1,
+                  background: 'var(--bg-surface)',
+                  border: '1px solid var(--border-md)',
+                  borderRadius: 10,
+                  padding: '9px 12px',
+                  color: 'var(--text-1)',
+                  fontSize: 13, resize: 'none',
                   outline: 'none', fontFamily: 'inherit', lineHeight: 1.5,
                   maxHeight: 100, overflowY: 'auto',
                 }}
+                onFocus={e => e.target.style.borderColor = 'var(--accent)'}
+                onBlur={e => e.target.style.borderColor = 'var(--border-md)'}
               />
               <motion.button
                 onClick={() => send()}
                 whileTap={{ scale: 0.92 }}
-                disabled={!input.trim() || streaming}
+                disabled={!canSend}
+                aria-label="Send message"
                 style={{
-                  width: 36, height: 36, borderRadius: '50%', cursor: 'pointer',
-                  background: input.trim() && !streaming ? '#6F87BE' : 'rgba(255,255,255,0.08)',
-                  border: 'none', color: '#fff', fontSize: 16,
+                  width: 36, height: 36, borderRadius: '50%', cursor: canSend ? 'pointer' : 'default',
+                  background: canSend ? 'var(--accent)' : 'var(--bg-hover)',
+                  border: 'none',
+                  color: canSend ? '#fff' : 'var(--text-3)',
+                  fontSize: 16,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'background 0.2s',
+                  transition: 'background 0.2s, color 0.2s',
                   flexShrink: 0,
+                  fontFamily: 'inherit',
                 }}
               >↑</motion.button>
             </div>

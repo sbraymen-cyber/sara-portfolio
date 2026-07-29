@@ -9,7 +9,10 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const Process = lazy(() => import('./pages/Process'));
+const Resume = lazy(() => import('./pages/Resume'));
+const Explorations = lazy(() => import('./pages/Explorations'));
 import SaraBot from './components/SaraBot';
+import Caterpillar from './components/Caterpillar';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
@@ -80,7 +83,6 @@ function Maintenance() {
 function Portfolio() {
   return (
     <>
-      <Nav />
       <main>
         <Hero />
         <Work />
@@ -99,18 +101,22 @@ function Portfolio() {
 export default function App() {
   const { pathname } = useLocation();
   const { isMobile } = useBreakpoint();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => { if (!window.location.hash) window.scrollTo(0, 0); }, [pathname]);
 
   if (MAINTENANCE) return <Maintenance />;
 
   return (
     <>
       {!isMobile && <CursorGlow />}
+      <Nav />
       <SaraBot />
+      <Caterpillar />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/work/:slug" element={<Suspense fallback={null}><CaseStudy /></Suspense>} />
         <Route path="/process" element={<Suspense fallback={null}><Process /></Suspense>} />
+        <Route path="/resume" element={<Suspense fallback={null}><Resume /></Suspense>} />
+        <Route path="/explorations" element={<Suspense fallback={null}><Explorations /></Suspense>} />
       </Routes>
     </>
   );

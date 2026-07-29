@@ -1,14 +1,35 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-  --coral:      #C8503C;
-  --coral-soft: #E07A66;
-  --amber:      #C49A5A;
-  --steel:      #6F87BE;
-  --bg:         #0F0D0C;
-  --surface:    rgba(255,255,255,0.04);
-  --border:     rgba(255,255,255,0.07);
-  --border-md:  rgba(255,255,255,0.11);
+  --bg:           #F7F6F2;
+  --bg-surface:   #EFECE6;
+  --bg-hover:     #E7E3DA;
+  --bg-elevated:  #FFFFFF;
+
+  --text-1:       #181B18;
+  --text-2:       #3A3D3A;
+  --text-3:       #565956;
+
+  --accent:       #2D4030;
+  --accent-hover: #1F2E22;
+  --accent-sage:  #3D6B52;
+  --accent-warm:  #A04825;
+
+  --border:       rgba(26,29,26,0.08);
+  --border-md:    rgba(26,29,26,0.16);
+
+  --shadow-sm:    0 2px 8px -2px rgba(26,29,26,0.05);
+  --shadow-md:    0 8px 24px -4px rgba(26,29,26,0.08);
+  --shadow-lg:    0 16px 48px -8px rgba(26,29,26,0.10);
+
+  /* legacy aliases kept so nothing breaks mid-refactor */
+  --coral:        #A04825;
+  --coral-soft:   #C05830;
+  --amber:        #A04825;
+  --steel:        #3D6B52;
+  --surface:      rgba(26,29,26,0.04);
+  --border-md-old:rgba(26,29,26,0.11);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -16,29 +37,49 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   background: var(--bg);
-  color: #fff;
+  color: var(--text-1);
   overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Grain texture (the spice) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  background-repeat: repeat;
 }
 
 /* ── Type scale ── */
-.type-display { font-size: clamp(52px, 7.5vw, 88px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.0; }
-.type-h1      { font-size: clamp(28px, 4vw, 40px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+.type-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(52px, 7.5vw, 88px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.type-h1      { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(28px, 4vw, 40px); font-weight: 400; letter-spacing: -0.025em; line-height: 1.15; }
 .type-h2      { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .type-h3      { font-size: 17px; font-weight: 500; }
-.type-body-lg { font-size: 17px; font-weight: 400; line-height: 1.7; }
-.type-body-md { font-size: 15px; font-weight: 400; line-height: 1.7; }
-.type-body-sm { font-size: 13px; font-weight: 400; line-height: 1.65; }
+.type-body-lg { font-size: 18px; font-weight: 400; line-height: 1.75; }
+.type-body-md { font-size: 16px; font-weight: 400; line-height: 1.75; }
+.type-body-sm { font-size: 14px; font-weight: 400; line-height: 1.7; }
 .type-label-lg { font-size: 14px; font-weight: 500; letter-spacing: 0.01em; }
 .type-label-md { font-size: 13px; font-weight: 500; }
 .type-label-sm { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 .type-caption  { font-size: 12px; font-weight: 400; letter-spacing: 0.01em; }
-.type-stat     { font-size: clamp(36px, 5vw, 56px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.type-stat     { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(36px, 5vw, 56px); font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
 
-/* ── Glass ── */
+/* ── Glass (adapted for light) ── */
 .glass {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.6);
   border: 1px solid var(--border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -47,4 +88,4 @@ body {
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(26,29,26,0.12); border-radius: 2px; }
