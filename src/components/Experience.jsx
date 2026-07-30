@@ -11,7 +11,8 @@ const JOBS = [
 const EDUCATION = [
   { degree: 'MS, Innovation Management & Entrepreneurship', school: 'Brown University', period: '2026 – 2028', current: true },
   { degree: 'Certificate, User Experience Design', school: 'UC Berkeley Extension', period: '2021' },
-  { degree: 'BS, Accounting & Management Information Systems', school: 'Iowa State University', period: '2015 – 2019' },
+  { degree: 'BS, Management Information Systems (Programming)', school: 'Iowa State University', period: '2015 – 2019' },
+  { degree: 'BS, Accounting', school: 'Iowa State University', period: '2015 – 2019' },
 ];
 
 const chipStyle = (color, bg, border) => ({
