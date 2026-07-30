@@ -138,6 +138,7 @@ export const STUDIES = {
       "What became clear across all six conversations was that these were people operating under genuine pressure — understaffed, underfunded, and personally accountable for getting money to families who were counting on it. Every moment of confusion in the interface had a cost that didn't show up in any dashboard, but you could feel it if you spent any time with the people doing the work. 'Elegant' was not the bar. 'Scannable at a glance, the moment you need it' was the bar. After the redesign, average time-to-decision dropped from over four minutes to under forty-five seconds.",
     ],
     challenge: "In the months after the pandemic began, states across the South were processing thousands of applications from families who had lost their jobs, fallen behind on rent, and were one missed payment away from losing their homes. The data that could have told program managers where the money was, which applications were stalled, which families were still waiting — it all existed. It just sat in a database that required SQL to reach. And so the people responsible for moving that money to the families who needed it were, in a very real sense, navigating blind.",
+    housingFlow: true,
     carousel: [
       { src: '/case-studies/louisiana-housing/dash-1.webp', caption: 'Louisiana — overview dashboard: disbursements, pipeline, parish-level map' },
       { src: '/case-studies/louisiana-housing/dash-2.webp', caption: 'Louisiana — applications: stage breakdown, arrearage, LHC/HCA referrals' },
@@ -289,6 +290,123 @@ function FloatingTags({ tags, accent, accentRgb }) {
       </motion.div>
     );
   });
+}
+
+function AppFlowMap() {
+  const W = 760, H = 430;
+  const NW = 148, NH = 62;
+
+  const topRow = [
+    { id: 'apply',  cx: 80,  cy: 100, label: 'Resident Applies',    sub: 'Portal or parish office',        type: 'start' },
+    { id: 'elig',   cx: 267, cy: 100, label: 'Eligibility Review',  sub: 'Income · residency · COVID loss', type: 'process' },
+    { id: 'docs',   cx: 453, cy: 100, label: 'Document Collection', sub: 'ID, lease, income verification',  type: 'process' },
+    { id: 'assign', cx: 640, cy: 100, label: 'Case Assigned',       sub: 'Routed to parish manager',       type: 'process' },
+  ];
+
+  const bottomRow = [
+    { id: 'queue',   cx: 640, cy: 300, label: 'Manager Review Queue',  sub: 'Tracked in spreadsheets',        type: 'pain' },
+    { id: 'approve', cx: 453, cy: 300, label: 'Approval Decision',     sub: 'Approve · return · deny',        type: 'decision' },
+    { id: 'disburse',cx: 267, cy: 300, label: 'Fund Disbursement',     sub: 'Direct to landlord or utility',  type: 'process' },
+    { id: 'closed',  cx: 80,  cy: 300, label: 'Case Closed',           sub: 'Family receives assistance',     type: 'end' },
+  ];
+
+  const allNodes = [...topRow, ...bottomRow];
+
+  const typeStyle = {
+    start:    { bg: 'rgba(45,107,94,0.1)',  border: 'rgba(45,107,94,0.45)',  label: '#2D6B5E', sub: '#6C706B' },
+    process:  { bg: 'rgba(26,29,26,0.04)', border: 'rgba(26,29,26,0.16)',  label: '#1A1D1A', sub: '#6C706B' },
+    pain:     { bg: 'rgba(160,72,37,0.09)',border: 'rgba(160,72,37,0.38)', label: '#A04825', sub: '#6C706B' },
+    decision: { bg: 'rgba(139,98,48,0.1)', border: 'rgba(139,98,48,0.42)', label: '#8B6230', sub: '#6C706B' },
+    end:      { bg: 'rgba(139,98,48,0.14)',border: '#8B6230',               label: '#8B6230', sub: '#6C706B' },
+  };
+
+  const painBadges = [
+    { x: 453, y: 156, text: 'Incomplete docs returned to applicant — no status update sent' },
+    { x: 640, y: 200, text: 'Backlog invisible — status only visible in weekly batch reports' },
+    { x: 453, y: 356, text: 'Disbursement timing unknown until a separate confirmation call' },
+  ];
+
+  return (
+    <Section label="The Process I Was Designing For">
+      <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 580, marginBottom: 32, lineHeight: 1.65 }}>
+        This is the journey a housing assistance application moved through. Each gap between stages was a place where the data fell silent — where a family might wait for days with no one able to say exactly why.
+      </p>
+      <div style={{ overflowX: 'auto', borderRadius: 16, border: '1px solid var(--border-md)', background: 'var(--bg-surface)', padding: '20px 0 8px' }}>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', minWidth: 620, display: 'block' }}
+          aria-label="Housing assistance application process flow diagram" role="img">
+          <defs>
+            <marker id="arr-la" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+              <path d="M0,0 L0,7 L7,3.5 z" fill="rgba(26,29,26,0.25)" />
+            </marker>
+          </defs>
+
+          {/* Top row connectors → */}
+          {topRow.slice(0,-1).map((n,i) => (
+            <line key={`t${i}`}
+              x1={n.cx + NW/2} y1={n.cy} x2={topRow[i+1].cx - NW/2} y2={topRow[i+1].cy}
+              stroke="rgba(26,29,26,0.2)" strokeWidth="1.5" strokeDasharray="5 4" markerEnd="url(#arr-la)" />
+          ))}
+
+          {/* Snake turn: right side down */}
+          <path d={`M ${640} ${100+NH/2} C ${640} ${200}, ${640} ${200}, ${640} ${300-NH/2}`}
+            fill="none" stroke="rgba(26,29,26,0.2)" strokeWidth="1.5"
+            strokeDasharray="5 4" markerEnd="url(#arr-la)" />
+
+          {/* Bottom row connectors ← */}
+          {bottomRow.slice(0,-1).map((n,i) => (
+            <line key={`b${i}`}
+              x1={n.cx - NW/2} y1={n.cy} x2={bottomRow[i+1].cx + NW/2} y2={bottomRow[i+1].cy}
+              stroke="rgba(26,29,26,0.2)" strokeWidth="1.5" strokeDasharray="5 4" markerEnd="url(#arr-la)" />
+          ))}
+
+          {/* Nodes */}
+          {allNodes.map(n => {
+            const s = typeStyle[n.type];
+            return (
+              <g key={n.id}>
+                <rect x={n.cx-NW/2} y={n.cy-NH/2} width={NW} height={NH} rx="10"
+                  fill={s.bg} stroke={s.border} strokeWidth="1.25" />
+                <text x={n.cx} y={n.cy - 9} textAnchor="middle"
+                  fill={s.label} fontSize="12" fontWeight="600" fontFamily="inherit">{n.label}</text>
+                <text x={n.cx} y={n.cy + 12} textAnchor="middle"
+                  fill={s.sub} fontSize="10" fontFamily="inherit">{n.sub}</text>
+              </g>
+            );
+          })}
+
+          {/* Pain point badges */}
+          {painBadges.map((b, i) => {
+            const tw = 196, th = 34;
+            return (
+              <g key={i}>
+                <rect x={b.x - tw/2} y={b.y - th/2} width={tw} height={th} rx="6"
+                  fill="rgba(160,72,37,0.07)" stroke="rgba(160,72,37,0.28)" strokeWidth="1" />
+                <text x={b.x} y={b.y - 5} textAnchor="middle"
+                  fill="#A04825" fontSize="9.5" fontWeight="600" fontFamily="inherit">⚠ Visibility gap</text>
+                <text x={b.x} y={b.y + 9} textAnchor="middle"
+                  fill="#6C706B" fontSize="9" fontFamily="inherit">{b.text.split(' — ')[0]}</text>
+              </g>
+            );
+          })}
+
+          {/* Legend */}
+          {[
+            { x: 56,  color: 'rgba(45,107,94,0.45)',  bg: 'rgba(45,107,94,0.1)',  label: 'Start / end' },
+            { x: 186, color: 'rgba(26,29,26,0.2)',    bg: 'rgba(26,29,26,0.04)',  label: 'Process stage' },
+            { x: 316, color: 'rgba(139,98,48,0.42)',  bg: 'rgba(139,98,48,0.1)',  label: 'Decision point' },
+            { x: 446, color: 'rgba(160,72,37,0.38)',  bg: 'rgba(160,72,37,0.09)', label: 'Visibility gap' },
+          ].map((l,i) => (
+            <g key={i}>
+              <rect x={l.x} y={H-36} width={100} height={22} rx="5"
+                fill={l.bg} stroke={l.color} strokeWidth="1" />
+              <text x={l.x + 50} y={H-21} textAnchor="middle"
+                fill="#6C706B" fontSize="9.5" fontFamily="inherit">{l.label}</text>
+            </g>
+          ))}
+        </svg>
+      </div>
+    </Section>
+  );
 }
 
 function AgentMap({ accent }) {
@@ -497,6 +615,9 @@ export default function CaseStudy() {
 
         {/* Agent decision map — Broadstreet AI */}
         {study.agentMap && <AgentMap accent={accent} />}
+
+        {/* Application process flow — Louisiana Housing */}
+        {study.housingFlow && <AppFlowMap />}
 
         {/* Carousel (Louisiana dashboard walkthrough) */}
         {study.carousel && (
