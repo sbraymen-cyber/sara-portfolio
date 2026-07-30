@@ -11,7 +11,7 @@ const STATS = [
   { n: 'Fortune 15', label: 'Evernorth / Cigna — lead designer on a platform used by 100k+ people', color: 'var(--accent)' },
   { n: '$300M',      label: 'in COVID housing relief tracked across 4 states', color: 'var(--accent-sage)' },
   { n: '182M',       label: 'patient records made searchable', color: 'var(--accent-warm)' },
-  { n: '5-person',   label: 'design team I currently lead at Prominent Technologies', color: 'var(--accent)' },
+  { n: '5-person',   label: 'teams — managing designers, collaborating with clients, scoping work at Prominent', color: 'var(--accent)' },
 ];
 
 const BUBBLES = [
