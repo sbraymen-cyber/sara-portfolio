@@ -38,9 +38,8 @@ export const STUDIES = {
     ],
     approachColumns: true,
     approach: [
-      { title: 'Research first', body: "Months of discovery before Figma — clinician interviews, engineering standups, learning the data model." },
+      { title: 'Research first', body: "Months of discovery before Figma: clinician interviews, engineering standups, learning the data model." },
       { title: 'Geography as the frame', body: "Built around the ArcGIS map. Every filter and result surfaces in relation to place, because that's how researchers think." },
-      { title: 'Pushing the design system', body: "Where the product needed more than Evernorth's Control Center offered, I pushed past it. Within a year, Control Center began a broader upgrade." },
       { title: 'Earning trust on an existing team', body: "Joined mid-project. Went to the standups, learned the vocabulary, and earned trust the slow way." },
     ],
     evolution: [
