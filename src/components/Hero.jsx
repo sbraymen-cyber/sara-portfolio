@@ -120,7 +120,7 @@ export default function Hero() {
           color: 'var(--text-2)',
           maxWidth: 520, marginBottom: isMobile ? 28 : 44, lineHeight: 1.65, fontWeight: 400,
         }}>
-          Product designer with a background in healthcare data, emergency relief, and startup product development.
+          I design things that are hard to get right — and I stick around long enough to see them actually work.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: isMobile ? 48 : 80, flexWrap: 'wrap' }}>
