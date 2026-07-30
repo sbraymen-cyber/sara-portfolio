@@ -40,7 +40,7 @@ export const STUDIES = {
     approach: [
       { title: 'Research first', body: "Months of discovery before Figma: clinician interviews, engineering standups, learning the data model." },
       { title: 'Geography as the frame', body: "Built around the ArcGIS map. Every filter and result surfaces in relation to place, because that's how researchers think." },
-      { title: 'Earning trust on an existing team', body: "Joined mid-project. Went to the standups, learned the vocabulary, and earned trust the slow way." },
+      { title: 'Designing for lab screens and real hands', body: "Touchable, mobile-friendly components alongside a web interface. Learning the design system while balancing stakeholder feedback that shifted quickly." },
     ],
     evolution: [
       { era: '2022–2023', label: 'Wizard Flow', body: 'Step-by-step guided search. Users found it constraining. Experienced researchers wanted all options visible at once, not locked behind sequential steps.' },
