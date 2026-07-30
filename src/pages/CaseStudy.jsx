@@ -50,7 +50,7 @@ export const STUDIES = {
       { era: '2024–2025', label: 'Side Panel Search', body: 'Persistent filter panel alongside the map. Faster to first search, but as the filter set expanded, the panel stopped scaling for power users with complex queries.' },
       { era: '2026–Present', label: 'AI-Powered Search', body: 'Natural language entry: "Find PCOS patients in regions with limited reproductive endocrinologist access." Conversational intent, visual refinement. Early prototypes show strong user preference.' },
     ],
-    pullQuote: "What I came to understand, after months of listening before I ever designed anything, was that the hardest part of this work wasn't the interface. It was earning the right to design it in the first place.",
+    pullQuote: null,
     outcome: "Broadstreet became the primary research tool for clinical population analysis at Evernorth, used by over 100,000 people across three major versions, reducing the time it took to build a meaningful patient search from hours to seconds. The care we brought to this one product quietly raised expectations for the platform around it. The next chapter: bringing that same depth of clinical intelligence to external health systems, payers, and research institutions who need it just as much.",
     nextSteps: [
       'Expand to external health systems and payers, applying the same interface model to a B2B2C context with different trust and permissions constraints.',
@@ -766,14 +766,14 @@ export default function CaseStudy() {
         )}
 
         {/* Pull quote */}
-        <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
+        {pullQuote && <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
           <motion.p
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }}
             style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 'clamp(18px, 4vw, 24px)' : 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, letterSpacing: '-0.015em', lineHeight: 1.5, color: 'var(--text-1)', maxWidth: 600 }}
           >
             <span style={{ color: accent }}>"</span>{pullQuote}<span style={{ color: accent }}>"</span>
           </motion.p>
-        </div>
+        </div>}
 
         {/* Outcome */}
         <Section label="Outcome">
