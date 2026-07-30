@@ -10,7 +10,6 @@ const JOBS = [
 
 const EDUCATION = [
   { degree: 'MS, Innovation Management & Entrepreneurship', school: 'Brown University', period: '2026 – 2028', current: true },
-  { degree: 'Graduate Coursework, Creative Technology & Design', school: 'University of Colorado Boulder', period: '2026' },
   { degree: 'Certificate, User Experience Design', school: 'UC Berkeley Extension', period: '2021' },
   { degree: 'BS, Accounting & Management Information Systems', school: 'Iowa State University', period: '2015 – 2019' },
 ];
