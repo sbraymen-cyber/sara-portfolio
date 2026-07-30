@@ -82,8 +82,6 @@ export const STUDIES = {
       { src: '/case-studies/broadstreet-ai/welcome-1.png', caption: 'Broadstreet — welcome screen and product entry point' },
       { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
       { src: '/case-studies/broadstreet-ai/screen-3.webp', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
-      { src: '/case-studies/broadstreet-ai/v2-icd-codes.png', caption: 'Custom ICD code browser — surfaced mid-conversation when the agent needs precision input' },
-      { src: '/case-studies/broadstreet-ai/v2-demographics.png', caption: 'Custom demographics modal — age range and sex rules built through the AI conversation' },
       { src: '/case-studies/broadstreet-ai/screen-4.webp', caption: 'AI fills cardiovascular filters autonomously from a natural language prompt' },
       { src: '/case-studies/broadstreet-ai/screen-5.webp', caption: 'Agent response — "Help me find patients with Type 2 diabetes" with auto-filled filters' },
       { src: '/case-studies/broadstreet-ai/screen-6.webp', caption: 'PTSD conversation — agent clarifying scope and asking follow-up questions' },
