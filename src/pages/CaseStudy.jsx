@@ -96,6 +96,12 @@ export const STUDIES = {
       { src: '/case-studies/broadstreet-ai/screen-8.webp', caption: 'Complex multi-condition query — cardiovascular + PTSD with female patient filter' },
       { src: '/case-studies/broadstreet-ai/screen-9.webp', caption: 'Final confirmed search — filters locked and ready to run' },
     ],
+    teamProcess: {
+      intro: "This is how the team actually worked through the problem — a shared FigJam board where we mapped the three phases of the product roadmap together. What you're looking at is real working documentation: phase one was conversational querying, phase two was agentic action (the agent doing things, not just saying them), and phase three was applying that intelligence to fraud, waste, and abuse detection. The sticky notes are mine and my collaborators'. The messy parts are the honest parts.",
+      images: [
+        { src: '/case-studies/broadstreet-ai/figjam-roadmap.png', caption: 'Team FigJam — mapping the Chat → Agentic → Fraud, Waste & Abuse roadmap' },
+      ],
+    },
     evolution: [
       { era: 'V1', label: 'The Popup Agent', body: 'A floating chat bubble in the corner — it could answer questions about the platform but couldn\'t touch the UI. Users asked it to help, it explained what to do, and then they still had to do it themselves. The gap between what the agent said and what it could actually do was the whole problem.', img: '/case-studies/broadstreet-ai/v1-popup.png' },
       { era: 'V2', label: 'The Sidebar Agent', body: 'The agent moved into a persistent right-panel with direct access to every filter — it could select conditions, set demographics, and build a complete search on your behalf. The shift from "tell me what to do" to "I\'ll do it with you" changed the entire value proposition.', img: '/case-studies/broadstreet-ai/screen-3.webp' },
@@ -638,6 +644,25 @@ export default function CaseStudy() {
           ) : (
             <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} compact={study.compactCarousel} />
           )
+        )}
+
+        {/* Team process artifacts — Broadstreet AI */}
+        {study.teamProcess && (
+          <Section label="How We Mapped It Out">
+            <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.75, marginBottom: 32 }}>
+              {study.teamProcess.intro}
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {study.teamProcess.images.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.5, delay: i * 0.1 }} style={{ margin: 0 }}>
+                  <div style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border-md)', background: 'var(--bg-elevated)' }}>
+                    <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', display: 'block' }} />
+                  </div>
+                  {img.caption && <figcaption style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, lineHeight: 1.5 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Discovery / Research section */}
