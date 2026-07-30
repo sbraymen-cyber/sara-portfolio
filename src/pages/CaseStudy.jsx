@@ -37,10 +37,6 @@ export const STUDIES = {
     discoveryImages: [
       { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Mark — Evernorth Data Analyst persona' },
       { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'Martina — Goals, influences, needs, and pain points' },
-      { src: '/case-studies/broadstreet-clinical/section-1.webp', caption: 'Research artifacts — persona development and discovery synthesis' },
-      { src: '/case-studies/broadstreet-clinical/section-2.webp', caption: 'Early information architecture — structuring 182M records for visual navigation' },
-      { src: '/case-studies/broadstreet-clinical/section-3.webp', caption: 'Iteration documentation — tracking design decisions across versions' },
-      { src: '/case-studies/broadstreet-clinical/section-4.webp', caption: 'Process work — how each version evolved in response to user feedback' },
     ],
     approach: [
       { title: 'Earning the right to design', body: "There's a version of this project where I walked in with wireframes after two weeks. That's not the version I chose. I spent months in discovery: talking to clinicians and analysts, joining engineering standups, learning the data model before I touched a design tool. The only way to build something that genuinely respects expert users is to understand the domain at the level they understand it. That patience, early on, saved a great deal of time later." },
