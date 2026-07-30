@@ -8,10 +8,10 @@ const fadeUp = (delay = 0) => ({
 });
 
 const STATS = [
-  { n: '3',     label: 'products built from zero to production', color: 'var(--accent)' },
-  { n: '$300M', label: 'in housing aid tracked to the dollar', color: 'var(--accent-sage)' },
-  { n: '182M',  label: 'anonymized patient records made searchable through visual interfaces', color: 'var(--accent-warm)' },
-  { n: '300k+', label: 'users on products I designed and shipped', color: 'var(--accent)' },
+  { n: 'Fortune 15', label: 'Evernorth / Cigna — lead designer on a platform used by 100k+ people', color: 'var(--accent)' },
+  { n: '$300M',      label: 'in COVID housing relief tracked across 4 states', color: 'var(--accent-sage)' },
+  { n: '182M',       label: 'patient records made searchable', color: 'var(--accent-warm)' },
+  { n: '5-person',   label: 'design team I currently lead at Prominent Technologies', color: 'var(--accent)' },
 ];
 
 const BUBBLES = [
@@ -120,7 +120,7 @@ export default function Hero() {
           color: 'var(--text-2)',
           maxWidth: 520, marginBottom: isMobile ? 28 : 44, lineHeight: 1.65, fontWeight: 400,
         }}>
-          I work across design and product, mostly on things that are hard to get right: healthcare data, emergency relief programs, and a receipt app I built and incorporated myself.
+          Lead designer at a Fortune 15 company. Currently leading a small team at Prominent Technologies. Also building a receipt startup on the side.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: isMobile ? 48 : 80, flexWrap: 'wrap' }}>
