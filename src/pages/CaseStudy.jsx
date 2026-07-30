@@ -532,7 +532,7 @@ function Carousel({ slides, accent, accentRgb, compact }) {
 
   return (
     <div style={{ marginTop: 56, maxWidth: compact ? 340 : '100%', margin: compact ? '56px auto 0' : '56px 0 0' }}>
-      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#FAFAF7' }}>
+      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#FAFAF7', height: compact ? 480 : 520 }}>
         <AnimatePresence mode="popLayout" initial={false} custom={dir}>
         <motion.img
           key={idx}
@@ -548,7 +548,7 @@ function Carousel({ slides, accent, accentRgb, compact }) {
           animate="center"
           exit="exit"
           transition={{ duration: 0.38, ease: [0.32, 0, 0.67, 0] }}
-          style={{ width: '100%', display: 'block' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', position: 'absolute', top: 0, left: 0 }}
         />
         </AnimatePresence>
         <button onClick={prev} aria-label="Previous" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
