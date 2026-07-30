@@ -1,5 +1,4 @@
-import { motion, useAnimation } from 'framer-motion';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const fadeUp = (delay = 0) => ({
@@ -30,66 +29,6 @@ const BUBBLES = [
   { text: 'delight is a feature',                 x: '78%', y: '58%', delay: 5.2,  dur: 7.0, bg: '#FFFFFF', color: '#3A3D3A', drift: 5  },
 ];
 
-function PoppableBubble({ b }) {
-  const controls = useAnimation();
-  const [busy, setBusy] = useState(false);
-
-  const startFloat = (delay = b.delay) => {
-    controls.start({
-      opacity: [0, 0.92, 0.92, 0],
-      y: [12, b.drift, b.drift * 0.4, b.drift - 4],
-      scale: 1,
-      transition: { duration: b.dur, delay, repeat: Infinity, repeatDelay: b.dur * 0.6, ease: 'easeInOut' },
-    });
-  };
-
-  // kick off float on mount
-  useState(() => { startFloat(); });
-
-  const handleClick = async (e) => {
-    e.stopPropagation();
-    if (busy) return;
-    setBusy(true);
-    controls.stop();
-    await controls.start({
-      scale: [1, 1.8, 3.2],
-      opacity: [1, 0.7, 0],
-      transition: { duration: 0.3, ease: [0.2, 0, 1, 1] },
-    });
-    await new Promise(r => setTimeout(r, 600));
-    setBusy(false);
-    startFloat(0);
-  };
-
-  return (
-    <motion.div
-      animate={controls}
-      style={{
-        position: 'absolute',
-        left: b.x,
-        top: b.y,
-        background: b.bg,
-        color: b.color,
-        fontSize: 12,
-        fontWeight: 500,
-        fontFamily: 'Inter, sans-serif',
-        letterSpacing: '0.005em',
-        padding: '7px 13px',
-        borderRadius: 100,
-        boxShadow: '0 2px 12px rgba(26,29,26,0.08), 0 1px 3px rgba(26,29,26,0.06)',
-        border: '1px solid rgba(26,29,26,0.07)',
-        cursor: 'pointer',
-        zIndex: 4,
-        whiteSpace: 'nowrap',
-        userSelect: 'none',
-      }}
-      onClick={handleClick}
-    >
-      {b.text}
-    </motion.div>
-  );
-}
-
 export default function Hero() {
   const { isMobile, isTablet } = useBreakpoint();
   const px = isMobile ? 20 : isTablet ? 32 : 64;
@@ -116,7 +55,41 @@ export default function Hero() {
 
       {/* Thought bubbles */}
       {!isMobile && BUBBLES.map((b, i) => (
-        <PoppableBubble key={i} b={b} />
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{
+            opacity: [0, 0.92, 0.92, 0],
+            y: [12, b.drift, b.drift * 0.4, b.drift - 4],
+          }}
+          transition={{
+            duration: b.dur,
+            delay: b.delay,
+            repeat: Infinity,
+            repeatDelay: b.dur * 0.6,
+            ease: 'easeInOut',
+          }}
+          style={{
+            position: 'absolute',
+            left: b.x,
+            top: b.y,
+            background: b.bg,
+            color: b.color,
+            fontSize: 12,
+            fontWeight: 500,
+            fontFamily: 'Inter, sans-serif',
+            letterSpacing: '0.005em',
+            padding: '7px 13px',
+            borderRadius: 100,
+            boxShadow: '0 2px 12px rgba(26,29,26,0.08), 0 1px 3px rgba(26,29,26,0.06)',
+            border: '1px solid rgba(26,29,26,0.07)',
+            pointerEvents: 'none',
+            zIndex: 1,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {b.text}
+        </motion.div>
       ))}
 
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1080, margin: '0 auto', padding: `${isMobile ? '88px' : '140px'} ${px}px ${isMobile ? '40px' : '80px'}`, width: '100%' }}>
