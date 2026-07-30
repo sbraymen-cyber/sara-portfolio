@@ -21,13 +21,11 @@ export const STUDIES = {
       { value: '0→1', label: 'product built from scratch, no prior design to iterate on' },
     ],
     challenge: "The clinical researchers and analysts at Evernorth had access to 182 million patient records — and almost no real way to ask them a question. The only path in was SQL, which meant that population-level insight, the kind that shapes how care gets delivered, was effectively locked behind a technical skill most of the people who needed it most didn't have. What I came to understand was that this wasn't really a data problem. It was a problem of access. And access is a design problem.",
-    images: [
-      { src: '/case-studies/broadstreet-clinical/screen-clean.webp', caption: 'Broadstreet — welcome screen and product entry point' },
-      { src: '/case-studies/broadstreet-clinical/img-1.webp', caption: 'Early concept exploration — mapping what clinical researchers actually needed to see' },
-      { src: '/case-studies/broadstreet-clinical/img-2.webp', caption: 'Design process — filter architecture and search hierarchy decisions' },
-      { src: '/case-studies/broadstreet-clinical/img-3.webp', caption: 'Working through geography as the primary navigation model' },
-      { src: '/case-studies/broadstreet-clinical/img-4.webp', caption: 'Iteration — refining the filter panel for power users' },
-      { src: '/case-studies/broadstreet-clinical/img-5.webp', caption: 'Product evolution — how the interface grew with the platform' },
+    carousel: [
+      { src: '/case-studies/broadstreet-clinical/welcome-1.png', caption: 'Broadstreet — welcome screen and product entry point' },
+      { src: '/case-studies/broadstreet-clinical/search-filter.png', caption: 'Search filter — demographics, condition, and treatment controls with live summary' },
+      { src: '/case-studies/broadstreet-clinical/search-ai.png', caption: 'Broadstreet AI — natural language query fills filters in real time' },
+      { src: '/case-studies/broadstreet-clinical/search-results.png', caption: 'Search results — top market with map, patient count, and provider density' },
       { src: '/case-studies/broadstreet-clinical/screen-1.webp', caption: 'Broadstreet — choropleth map as primary navigation surface' },
       { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Broadstreet — filter panel and search configuration' },
       { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Broadstreet — results view with geographic density overlay' },
