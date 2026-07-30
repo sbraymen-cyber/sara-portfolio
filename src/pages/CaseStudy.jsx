@@ -179,15 +179,18 @@ export const STUDIES = {
     ],
     compactCarousel: true,
     images: [
+      { src: '/case-studies/sar-consumer/img-1.webp', caption: 'Field research — the receipt problem in real life' },
+      { src: '/case-studies/sar-consumer/img-2.webp', caption: 'The "shoebox moment" — what receipts actually become' },
+      { src: '/case-studies/sar-consumer/img-3.webp', caption: 'Consumer frustration is the design brief' },
       { src: '/case-studies/sar-consumer/screen-wallet.webp', caption: 'Apple Wallet receipt — the end state the entire product is built around' },
       { src: '/case-studies/sar-consumer/screen-nfc.webp', caption: 'NFC tap flow — the 3-second consumer interaction' },
       { src: '/case-studies/sar-consumer/screen-signup.webp', caption: 'Consumer sign-up — built in React/Vite, deployed to Cloudflare Pages, backed by Supabase' },
       { src: '/case-studies/sar-consumer/screen-transactions.webp', caption: 'Transaction history — receipt data organized automatically post-tap' },
     ],
     fieldPhotos: [
-      { src: '/case-studies/sar-consumer/img-1.webp', caption: 'Field research — the receipt problem in real life' },
-      { src: '/case-studies/sar-consumer/img-2.webp', caption: 'The "shoebox moment" — what receipts actually become' },
-      { src: '/case-studies/sar-consumer/img-3.webp', caption: 'Consumer frustration is the design brief' },
+      { src: '/case-studies/sar-consumer/website-consumer.png', caption: 'Consumer site — built in React/Vite, deployed to Cloudflare Pages' },
+      { src: '/case-studies/sar-consumer/website-business.png', caption: 'Merchant site — separate landing page for the business-side pitch' },
+      { src: '/case-studies/sar-consumer/website-pricing.png', caption: '$0.04 per receipt — pricing page I designed, wrote, and shipped' },
     ],
     discoveryHeading: 'Listening at the Point of Payment',
     discoveryBody: [
@@ -663,7 +666,7 @@ export default function CaseStudy() {
         {study.fieldPhotos && (
           <Section label="Learning & Testing">
             <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7, marginBottom: 32 }}>
-              Before there were any screens, I spent time at coffee shops and restaurants just watching what happened at the moment of payment. Receipts got crumpled, left on the counter, or tucked into pockets and forgotten within thirty seconds. The problem I was designing for was right there in front of me — I just needed to sit still long enough to see it clearly.
+              I didn't just design Sar — I built it. The consumer site, the merchant landing page, the pricing page, the Supabase database, the PassKit integration. All of it coded in React and Vite, deployed to Cloudflare Pages. When you design and build the same product, you stop treating implementation as someone else's problem — and that changes every decision you make.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 16 : 20 }}>
               {study.fieldPhotos.map((img, i) => (
