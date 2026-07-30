@@ -3,18 +3,18 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const ITEMS = [
   {
-    label: 'I speak engineer',
-    body: "SQL, APIs, webhooks, context windows — I genuinely love this stuff. I show up to standups, ask the questions nobody else thinks to ask, and get along well with engineers. I value their input deeply while always advocating for what's right for the user and the business first.",
+    label: 'Comfortable with technical work',
+    body: "SQL, APIs, webhooks, context windows — I enjoy learning this stuff and find it makes collaboration with engineers a lot easier. I try to understand how something works before I ask a team to build it.",
     accent: 'var(--accent-warm)',
   },
   {
-    label: 'Simplicity is the hard part',
-    body: "The complexity doesn't disappear — it moves into the decisions. I take on the messy product calls so users never have to feel them. The best interface isn't the one with the most options. It's the one where the right choice feels so obvious you almost don't notice it was a choice at all.",
+    label: 'Simplicity takes a lot of work',
+    body: "The complexity doesn't go away, it just moves into the decisions. I try to absorb as much of that as I can so the person using the product doesn't have to feel it.",
     accent: 'var(--accent)',
   },
   {
-    label: 'Collaboration is a craft',
-    body: "I keep things light when the pressure is on and share credit freely. I've had engineers from past teams reach out just to say they finally shipped something they were proud of. That kind of thing stays with me a lot longer than any performance review.",
+    label: 'Good to work with',
+    body: "I try to keep things grounded when the pressure is high, share credit, and make sure engineers feel heard. Some of the best feedback I've gotten has come from people I built things alongside.",
     accent: 'var(--accent-sage)',
   },
 ];

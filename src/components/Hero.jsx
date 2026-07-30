@@ -120,7 +120,7 @@ export default function Hero() {
           color: 'var(--text-2)',
           maxWidth: 520, marginBottom: isMobile ? 28 : 44, lineHeight: 1.65, fontWeight: 400,
         }}>
-          I design AI products, enterprise platforms, and consumer experiences that work at scale — and feel effortless to the person using them.
+          I work across design and product, mostly on things that are hard to get right: healthcare data, emergency relief programs, and a receipt app I built and incorporated myself.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: isMobile ? 48 : 80, flexWrap: 'wrap' }}>

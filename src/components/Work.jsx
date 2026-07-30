@@ -7,7 +7,7 @@ const PROJECTS = [
     slug: 'broadstreet-ai',
     company: 'Evernorth / Cigna',
     title: 'AI Research Agent — "John Snow"',
-    desc: 'Designed a multi-turn agentic AI before the industry had a playbook for it. Conversational UX that makes selections, not just suggestions.',
+    desc: 'Conversational AI agent for clinical research. It fills search filters on your behalf rather than just telling you what to do.',
     accent: 'var(--accent)',
     accentRgb: '45,64,48',
     img: '/case-studies/broadstreet-ai/screen-3.webp',
@@ -16,7 +16,7 @@ const PROJECTS = [
     slug: 'sar-consumer',
     company: 'Sar — Passion project',
     title: 'Sar: Zero-Friction Receipt',
-    desc: 'Consumer iOS product I designed and built. NFC tap → Apple Wallet in under 3 seconds. Zero new behavior required from anyone.',
+    desc: 'A receipt app I designed and built myself. NFC tap to Apple Wallet in under 3 seconds, nothing extra required from the customer.',
     accent: 'var(--accent-warm)',
     accentRgb: '160,72,37',
     img: '/case-studies/sar-consumer/screen-wallet.webp',
@@ -25,7 +25,7 @@ const PROJECTS = [
     slug: 'broadstreet-clinical',
     company: 'Evernorth / Cigna',
     title: 'Clinical Intelligence Platform',
-    desc: '0→1 product for clinical population research across 182M records. Three versions shipped.',
+    desc: 'A search and visualization tool for clinical population research, built over four years from nothing. Three versions, 182M patient records.',
     accent: 'var(--accent)',
     accentRgb: '45,64,48',
     img: '/case-studies/broadstreet-clinical/cover.webp',
@@ -280,7 +280,7 @@ export default function Work() {
         <motion.h2 className="type-h1" style={{ color: 'var(--text-1)', maxWidth: '22ch' }}
           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }}
           transition={{ delay: 0.06 }}>
-          Design, product, and AI — all the way to shipped.
+          A few things I've worked on.
         </motion.h2>
       </div>
 

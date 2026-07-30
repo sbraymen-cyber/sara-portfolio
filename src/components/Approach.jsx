@@ -3,20 +3,20 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const PRINCIPLES = [
   {
-    label: 'Discovery before pixels',
-    body: 'I don\'t open Figma until I understand the problem. That means sitting with the data team, shadowing the user, reading the ticket backlog. The brief I write before design is the most valuable artifact I make.',
+    label: 'Research before anything else',
+    body: 'I try not to open Figma until I understand the problem well enough to explain it to someone who isn\'t on the team. That usually means talking to users, sitting in on standups, and reading whatever documentation actually exists.',
   },
   {
-    label: 'Cross-functional by default',
-    body: 'I don\'t hand things off — I embed. At Evernorth I moved onto the engineering and data team to understand the infrastructure before designing on top of it. The best design decisions I\'ve made were in a Slack thread with a backend engineer.',
+    label: 'Working closely with engineers',
+    body: 'At Evernorth I moved onto the engineering and data team so I could understand the infrastructure before designing on top of it. I\'ve found that the most useful design decisions tend to happen in conversation, not in isolation.',
   },
   {
-    label: 'Prototype to think, ship to prove',
-    body: 'I move fast between fidelities — rough flows to align on direction, high-fidelity prototypes to pressure-test decisions, production-quality work to validate with real users. The right artifact is whichever one answers the question in front of me.',
+    label: 'The right fidelity for the question',
+    body: 'Rough flows when direction is unclear, higher fidelity when a specific decision needs pressure-testing. I try to match how much polish something gets to how much certainty it\'s earned.',
   },
   {
-    label: 'Business model as design tool',
-    body: 'The most important design decision on Sar wasn\'t the color or the NFC interaction — it was $0.04. Pricing is UX. Revenue model is product strategy. I think about both from day one.',
+    label: 'Thinking about the business, too',
+    body: 'On Sar, one of the most consequential decisions wasn\'t visual at all — it was pricing. I try to stay aware of how a product makes money, because that shapes what\'s actually possible.',
   },
 ];
 
@@ -38,7 +38,7 @@ export default function Approach() {
           style={{ color: 'var(--text-1)' }}
           initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.45, delay: 0.05 }}
         >
-          User-centered by instinct. Systems-level by practice.
+          How I tend to approach things.
         </motion.h2>
       </div>
 
