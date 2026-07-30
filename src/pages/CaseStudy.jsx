@@ -71,7 +71,7 @@ export const STUDIES = {
       { value: '100k+', label: 'users on the Broadstreet platform' },
       { value: 'Fortune 15', label: 'Evernorth / Cigna — enterprise healthcare at scale' },
     ],
-    challenge: "Researchers weren't using Broadstreet to its full potential because learning it took time they didn't have. The answer wasn't more documentation — it was an agent that could do the work with them.",
+    challenge: "Broadstreet is an internal tool at Evernorth for exploring anonymized patient data. It started as a platform for clinical researchers — finding patient populations, identifying coverage gaps, locating physicians by specialty. Now we're expanding it to a broader set of analysts looking for healthcare trends and physician patterns across large datasets.\n\nThe challenge with adding AI was that the database was more powerful than most users realized, but learning it well took time they didn't have. More documentation wasn't the answer. What was needed was something that could sit alongside a researcher, help them build a search in real time, and step back once they no longer needed help.",
     images: [
       { src: '/case-studies/broadstreet-ai/welcome-1.png', caption: 'Broadstreet — welcome screen and product entry point' },
       { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
@@ -608,7 +608,11 @@ export default function CaseStudy() {
 
         {/* Challenge */}
         <Section label="The Challenge">
-          <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7 }}>{challenge}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {challenge.split('\n\n').map((para, i) => (
+              <p key={i} style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7 }}>{para}</p>
+            ))}
+          </div>
         </Section>
 
         {/* Application process flow — Louisiana Housing */}
