@@ -4,17 +4,17 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const LINKS = [
   ['Work', '#work'],
-  ['Side Projects', '/explorations'],
   ['Experience', '#experience'],
   ['Resume', '/resume'],
   ['Contact', '#contact'],
+  ['Side Projects', '/explorations'],
 ];
 
 const MOBILE_LINKS = [
   ['Work', '#work'],
-  ['Side Projects', '/explorations'],
   ['Resume', '/resume'],
   ['Contact', '#contact'],
+  ['Side Projects', '/explorations'],
 ];
 
 export default function Nav() {
