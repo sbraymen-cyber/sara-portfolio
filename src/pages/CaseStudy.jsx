@@ -102,11 +102,11 @@ export const STUDIES = {
       { era: 'V2', label: 'The Sidebar Agent', body: 'The agent moved into a persistent right-panel with direct access to every filter — it could select conditions, set demographics, and build a complete search on your behalf. The shift from "tell me what to do" to "I\'ll do it with you" changed the entire value proposition.', img: '/case-studies/broadstreet-ai/screen-3.webp' },
       { era: 'V3', label: 'Structured Components', body: 'The next frontier: mid-conversation UI handoffs — a date picker, a map selection, an ICD code browser — surfaced inside the chat at the moment they\'re needed. Prose when prose is enough; precision UI when it isn\'t.', img: '/case-studies/broadstreet-ai/v2-icd-codes.png' },
     ],
+    approachColumns: true,
     approach: [
-      { title: 'Guiding alongside, not instructing from above', body: "What I kept returning to was a simple truth: people don't read documentation, but they will follow a thoughtful guide. John Snow was designed to walk beside you — explaining each filter in language that didn't assume expertise, making selections on your behalf when you were stuck, and stepping back the moment you weren't. That shift from telling people what to do to doing it with them changed the entire nature of what the product was." },
-      { title: 'Designing where the agent stops', body: "One of the most considered parts of this work was determining what John Snow shouldn't do. Users were curious — the agent is named after a famous epidemiologist, and people wanted to explore that. So we designed graceful redirects, a dedicated space for that curiosity, and scope boundaries that felt genuinely helpful rather than arbitrary. Every edge case was a real design decision, treated with real care." },
-      { title: 'Doing the research before settling on a direction', body: "Before I committed to a layout, I spent real time studying how AI assistants were being integrated across enterprise products. What I found was a clear shift: the industry was moving away from persistent sidepanels — which compete with the content they're meant to support — toward agents that appear exactly when someone needs them, and disappear when they don't. That's the direction we took. Not because it felt right, but because the evidence pointed there." },
-      { title: 'Sitting with the constraints until they became decisions', body: "Context window limits, hallucination risk, prompt constraints — these were genuine engineering realities, and they could have simply become blockers. Instead, I worked directly with two engineers to treat each one as a design question worth answering. What should the agent say when it reaches the edge of what it can do? How do we hand back gracefully to the manual interface? Working through those questions honestly made the product more trustworthy, not less capable." },
+      { title: 'Guiding alongside, not instructing from above', body: "People don't read documentation, but they will follow a thoughtful guide. John Snow was designed to walk beside you — explaining each filter in language that didn't assume expertise, making selections on your behalf when you were stuck, and stepping back the moment you weren't. That shift from telling people what to do to doing it with them changed the entire nature of what the product was." },
+      { title: 'Designing where the agent stops', body: "One of the most considered parts of this work was determining what John Snow shouldn't do. Users were curious — the agent is named after a famous epidemiologist, and people wanted to explore that. So we designed graceful redirects, scope boundaries that felt genuinely helpful rather than arbitrary, and a dedicated space for that curiosity. Every edge case was a real design decision, treated with real care." },
+      { title: 'Sitting with the constraints until they became decisions', body: "Context window limits, hallucination risk, prompt constraints — these were genuine engineering realities that could have simply become blockers. Instead, I worked directly with two engineers to treat each one as a design question worth answering. What should the agent say when it reaches the edge of what it can do? Working through those questions honestly made the product more trustworthy, not less capable." },
     ],
     pullQuote: "The hardest design problem wasn't building an agent that could answer clinical questions. It was building one that knew when to stop talking and let the researcher do the work.",
     outcome: "John Snow now handles the part of the Broadstreet workflow where researchers used to give up — the query construction phase, where the learning curve was steepest and the cost of confusion highest. Ninety-six percent of people who tested it called it a must-have. The next step is letting the agent hand off to structured UI components — a date picker, a map selection — mid-conversation, when language alone isn't precise enough.",
@@ -680,17 +680,29 @@ export default function CaseStudy() {
 
         {/* Approach */}
         <Section label="Approach">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {approach.map((a, i) => (
-              <div key={i} style={{ paddingBottom: 32, paddingTop: i > 0 ? 32 : 0, borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10, flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: accent, opacity: 0.7, minWidth: 24, letterSpacing: '0.04em' }}>0{i + 1}</span>
-                  <h3 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 18 : 20, fontWeight: 400, color: 'var(--text-1)', letterSpacing: '-0.01em' }}>{a.title}</h3>
+          {study.approachColumns && !isMobile ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40 }}>
+              {approach.map((a, i) => (
+                <div key={i} style={{ paddingTop: 20, borderTop: `2px solid ${accent}`, opacity: 1 }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: accent, opacity: 0.7, letterSpacing: '0.04em', display: 'block', marginBottom: 10 }}>0{i + 1}</span>
+                  <h3 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: 18, fontWeight: 400, color: 'var(--text-1)', letterSpacing: '-0.01em', marginBottom: 14, lineHeight: 1.3 }}>{a.title}</h3>
+                  <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.75 }}>{a.body}</p>
                 </div>
-                <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 560, paddingLeft: isMobile ? 0 : 36, lineHeight: 1.7 }}>{a.body}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {approach.map((a, i) => (
+                <div key={i} style={{ paddingBottom: 32, paddingTop: i > 0 ? 32 : 0, borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'baseline', marginBottom: 10, flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: accent, opacity: 0.7, minWidth: 24, letterSpacing: '0.04em' }}>0{i + 1}</span>
+                    <h3 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: isMobile ? 18 : 20, fontWeight: 400, color: 'var(--text-1)', letterSpacing: '-0.01em' }}>{a.title}</h3>
+                  </div>
+                  <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 560, paddingLeft: isMobile ? 0 : 36, lineHeight: 1.7 }}>{a.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </Section>
 
         {/* Evolution */}
