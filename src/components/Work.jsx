@@ -16,7 +16,7 @@ const PROJECTS = [
     slug: 'sar-consumer',
     company: 'Sar — Passion project',
     title: 'Sar: Zero-Friction Receipt',
-    desc: 'A receipt app I designed and built myself. NFC tap to Apple Wallet in under 3 seconds, nothing extra required from the customer.',
+    desc: 'An ongoing passion project — designing and building a full business ecosystem around receipt digitization. Consumer app, merchant app, marketing site, and a Square integration, all in parallel.',
     accent: 'var(--accent-warm)',
     accentRgb: '160,72,37',
     img: '/case-studies/sar-consumer/website-consumer.png',
