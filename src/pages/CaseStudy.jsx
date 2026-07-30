@@ -204,11 +204,11 @@ export const STUDIES = {
     },
     pullQuote: "The question every receipt product before this one got wrong was what to ask of the customer. The answer I kept arriving at was: nothing. And designing backward from nothing turned out to be the most clarifying constraint I've ever worked with.",
     liveUrl: 'https://sar-app.com',
-    outcome: "Three active pilots in Boulder and Denver. The core interaction — tap, Face ID, Wallet — is working and coming in under 3 seconds.",
+    outcome: "Three active pilots in Boulder and Denver. The core interaction — tap, Face ID, Wallet — is working and coming in under 3 seconds.\n\nRight now I'm running two tracks simultaneously: a Square marketplace integration with a local Denver business, and the consumer app. The chicken-and-egg problem with a two-sided product is real — merchants won't adopt without consumers, and consumers won't show up without merchants. Working directly with one business lets me build and test the merchant side in a live environment while the consumer experience develops in parallel.",
     nextSteps: [
-      'Build tax categorization into the Wallet receipt so expense tracking happens at the moment of purchase — no app required to get value from the data.',
-      'Design the merchant analytics layer: revenue trends, top items, peak hours — turning the receipt data into a lightweight POS insights dashboard for small businesses.',
-      'Test the Android path. The NFC tap works cross-platform but the Wallet equivalent (Google Wallet) has different trust signals and a different mental model to design for.',
+      'Complete the Square integration with the Denver pilot merchant — real transactions, real receipts, real feedback.',
+      'Ship the consumer app so early users have somewhere to see their receipt history, not just a Wallet pass.',
+      'Use the pilot to figure out the right sequencing — merchant-first, consumer-first, or simultaneous — before scaling.',
     ],
   },
 };
@@ -784,7 +784,11 @@ export default function CaseStudy() {
 
         {/* Outcome */}
         <Section label="Outcome">
-          <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 560, lineHeight: 1.7 }}>{outcome}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {(outcome || '').split('\n\n').map((para, i) => (
+              <p key={i} style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 560, lineHeight: 1.7 }}>{para}</p>
+            ))}
+          </div>
         </Section>
 
         {/* What I'd do next */}

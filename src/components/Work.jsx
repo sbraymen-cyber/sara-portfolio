@@ -19,7 +19,7 @@ const PROJECTS = [
     desc: 'A receipt app I designed and built myself. NFC tap to Apple Wallet in under 3 seconds, nothing extra required from the customer.',
     accent: 'var(--accent-warm)',
     accentRgb: '160,72,37',
-    img: '/case-studies/sar-consumer/screen-wallet.webp',
+    img: '/case-studies/sar-consumer/website-consumer.png',
   },
   {
     slug: 'broadstreet-clinical',
