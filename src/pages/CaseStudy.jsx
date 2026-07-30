@@ -78,8 +78,8 @@ export const STUDIES = {
       { value: 'V3', label: 'of the platform — shipped' },
     ],
     challenge: "The clinical database at Broadstreet was more powerful than most of the people using it realized. But learning to use it well took time — time that researchers, who already carried full workloads, simply didn't have. Training documentation existed. People weren't reading it. What was really needed wasn't more explanation. It was someone who could sit alongside a researcher, help them build a search in real time, and step back the moment they no longer needed help. That's a different kind of AI design problem. Less about capability. More about trust.",
-    agentMap: true,
     images: [
+      { src: '/case-studies/broadstreet-ai/welcome-1.png', caption: 'Broadstreet — welcome screen and product entry point' },
       { src: '/case-studies/broadstreet-ai/screen-2.webp', caption: 'Search filter + AI panel open — side-by-side before the pop-up decision' },
       { src: '/case-studies/broadstreet-ai/screen-3.webp', caption: 'Broadstreet AI panel open — "Tell me about the patients you\'re looking for"' },
       { src: '/case-studies/broadstreet-ai/v2-icd-codes.png', caption: 'Custom ICD code browser — surfaced mid-conversation when the agent needs precision input' },
@@ -614,29 +614,10 @@ export default function CaseStudy() {
           <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7 }}>{challenge}</p>
         </Section>
 
-        {/* Agent decision map — Broadstreet AI */}
-        {study.agentMap && <AgentMap accent={accent} />}
-
         {/* Application process flow — Louisiana Housing */}
         {study.housingFlow && <AppFlowMap />}
 
-        {/* Screenshots */}
-        {study.images && (
-          study.phoneGrid ? (
-            <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
-              {study.images.map((img, i) => (
-                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
-                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid var(--border)', display: 'block' }} />
-                  {img.caption && <figcaption style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 8, paddingLeft: 2 }}>{img.caption}</figcaption>}
-                </motion.figure>
-              ))}
-            </div>
-          ) : (
-            <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} compact={study.compactCarousel} />
-          )
-        )}
-
-        {/* Team process artifacts — Broadstreet AI */}
+        {/* Team process artifacts — Broadstreet AI (shown early, right after challenge) */}
         {study.teamProcess && (
           <Section label="How We Mapped It Out">
             <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.75, marginBottom: 32 }}>
@@ -758,6 +739,22 @@ export default function CaseStudy() {
         {/* Carousel — placed after Approach to build up to the final product */}
         {study.carousel && (
           <Carousel slides={study.carousel} accent={accent} accentRgb={accentRgb} />
+        )}
+
+        {/* Screenshots — placed just before pull quote as the final payoff */}
+        {study.images && (
+          study.phoneGrid ? (
+            <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
+              {study.images.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: "0px 0px 200px 0px" }} transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} style={{ margin: 0 }}>
+                  <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', borderRadius: 20, border: '1px solid var(--border)', display: 'block' }} />
+                  {img.caption && <figcaption style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 8, paddingLeft: 2 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+          ) : (
+            <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} compact={study.compactCarousel} />
+          )
         )}
 
         {/* Pull quote */}
