@@ -3,7 +3,6 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 
 const JOBS = [
   { company: 'Prominent Technologies', role: 'Senior UX Manager', period: 'Mar 2026 – Present', current: true },
-  { company: 'Sar, Inc.', role: 'Founder', period: 'Mar 2025 – Present' },
   { company: 'Evernorth Health Services (Cigna)', role: 'Lead Product Designer', period: 'Apr 2022 – Mar 2026' },
   { company: 'Horne LLP', role: 'Senior Data Visualization Designer / Developer', period: 'Apr 2021 – Apr 2022' },
 ];
