@@ -103,9 +103,9 @@ export const STUDIES = {
     pullQuote: "The hardest design problem wasn't building an agent that could answer clinical questions. It was building one that knew when to stop talking and let the researcher do the work.",
     outcome: "96% of tested users called it a must-have. John Snow now handles the query construction phase — the part of the workflow where researchers used to give up.",
     nextSteps: [
-      'Surface structured UI components mid-conversation (date pickers, map selections) so the agent can hand off to precise controls without breaking the conversational flow.',
-      'Design a memory model: let John Snow remember what a researcher tends to search for and pre-populate a starting point on their next session.',
-      'Build an agent audit log so clinical compliance teams can see exactly what the AI recommended and why, a requirement before enterprise-wide rollout.',
+      'Add physician primary address to search results so researchers can locate providers geographically, not just by specialty.',
+      'Build a compare populations feature so analysts can run two searches side-by-side and identify differences across cohorts.',
+      'Continue expanding non-AI capabilities — the core search and filter experience still has room to grow independently of the agent.',
     ],
   },
 
