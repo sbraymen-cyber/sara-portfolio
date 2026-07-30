@@ -519,38 +519,42 @@ function AgentMap({ accent }) {
 
 function Carousel({ slides, accent, accentRgb, compact }) {
   const [idx, setIdx] = useState(0);
-  const [dir, setDir] = useState(1);
 
-  // Preload all images immediately so clicks feel instant
+  // Preload all images up front; also eagerly preload prev/next neighbors
   useEffect(() => {
     slides.forEach(s => { const img = new Image(); img.src = s.src; });
   }, [slides]);
+  useEffect(() => {
+    const neighbors = [
+      (idx + 1) % slides.length,
+      (idx - 1 + slides.length) % slides.length,
+    ];
+    neighbors.forEach(i => { const img = new Image(); img.src = slides[i].src; });
+  }, [idx, slides]);
 
-  const prev = () => { setDir(-1); setIdx(i => (i - 1 + slides.length) % slides.length); };
-  const next = () => { setDir(1);  setIdx(i => (i + 1) % slides.length); };
-  const goTo = (i) => { setDir(i > idx ? 1 : -1); setIdx(i); };
+  const prev = () => setIdx(i => (i - 1 + slides.length) % slides.length);
+  const next = () => setIdx(i => (i + 1) % slides.length);
+  const goTo = (i) => setIdx(i);
 
   return (
     <div style={{ marginTop: 56, maxWidth: compact ? 340 : '100%', margin: compact ? '56px auto 0' : '56px 0 0' }}>
-      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#FAFAF7', height: compact ? 480 : 520 }}>
-        <AnimatePresence mode="popLayout" initial={false} custom={dir}>
-        <motion.img
-          key={idx}
-          src={slides[idx].src}
-          alt={slides[idx].caption}
-          custom={dir}
-          variants={{
-            enter: d => ({ x: d > 0 ? '100%' : '-100%', opacity: 1 }),
-            center: { x: 0, opacity: 1 },
-            exit: d => ({ x: d > 0 ? '-100%' : '100%', opacity: 1 }),
-          }}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.38, ease: [0.32, 0, 0.67, 0] }}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block', position: 'absolute', top: 0, left: 0 }}
-        />
-        </AnimatePresence>
+      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#000', height: compact ? 480 : 520 }}>
+        {slides.map((slide, i) => (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.caption}
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              objectFit: 'cover', objectPosition: 'top',
+              opacity: i === idx ? 1 : 0,
+              transition: 'opacity 350ms ease-in-out',
+              willChange: 'opacity',
+              pointerEvents: 'none',
+            }}
+          />
+        ))}
         <button onClick={prev} aria-label="Previous" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
         <button onClick={next} aria-label="Next" style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>›</button>
         <div style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', border: `1px solid rgba(${accentRgb},0.25)`, borderRadius: 100, padding: '3px 12px', fontSize: 11, fontWeight: 600, color: accent, letterSpacing: '0.06em', backdropFilter: 'blur(8px)' }}>
