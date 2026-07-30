@@ -26,12 +26,7 @@ export const STUDIES = {
       { src: '/case-studies/broadstreet-clinical/search-filter.png', caption: 'Search filter — demographics, condition, and treatment controls with live summary' },
       { src: '/case-studies/broadstreet-clinical/search-ai.png', caption: 'Broadstreet AI — natural language query fills filters in real time' },
       { src: '/case-studies/broadstreet-clinical/search-results.png', caption: 'Search results — top market with map, patient count, and provider density' },
-      { src: '/case-studies/broadstreet-clinical/screen-1.webp', caption: 'Broadstreet — choropleth map as primary navigation surface' },
-      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Broadstreet — filter panel and search configuration' },
-      { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Broadstreet — results view with geographic density overlay' },
-      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'Broadstreet — patient cohort breakdown by condition' },
-      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Broadstreet — specialist coverage gap analysis' },
-      { src: '/case-studies/broadstreet-clinical/screen-7.webp', caption: 'Broadstreet — provider network and referral pathways' },
+      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Result details — physician profile popup with specialty, address, and patient density map' },
     ],
     discoveryHeading: 'Becoming the Subject Matter Expert',
     discoveryBody: [
@@ -40,6 +35,8 @@ export const STUDIES = {
       "And what all of that listening eventually clarified was this: the goal was never to make the data simpler. It was to make its complexity navigable. The researchers I was designing for didn't want to be shielded from 182 million records. They wanted an interface that assumed they were capable — and gave them the tools to prove it.",
     ],
     discoveryImages: [
+      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Mark — Evernorth Data Analyst persona' },
+      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'Martina — Goals, influences, needs, and pain points' },
       { src: '/case-studies/broadstreet-clinical/section-1.webp', caption: 'Research artifacts — persona development and discovery synthesis' },
       { src: '/case-studies/broadstreet-clinical/section-2.webp', caption: 'Early information architecture — structuring 182M records for visual navigation' },
       { src: '/case-studies/broadstreet-clinical/section-3.webp', caption: 'Iteration documentation — tracking design decisions across versions' },
