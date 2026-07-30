@@ -203,7 +203,7 @@ export const STUDIES = {
         { phase: 'Non-tappers', body: "Structured exit interviews with customers who saw the NFC prompt but didn't tap. Awareness gap, trust barrier, or just distracted? Different diagnoses, different design responses." },
       ],
     },
-    pullQuote: "The question every receipt product before this one got wrong was what to ask of the customer. The answer I kept arriving at was: nothing. And designing backward from nothing turned out to be the most clarifying constraint I've ever worked with.",
+    pullQuote: null,
     colorPalette: [
       { hex: '#3D5E8C', name: 'Trust Blue', note: 'The whole product runs on trust — you\'re handing over your receipt data. Blue is the color that says "we\'re not going to sell this." Chosen very deliberately.' },
       { hex: '#6B8FB8', name: 'Sky', note: 'The lighter sibling. Used for hover states, secondary UI, anything that should feel open and unintimidating.' },
