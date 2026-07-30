@@ -90,9 +90,9 @@ export const STUDIES = {
       ],
     },
     evolution: [
-      { era: 'V1', label: 'The Popup Agent', body: 'A floating chat bubble in the corner — it could answer questions about the platform but couldn\'t touch the UI. Users asked it to help, it explained what to do, and then they still had to do it themselves. The gap between what the agent said and what it could actually do was the whole problem.', img: '/case-studies/broadstreet-ai/v1-popup.png' },
-      { era: 'V2', label: 'The Sidebar Agent', body: 'The agent moved into a persistent right-panel with direct access to every filter — it could select conditions, set demographics, and build a complete search on your behalf. The shift from "tell me what to do" to "I\'ll do it with you" changed the entire value proposition.', img: '/case-studies/broadstreet-ai/screen-3.webp' },
-      { era: 'V3', label: 'Structured Components', body: 'The next frontier: mid-conversation UI handoffs. A date picker, a map selection, an ICD code browser, surfaced inside the chat at the moment they\'re needed. Prose when prose is enough; precision UI when it isn\'t.', img: '/case-studies/broadstreet-ai/v2-icd-codes.png' },
+      { era: 'V1', label: 'The Popup Agent', body: 'A floating chat bubble that answered questions but couldn\'t touch the UI. Users still had to act on every suggestion themselves.', img: '/case-studies/broadstreet-ai/v1-popup.png' },
+      { era: 'V2', label: 'The Sidebar Agent', body: 'Persistent right-panel with direct filter access. The agent could build a complete search on your behalf — shifting from advisor to collaborator.', img: '/case-studies/broadstreet-ai/screen-3.webp' },
+      { era: 'V3', label: 'Structured Components', body: 'Mid-conversation UI handoffs: date pickers, map selections, ICD browsers surfaced at the moment they\'re needed. Prose when prose is enough.', img: '/case-studies/broadstreet-ai/v2-icd-codes.png' },
     ],
     approachColumns: true,
     approach: [
@@ -703,8 +703,8 @@ export default function CaseStudy() {
               {evolution.map((item, i) => (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column' }}>
                   {item.img && (
-                    <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border-md)', marginBottom: 16, background: 'var(--bg-elevated)' }}>
-                      <img src={item.img} alt={item.label} style={{ width: '100%', display: 'block', objectFit: 'cover', maxHeight: 220 }} />
+                    <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border-md)', marginBottom: 16, background: 'var(--bg-elevated)', height: 220 }}>
+                      <img src={item.img} alt={item.label} style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }} />
                     </div>
                   )}
                   <div style={{ paddingTop: 16, borderTop: `2px solid ${i === evolution.length - 1 ? accent : 'var(--border-md)'}` }}>
