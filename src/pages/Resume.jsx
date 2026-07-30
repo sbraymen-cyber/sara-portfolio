@@ -95,8 +95,8 @@ const CERTIFICATIONS = [
 ];
 
 const SKILLS = [
-  { label: 'Design & AI', items: 'Figma, Figma Make, Wireframes, Prototyping, Generative AI, Conversational UI, Claude, Gemini, Google Suite' },
-  { label: 'Methods', items: 'Agile, Cross-functional collaboration, User research, Journey mapping, WCAG, SQL' },
+  { label: 'Design & AI', items: 'Figma, Figma Make, Wireframes, Prototyping, Generative AI, Conversational UI, Claude, Claude Code, Gemini, Google Suite' },
+  { label: 'Methods', items: 'Agile, Cross-functional collaboration, User research, Discovery & synthesis, Journey mapping, API integration, WCAG, SQL' },
 ];
 
 export default function Resume() {
