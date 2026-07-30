@@ -120,7 +120,7 @@ export default function Hero() {
           color: 'var(--text-2)',
           maxWidth: 520, marginBottom: isMobile ? 28 : 44, lineHeight: 1.65, fontWeight: 400,
         }}>
-          Lead designer at a Fortune 15 company. Currently leading a small team at Prominent Technologies. Also building a receipt startup on the side.
+          Product designer with a background in healthcare data, emergency relief, and startup product development.
         </motion.p>
 
         <motion.div {...fadeUp(0.52)} style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: isMobile ? 48 : 80, flexWrap: 'wrap' }}>
