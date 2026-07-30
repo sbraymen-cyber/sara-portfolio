@@ -23,6 +23,12 @@ export const STUDIES = {
     challenge: 'Clinicians, researchers, and analysts at Evernorth needed to understand patient population patterns across 182 million records — but the only path in was writing SQL. The goal was to make that data accessible to anyone in the field without dumbing it down for experts, and to do it within the real constraints of ArcGIS and Neo4j. No prior product existed. I started from nothing and had to become a subject matter expert before I could design anything.',
     images: [
       { src: '/case-studies/broadstreet-clinical/screen-clean.webp', caption: 'Broadstreet — welcome screen and product entry point' },
+      { src: '/case-studies/broadstreet-clinical/screen-1.webp', caption: 'Broadstreet — choropleth map as primary navigation surface' },
+      { src: '/case-studies/broadstreet-clinical/screen-2.webp', caption: 'Broadstreet — filter panel and search configuration' },
+      { src: '/case-studies/broadstreet-clinical/screen-3.webp', caption: 'Broadstreet — results view with geographic density overlay' },
+      { src: '/case-studies/broadstreet-clinical/screen-5.webp', caption: 'Broadstreet — patient cohort breakdown by condition' },
+      { src: '/case-studies/broadstreet-clinical/screen-6.webp', caption: 'Broadstreet — specialist coverage gap analysis' },
+      { src: '/case-studies/broadstreet-clinical/screen-7.webp', caption: 'Broadstreet — provider network and referral pathways' },
     ],
     discoveryHeading: 'Becoming the Subject Matter Expert',
     discoveryBody: [
@@ -164,9 +170,15 @@ export const STUDIES = {
     ],
     compactCarousel: true,
     images: [
-      { src: '/case-studies/sar-consumer/screen-wallet.webp', caption: 'Apple Wallet receipt' },
-      { src: '/case-studies/sar-consumer/screen-nfc.webp', caption: 'NFC tap flow' },
-      { src: '/case-studies/sar-consumer/screen-signup.webp', caption: 'Onboarding' },
+      { src: '/case-studies/sar-consumer/screen-wallet.webp', caption: 'Apple Wallet receipt — the end state the entire product is built around' },
+      { src: '/case-studies/sar-consumer/screen-nfc.webp', caption: 'NFC tap flow — the 3-second consumer interaction' },
+      { src: '/case-studies/sar-consumer/screen-signup.webp', caption: 'Consumer sign-up — built in React/Vite, deployed to Cloudflare Pages, backed by Supabase' },
+      { src: '/case-studies/sar-consumer/screen-transactions.webp', caption: 'Transaction history — receipt data organized automatically post-tap' },
+    ],
+    fieldPhotos: [
+      { src: '/case-studies/sar-consumer/img-1.webp', caption: 'Field research — the receipt problem in real life' },
+      { src: '/case-studies/sar-consumer/img-2.webp', caption: 'The "shoebox moment" — what receipts actually become' },
+      { src: '/case-studies/sar-consumer/img-3.webp', caption: 'Consumer frustration is the design brief' },
     ],
     discoveryHeading: 'Listening at the Point of Payment',
     discoveryBody: [
@@ -180,6 +192,8 @@ export const STUDIES = {
       { title: 'Choosing Apple Wallet over an app', body: "Apple Wallet was a deliberate design decision, not a default. It's already on every iPhone, already trusted for passes and confirmations, and requires zero mental model change. The receipt lands where users already look for this kind of thing. The full app earns its download later — through receipt history, tax categorization, and expense export — once the user has seen enough value to want more. Starting in Wallet is how you earn that trust without demanding it upfront." },
       { title: 'Two audiences, one coherent product', body: "Designing for consumers and merchants simultaneously meant two completely different interaction models that could never conflict. The consumer never sees the merchant dashboard. The merchant never sees the consumer app. Each audience has its own entry point, its own mental model, its own definition of success. The design challenge was keeping both journeys simple while sharing a single backend — and making sure neither user ever felt like they wandered into the wrong product." },
       { title: 'Designing the merchant experience to disappear', body: "The best merchant UX is the one merchants don't notice. No new hardware — the NFC reader that processes tap-to-pay already exists on every modern POS. No staff retraining — the checkout flow doesn't change. One OAuth connection, and every completed payment triggers a receipt automatically. I designed the merchant onboarding to be a single decision point: connect your POS. Everything after that runs without them." },
+      { title: 'I built the whole thing — design and code', body: "Sar isn't a design concept. I coded the consumer website (React/Vite, deployed to Cloudflare Pages), the merchant signup flow, and the Supabase database schema. I integrated PassKit to generate the Apple Wallet passes that land on customers' phones after a tap. I use AI throughout the dev process — treating it like a capable junior engineer I'm directing. I also incorporated Sar as an LLC so it would be ready if it made it big one day." },
+      { title: 'NFC hardware prototype', body: "Spring 2026: I built a physical NFC prototype to demonstrate the in-person checkout flow end-to-end — from tap at the terminal through to the Wallet pass appearing on the customer's phone. The prototype let me test the actual latency of the interaction, prove the gesture was intuitive without instruction, and show the complete experience to pilot merchants without needing a real POS integration running live." },
     ],
     researchPlan: {
       title: 'Active Research Questions',
@@ -519,6 +533,25 @@ export default function CaseStudy() {
               </div>
             )}
           </>
+        )}
+
+        {/* Field photos — 3-up grid (Sar) */}
+        {study.fieldPhotos && (
+          <Section label="Learning & Testing">
+            <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7, marginBottom: 32 }}>
+              Before any screen existed, I spent time at coffee shops and restaurants watching how people actually dealt with receipts at the moment of payment. The pattern was immediate: receipts got crumpled, left on the table, or stuffed in a pocket and forgotten. The design brief wrote itself.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 16 : 20 }}>
+              {study.fieldPhotos.map((img, i) => (
+                <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.5, delay: i * 0.1 }} style={{ margin: 0 }}>
+                  <div style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border-md)', background: 'var(--bg-elevated)', aspectRatio: '4/3' }}>
+                    <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }} />
+                  </div>
+                  {img.caption && <figcaption style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, lineHeight: 1.5 }}>{img.caption}</figcaption>}
+                </motion.figure>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Approach */}

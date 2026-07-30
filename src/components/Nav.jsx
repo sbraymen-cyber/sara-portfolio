@@ -78,22 +78,9 @@ export default function Nav() {
             };
             const hoverOn = e => { e.currentTarget.style.color = 'var(--text-1)'; e.currentTarget.style.background = 'rgba(26,29,26,0.06)'; };
             const hoverOff = e => { e.currentTarget.style.color = 'var(--text-2)'; e.currentTarget.style.background = 'transparent'; };
-            const isExplorations = label === 'Side Projects';
-            const explorationStyle = isExplorations ? {
-              ...linkStyle,
-              color: 'var(--accent)',
-              background: 'rgba(45,64,48,0.07)',
-              boxShadow: '0 0 0 1px rgba(45,64,48,0.18), 0 0 12px rgba(45,64,48,0.18), 0 0 24px rgba(45,64,48,0.08)',
-            } : linkStyle;
-            const explorationHoverOn = isExplorations
-              ? e => { e.currentTarget.style.color = 'var(--accent-hover)'; e.currentTarget.style.background = 'rgba(45,64,48,0.12)'; e.currentTarget.style.boxShadow = '0 0 0 1px rgba(45,64,48,0.25), 0 0 18px rgba(45,64,48,0.28), 0 0 36px rgba(45,64,48,0.12)'; }
-              : hoverOn;
-            const explorationHoverOff = isExplorations
-              ? e => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.background = 'rgba(45,64,48,0.07)'; e.currentTarget.style.boxShadow = '0 0 0 1px rgba(45,64,48,0.18), 0 0 12px rgba(45,64,48,0.18), 0 0 24px rgba(45,64,48,0.08)'; }
-              : hoverOff;
             return isPage
-              ? <Link key={label} to={href} style={explorationStyle} onMouseEnter={explorationHoverOn} onMouseLeave={explorationHoverOff}>{label}</Link>
-              : <a key={label} href={navHref(href)} style={explorationStyle} onMouseEnter={explorationHoverOn} onMouseLeave={explorationHoverOff}>{label}</a>;
+              ? <Link key={label} to={href} style={linkStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>{label}</Link>
+              : <a key={label} href={navHref(href)} style={linkStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>{label}</a>;
           })}
         </div>
 
