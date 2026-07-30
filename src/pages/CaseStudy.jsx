@@ -625,11 +625,6 @@ export default function CaseStudy() {
         {/* Application process flow — Louisiana Housing */}
         {study.housingFlow && <AppFlowMap />}
 
-        {/* Carousel (Louisiana dashboard walkthrough) */}
-        {study.carousel && (
-          <Carousel slides={study.carousel} accent={accent} accentRgb={accentRgb} />
-        )}
-
         {/* Screenshots */}
         {study.images && (
           study.phoneGrid ? (
@@ -763,6 +758,11 @@ export default function CaseStudy() {
               ))}
             </div>
           </Section>
+        )}
+
+        {/* Carousel — placed after Approach to build up to the final product */}
+        {study.carousel && (
+          <Carousel slides={study.carousel} accent={accent} accentRgb={accentRgb} />
         )}
 
         {/* Pull quote */}
