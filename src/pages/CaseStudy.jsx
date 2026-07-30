@@ -639,7 +639,9 @@ export default function CaseStudy() {
               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 16 : 24, marginTop: 40 }}>
                 {study.discoveryImages.map((img, i) => (
                   <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.5, delay: i * 0.1 }} style={{ margin: 0 }}>
-                    <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', display: 'block', borderRadius: 3, border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)' }} />
+                    <div style={{ height: 340, borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)' }}>
+                      <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    </div>
                     {img.caption && <figcaption style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, paddingLeft: 2, lineHeight: 1.5 }}>{img.caption}</figcaption>}
                   </motion.figure>
                 ))}
