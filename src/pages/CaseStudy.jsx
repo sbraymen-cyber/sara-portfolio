@@ -537,8 +537,8 @@ function Carousel({ slides, accent, accentRgb, compact }) {
   const goTo = (i) => setIdx(i);
 
   return (
-    <div style={{ marginTop: 56, maxWidth: compact ? 340 : '100%', margin: compact ? '56px auto 0' : '56px 0 0' }}>
-      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#000', height: compact ? 480 : 520 }}>
+    <div style={{ marginTop: 56, maxWidth: compact ? 520 : '100%', margin: compact ? '56px auto 0' : '56px 0 0' }}>
+      <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#000', height: compact ? 680 : 520 }}>
         {slides.map((slide, i) => (
           <img
             key={slide.src}
