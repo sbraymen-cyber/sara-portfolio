@@ -674,7 +674,7 @@ export default function CaseStudy() {
         {study.fieldPhotos && (
           <Section label="Learning & Testing">
             <p style={{ fontSize: isMobile ? 15 : 17, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7, marginBottom: 32 }}>
-              I didn't just design Sar. I built it. The consumer site, the merchant landing page, the pricing page, the Supabase database, the PassKit integration. All of it coded in React and Vite, deployed to Cloudflare Pages. When you design and build the same product, you stop treating implementation as someone else's problem, and that changes every decision you make.
+              A lot of this project has been figuring out what's actually possible. I've built out pieces — the marketing sites, a Supabase database, a PassKit integration — not because they're all production-ready, but because testing each avenue myself is the only way to know what the real constraints are.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 20 : 28 }}>
               {study.fieldPhotos.map((img, i) => (
