@@ -511,28 +511,36 @@ function AgentMap({ accent }) {
 
 function Carousel({ slides, accent, accentRgb, compact }) {
   const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState(1);
 
   // Preload all images immediately so clicks feel instant
   useEffect(() => {
     slides.forEach(s => { const img = new Image(); img.src = s.src; });
   }, [slides]);
 
-  const prev = () => setIdx(i => (i - 1 + slides.length) % slides.length);
-  const next = () => setIdx(i => (i + 1) % slides.length);
+  const prev = () => { setDir(-1); setIdx(i => (i - 1 + slides.length) % slides.length); };
+  const next = () => { setDir(1);  setIdx(i => (i + 1) % slides.length); };
+  const goTo = (i) => { setDir(i > idx ? 1 : -1); setIdx(i); };
 
   return (
     <div style={{ marginTop: 56, maxWidth: compact ? 340 : '100%', margin: compact ? '56px auto 0' : '56px 0 0' }}>
       <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: '10px solid #FAFAF7', boxShadow: '0 6px 28px rgba(100,70,30,0.13), 0 1px 4px rgba(100,70,30,0.07)', background: '#FAFAF7' }}>
-        <AnimatePresence mode="sync">
+        <AnimatePresence mode="popLayout" initial={false} custom={dir}>
         <motion.img
           key={idx}
           src={slides[idx].src}
           alt={slides[idx].caption}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ width: '100%', display: 'block', position: 'relative' }}
+          custom={dir}
+          variants={{
+            enter: d => ({ x: d > 0 ? '100%' : '-100%', opacity: 1 }),
+            center: { x: 0, opacity: 1 },
+            exit: d => ({ x: d > 0 ? '-100%' : '100%', opacity: 1 }),
+          }}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.38, ease: [0.32, 0, 0.67, 0] }}
+          style={{ width: '100%', display: 'block' }}
         />
         </AnimatePresence>
         <button onClick={prev} aria-label="Previous" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.85)', border: '1px solid var(--border-md)', borderRadius: 100, width: 40, height: 40, color: 'var(--text-1)', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)' }}>‹</button>
@@ -544,7 +552,7 @@ function Carousel({ slides, accent, accentRgb, compact }) {
       <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, paddingLeft: 4 }}>{slides[idx].caption}</p>
       <div style={{ display: 'flex', gap: 6, marginTop: 14, paddingLeft: 4 }}>
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 100, background: i === idx ? accent : 'var(--border-md)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.25s' }} />
+          <button key={i} onClick={() => goTo(i)} aria-label={`Go to slide ${i + 1}`} style={{ width: i === idx ? 20 : 6, height: 6, borderRadius: 100, background: i === idx ? accent : 'var(--border-md)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.25s' }} />
         ))}
       </div>
     </div>
