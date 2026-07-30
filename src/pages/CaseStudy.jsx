@@ -167,6 +167,7 @@ export const STUDIES = {
       { value: '$0.04', label: 'per receipt — designed the pricing model myself' },
       { value: '3+', label: 'active pilots across Boulder & Denver, CO' },
     ],
+    imagesNote: "These are early lo-fi concept screens from 2022 — the starting point. The aesthetic has changed significantly since then.",
     compactCarousel: true,
     images: [
       { src: '/case-studies/sar-consumer/img-2.webp', caption: 'The shoebox moment: what receipts actually become' },
@@ -203,6 +204,13 @@ export const STUDIES = {
       ],
     },
     pullQuote: "The question every receipt product before this one got wrong was what to ask of the customer. The answer I kept arriving at was: nothing. And designing backward from nothing turned out to be the most clarifying constraint I've ever worked with.",
+    colorPalette: [
+      { hex: '#3D5E8C', name: 'Trust Blue', note: 'The whole product runs on trust — you\'re handing over your receipt data. Blue is the color that says "we\'re not going to sell this." Chosen very deliberately.' },
+      { hex: '#6B8FB8', name: 'Sky', note: 'The lighter sibling. Used for hover states, secondary UI, anything that should feel open and unintimidating.' },
+      { hex: '#E8F1FA', name: 'Ghost', note: 'Almost white, slightly blue. The background that makes the whole thing feel clean without feeling cold.' },
+      { hex: '#1C2B3A', name: 'Midnight', note: 'Text color. Dark enough to read comfortably, warm enough not to feel like a spreadsheet.' },
+    ],
+    claudeNote: "This entire website — the consumer site, the merchant landing page, the pricing page — was built using Claude Code. I designed it, wrote the copy, and made every decision. Claude helped me move fast. That felt right for a product that\'s also built around AI.",
     liveUrl: 'https://sar-app.com',
     outcome: "Three active pilots in Boulder and Denver. The core interaction — tap, Face ID, Wallet — is working and coming in under 3 seconds.\n\nRight now I'm running two tracks simultaneously: a Square marketplace integration with a local Denver business, and the consumer app. The chicken-and-egg problem with a two-sided product is real — merchants won't adopt without consumers, and consumers won't show up without merchants. Working directly with one business lets me build and test the merchant side in a live environment while the consumer experience develops in parallel.",
     nextSteps: [
@@ -756,7 +764,31 @@ export default function CaseStudy() {
           <Carousel slides={study.carousel} accent={accent} accentRgb={accentRgb} />
         )}
 
+        {/* Color palette section (Sar) */}
+        {study.colorPalette && (
+          <Section label="Color & Craft">
+            {study.claudeNote && (
+              <p style={{ fontSize: isMobile ? 14 : 15, color: 'var(--text-2)', maxWidth: 600, lineHeight: 1.7, marginBottom: 40, padding: '16px 20px', borderRadius: 10, border: '1px solid var(--border-md)', background: 'var(--bg-surface)' }}>
+                ✦ {study.claudeNote}
+              </p>
+            )}
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: 16 }}>
+              {study.colorPalette.map((swatch, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.4, delay: i * 0.07 }}>
+                  <div style={{ height: 100, borderRadius: 12, background: swatch.hex, marginBottom: 12 }} />
+                  <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-1)', marginBottom: 4, fontFamily: 'monospace' }}>{swatch.hex}</p>
+                  <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-1)', marginBottom: 6 }}>{swatch.name}</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-3)', lineHeight: 1.55 }}>{swatch.note}</p>
+                </motion.div>
+              ))}
+            </div>
+          </Section>
+        )}
+
         {/* Screenshots — placed just before pull quote as the final payoff */}
+        {study.imagesNote && (
+          <p style={{ fontSize: 13, color: 'var(--text-3)', fontStyle: 'italic', marginTop: 56, marginBottom: -32, paddingLeft: 2 }}>{study.imagesNote}</p>
+        )}
         {study.images && (
           study.phoneGrid ? (
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 12 : 20 }}>
