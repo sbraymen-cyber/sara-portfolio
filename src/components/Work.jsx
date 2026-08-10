@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import RequestAccess from './RequestAccess';
 
 const PROJECTS = [
   {
@@ -163,8 +165,7 @@ function Thumbnail({ slug }) {
   return null;
 }
 
-function Card({ project: p, index, isMobile }) {
-  const navigate = useNavigate();
+function Card({ project: p, index, isMobile, onRequestAccess }) {
   const num = String(index + 1).padStart(2, '0');
 
   return (
@@ -173,11 +174,11 @@ function Card({ project: p, index, isMobile }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }}
       transition={{ duration: 0.6, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      onClick={() => navigate(`/work/${p.slug}`)}
-      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && navigate(`/work/${p.slug}`)}
+      onClick={() => onRequestAccess(p)}
+      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onRequestAccess(p)}
       tabIndex={0}
       role="button"
-      aria-label={`View case study: ${p.title}`}
+      aria-label={`Request access to case study: ${p.title}`}
       style={{ cursor: 'pointer', borderTop: '1px solid var(--border)', paddingTop: 48, paddingBottom: 48, outline: 'none' }}
       whileHover="hovered"
     >
@@ -203,7 +204,7 @@ function Card({ project: p, index, isMobile }) {
           initial="default"
           transition={{ duration: 0.25 }}
           style={{ position: 'absolute', bottom: 16, right: 16, background: 'rgba(255,255,255,0.95)', borderRadius: 100, padding: '8px 18px', fontSize: 12, fontWeight: 600, color: 'var(--text-1)', letterSpacing: '0.04em' }}
-        >View case study →</motion.div>
+        >Request access →</motion.div>
         {/* Accent line */}
         <motion.div
           variants={{ hovered: { scaleX: 1, opacity: 1 } }}
@@ -223,7 +224,7 @@ function Card({ project: p, index, isMobile }) {
           variants={{ hovered: { color: 'var(--text-1)', x: 3 } }}
           transition={{ duration: 0.2 }}
           style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--text-2)' }}
-        >View →</motion.span>
+        >Request →</motion.span>
       </div>
 
       <motion.h3
@@ -249,6 +250,7 @@ function Card({ project: p, index, isMobile }) {
 export default function Work() {
   const { isMobile, isTablet } = useBreakpoint();
   const px = isMobile ? 20 : isTablet ? 32 : 48;
+  const [activeProject, setActiveProject] = useState(null);
 
   return (
     <section id="work" style={{ position: 'relative', maxWidth: 1080, margin: '0 auto', padding: `${isMobile ? 80 : 120}px ${px}px ${isMobile ? 60 : 100}px` }}>
@@ -286,9 +288,13 @@ export default function Work() {
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 0 : '0 48px' }}>
         {PROJECTS.map((p, i) => (
-          <Card key={`${p.slug}-${i}`} project={p} index={i} isMobile={isMobile} />
+          <Card key={`${p.slug}-${i}`} project={p} index={i} isMobile={isMobile} onRequestAccess={setActiveProject} />
         ))}
       </div>
+
+      {activeProject && (
+        <RequestAccess project={activeProject} onClose={() => setActiveProject(null)} />
+      )}
     </section>
   );
 }

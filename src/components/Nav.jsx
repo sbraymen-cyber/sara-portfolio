@@ -8,13 +8,14 @@ const LINKS = [
   ['Resume', '/resume'],
   ['Contact', '#contact'],
   ['Side Projects', '/explorations'],
+  ['Play ✦', '/play'],
 ];
 
 const MOBILE_LINKS = [
   ['Work', '#work'],
   ['Resume', '/resume'],
   ['Contact', '#contact'],
-  ['Side Projects', '/explorations'],
+  ['Play ✦', '/play'],
 ];
 
 export default function Nav() {

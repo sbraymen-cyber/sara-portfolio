@@ -11,6 +11,7 @@ const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const Process = lazy(() => import('./pages/Process'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Explorations = lazy(() => import('./pages/Explorations'));
+const Play = lazy(() => import('./pages/Play'));
 import SaraBot from './components/SaraBot';
 import Caterpillar from './components/Caterpillar';
 import { useBreakpoint } from './hooks/useBreakpoint';
@@ -117,6 +118,7 @@ export default function App() {
         <Route path="/process" element={<Suspense fallback={null}><Process /></Suspense>} />
         <Route path="/resume" element={<Suspense fallback={null}><Resume /></Suspense>} />
         <Route path="/explorations" element={<Suspense fallback={null}><Explorations /></Suspense>} />
+        <Route path="/play" element={<Suspense fallback={null}><Play /></Suspense>} />
       </Routes>
     </>
   );
