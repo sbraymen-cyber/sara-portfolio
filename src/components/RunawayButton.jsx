@@ -96,9 +96,9 @@ export default function RunawayButton() {
           position: 'fixed',
           top: 0, left: 0,
           zIndex: 999,
-          background: tired ? 'var(--accent)' : 'rgba(255,255,255,0.9)',
-          color: tired ? '#fff' : 'var(--text-2)',
-          border: tired ? 'none' : '1px solid var(--border-md)',
+          background: 'rgba(255,255,255,0.9)',
+          color: tired ? 'var(--accent)' : 'var(--text-2)',
+          border: tired ? '1px solid var(--accent)' : '1px solid var(--border-md)',
           borderRadius: 100,
           padding: '10px 18px',
           fontSize: 13,
@@ -107,9 +107,7 @@ export default function RunawayButton() {
           cursor: tired ? 'pointer' : 'default',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          boxShadow: tired
-            ? '0 4px 24px rgba(45,64,48,0.25)'
-            : '0 2px 12px rgba(26,29,26,0.1)',
+          boxShadow: '0 2px 12px rgba(26,29,26,0.1)',
           width: BUTTON_W,
           height: BUTTON_H,
           whiteSpace: 'nowrap',

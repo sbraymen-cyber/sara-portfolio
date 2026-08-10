@@ -77,6 +77,37 @@ const ROUTES = [
   { startX: -BODY_W - 40, endX: '110vw', y: '88vh', dir: 1 },
 ];
 
+export function MiniCaterpillar() {
+  const S = 10, G = 5, N = 5;
+  const W = N * (S + G);
+  const COLS = ['#2D4030','#3D6B52','#A04825','#3D6B52','#2D4030'];
+  return (
+    <svg width={W + S + 20} height={S + 16} aria-hidden="true" style={{ display: 'block' }}>
+      <motion.line x1={W + 2} y1={S/2+4} x2={W+10} y2={2} stroke="#2D4030" strokeWidth="1.2" strokeLinecap="round"
+        animate={{ rotate: [-12, 12, -12] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ transformOrigin: `${W+2}px ${S/2+4}px` }} />
+      <motion.line x1={W + 2} y1={S/2+4} x2={W+14} y2={4} stroke="#2D4030" strokeWidth="1.2" strokeLinecap="round"
+        animate={{ rotate: [10, -10, 10] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+        style={{ transformOrigin: `${W+2}px ${S/2+4}px` }} />
+      <circle cx={W+10} cy={2} r={1.5} fill="#D88A6E" />
+      <circle cx={W+14} cy={4} r={1.5} fill="#D88A6E" />
+      {Array.from({ length: N }).map((_, i) => {
+        const x = (N - 1 - i) * (S + G) + 4;
+        return (
+          <motion.circle key={i} cx={x + S/2} cy={S/2+4} r={i===0 ? S/2+1 : S/2} fill={COLS[i]}
+            animate={{ cy: [S/2+4, S/2+2, S/2+4] }}
+            transition={{ duration: 0.55, delay: i * 0.08, repeat: Infinity, ease: 'easeInOut' }} />
+        );
+      })}
+      <circle cx={W+1} cy={S/2+2} r={1.5} fill="white" />
+      <circle cx={W+1} cy={S/2+2} r={0.7} fill="#1A1D1A" />
+      <circle cx={W+5} cy={S/2+2} r={1.5} fill="white" />
+      <circle cx={W+5} cy={S/2+2} r={0.7} fill="#1A1D1A" />
+      <path d={`M ${W} ${S/2+6} Q ${W+3} ${S/2+9} ${W+6} ${S/2+6}`} fill="none" stroke="#1A1D1A" strokeWidth="0.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function Caterpillar() {
   const controls = useAnimation();
   const [routeIdx, setRouteIdx] = useState(0);

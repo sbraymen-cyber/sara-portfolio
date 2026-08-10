@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import { MiniCaterpillar } from './Caterpillar';
 
 export default function RequestAccess({ project, onClose }) {
   const [state, handleSubmit] = useForm('xzeprpbb');
@@ -72,7 +73,7 @@ export default function RequestAccess({ project, onClose }) {
 
           {state.succeeded ? (
             <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <div style={{ fontSize: 40, marginBottom: 20 }}>✦</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}><MiniCaterpillar /></div>
               <h2 style={{
                 fontFamily: "'Instrument Serif', Georgia, serif",
                 fontSize: 28, fontWeight: 400, letterSpacing: '-0.025em',
@@ -123,9 +124,15 @@ export default function RequestAccess({ project, onClose }) {
                   </div>
                 </div>
 
-                <div>
-                  <label style={labelStyle}>Company / Role <span style={{ color: 'var(--text-3)', fontWeight: 400 }}>(optional)</span></label>
-                  <input name="company" placeholder="Acme Corp — Product Manager" style={inputStyle} />
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12 }}>
+                  <div>
+                    <label style={labelStyle}>Company / Role <span style={{ color: 'var(--text-3)', fontWeight: 400 }}>(optional)</span></label>
+                    <input name="company" placeholder="Acme Corp — Product Manager" style={inputStyle} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Phone <span style={{ color: 'var(--text-3)', fontWeight: 400 }}>(optional)</span></label>
+                    <input name="phone" type="tel" placeholder="+1 (555) 000-0000" style={inputStyle} />
+                  </div>
                 </div>
 
                 <div>

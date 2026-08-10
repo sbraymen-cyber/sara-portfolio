@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import Nav from '../components/Nav';
 
 /* ─── Data ────────────────────────────────────────── */
 export const STUDIES = {
@@ -631,14 +632,81 @@ function Carousel({ slides, accent, accentRgb, compact }) {
   );
 }
 
+const PASSWORD = import.meta.env.VITE_CASE_PASSWORD || 'sara2026';
+const SESSION_KEY = 'cs_access';
+
+function CaseStudyGate({ onUnlock }) {
+  const [val, setVal] = useState('');
+  const [err, setErr] = useState(false);
+  const [shake, setShake] = useState(false);
+  const { isMobile } = useBreakpoint();
+
+  function attempt(e) {
+    e.preventDefault();
+    if (val.trim().toLowerCase() === PASSWORD.toLowerCase()) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      onUnlock();
+    } else {
+      setErr(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+    }
+  }
+
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
+      <motion.div
+        animate={shake ? { x: [-8, 8, -6, 6, 0] } : { x: 0 }}
+        transition={{ duration: 0.4 }}
+        style={{ maxWidth: 400, width: '100%', textAlign: 'center' }}
+      >
+        <div style={{ fontSize: 28, marginBottom: 24 }}>🔒</div>
+        <h2 style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: 28, fontWeight: 400, letterSpacing: '-0.025em', color: 'var(--text-1)', marginBottom: 10 }}>
+          Access required
+        </h2>
+        <p style={{ fontSize: 15, color: 'var(--text-2)', lineHeight: 1.65, marginBottom: 32 }}>
+          Sara shares case studies directly. <a href="/#work" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px solid currentColor' }}>Request access</a> and she'll send you the password.
+        </p>
+        <form onSubmit={attempt} style={{ display: 'flex', gap: 10 }}>
+          <input
+            type="password"
+            value={val}
+            onChange={e => { setVal(e.target.value); setErr(false); }}
+            placeholder="Password"
+            autoFocus
+            style={{
+              flex: 1, background: 'transparent',
+              border: `1px solid ${err ? 'var(--accent-warm)' : 'var(--border-md)'}`,
+              borderRadius: 10, padding: '11px 14px',
+              fontSize: 15, color: 'var(--text-1)', fontFamily: 'inherit',
+              outline: 'none', transition: 'border-color 0.15s',
+            }}
+          />
+          <button type="submit" style={{
+            background: 'var(--accent)', color: '#fff', border: 'none',
+            borderRadius: 10, padding: '11px 20px',
+            fontSize: 14, fontWeight: 600, cursor: 'pointer',
+            transition: 'background 0.15s',
+          }}>Enter</button>
+        </form>
+        {err && <p style={{ fontSize: 13, color: 'var(--accent-warm)', marginTop: 10 }}>That's not it. Check with Sara.</p>}
+      </motion.div>
+    </div>
+  );
+}
+
 /* ─── Page ────────────────────────────────────────── */
 export default function CaseStudy() {
   const { slug } = useParams();
   const study = STUDIES[slug];
   if (!study) return <Navigate to="/" replace />;
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(SESSION_KEY) === '1');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isMobile, isTablet } = useBreakpoint();
   const px = isMobile ? 16 : isTablet ? 28 : 48;
+
+  if (!unlocked) return <><Nav /><CaseStudyGate onUnlock={() => setUnlocked(true)} /></>;
 
   const { title, company, tagline, role, timeline, accent, accentRgb, tags, stats, challenge, approach, evolution, pullQuote, outcome } = study;
 
