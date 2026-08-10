@@ -82,8 +82,8 @@ export default function RequestAccess({ project, onClose }) {
               <p style={{ fontSize: 15, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 Sara will be in touch soon. In the meantime, feel free to
                 explore the rest of the site — or{' '}
-                <a href="/play" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px solid currentColor' }}>
-                  play a game
+                <a href="/philosophy" style={{ color: 'var(--accent)', textDecoration: 'none', borderBottom: '1px solid currentColor' }}>
+                  read a bit about Sara
                 </a>
                 .
               </p>

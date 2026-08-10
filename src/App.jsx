@@ -12,9 +12,10 @@ const Process = lazy(() => import('./pages/Process'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Explorations = lazy(() => import('./pages/Explorations'));
 const Play = lazy(() => import('./pages/Play'));
+const Philosophy = lazy(() => import('./pages/Philosophy'));
 import SaraBot from './components/SaraBot';
 import Caterpillar from './components/Caterpillar';
-import RunawayButton from './components/RunawayButton';
+import ButterflyButton from './components/ButterflyButton';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
@@ -110,7 +111,7 @@ export default function App() {
   return (
     <>
       {!isMobile && <CursorGlow />}
-      {!isMobile && <RunawayButton />}
+      {!isMobile && <ButterflyButton />}
       <Nav />
       <SaraBot />
       <Caterpillar />
@@ -121,6 +122,7 @@ export default function App() {
         <Route path="/resume" element={<Suspense fallback={null}><Resume /></Suspense>} />
         <Route path="/explorations" element={<Suspense fallback={null}><Explorations /></Suspense>} />
         <Route path="/play" element={<Suspense fallback={null}><Play /></Suspense>} />
+        <Route path="/philosophy" element={<Suspense fallback={null}><Philosophy /></Suspense>} />
       </Routes>
     </>
   );
