@@ -23,93 +23,91 @@ function safePos(avoidX, avoidY) {
 }
 
 function ButterflySVG({ flapping, landed }) {
-  const wingsVariants = {
-    flap: {
-      scaleX: [1, 0.12, 1, 0.08, 1],
-      transition: { duration: 0.55, repeat: Infinity, ease: 'easeInOut' },
-    },
-    landed: {
-      scaleX: 1,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
   const cx = 36, cy = 30;
 
   return (
-    <svg width={W} height={H} viewBox="0 0 72 56" aria-hidden="true" style={{ display: 'block', filter: 'drop-shadow(0 3px 10px rgba(91,79,140,0.35))' }}>
-      {/* Left wings */}
+    <svg width={W} height={H} viewBox="0 0 72 56" aria-hidden="true" style={{ display: 'block', filter: 'drop-shadow(0 4px 14px rgba(200,100,20,0.3))' }}>
       <motion.g
-        variants={wingsVariants}
-        animate={landed ? 'landed' : flapping ? 'flap' : 'flap'}
+        animate={landed ? { scaleX: 1 } : { scaleX: [1, 0.1, 1, 0.08, 1] }}
+        transition={landed
+          ? { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+          : { duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
         style={{ transformOrigin: `${cx}px ${cy}px` }}
       >
-        {/* Left upper wing */}
-        <path
-          d={`M ${cx} ${cy} C ${cx-16} ${cy-20}, ${cx-34} ${cy-22}, ${cx-30} ${cy-4} C ${cx-26} ${cy+8}, ${cx-10} ${cy+6}, ${cx} ${cy}`}
-          fill="#8B6FE8"
-          opacity="0.92"
-        />
-        {/* Left upper wing overlay (pattern) */}
-        <circle cx={cx-20} cy={cy-10} r={4} fill="rgba(255,255,255,0.2)" />
-        <circle cx={cx-26} cy={cy-2} r={2.5} fill="#D88A6E" opacity="0.7" />
+        {/* ── Left upper wing ── */}
+        <path d={`M${cx},${cy} C${cx-14},${cy-18} ${cx-32},${cy-20} ${cx-28},${cy-3} C${cx-24},${cy+10} ${cx-9},${cy+7} ${cx},${cy}`}
+          fill="#E07820" />
+        {/* black border */}
+        <path d={`M${cx},${cy} C${cx-14},${cy-18} ${cx-32},${cy-20} ${cx-28},${cy-3} C${cx-24},${cy+10} ${cx-9},${cy+7} ${cx},${cy}`}
+          fill="none" stroke="#1A1209" strokeWidth="2.5" />
+        {/* vein */}
+        <path d={`M${cx},${cy} C${cx-10},${cy-8} ${cx-22},${cy-12} ${cx-26},${cy-6}`}
+          fill="none" stroke="#1A1209" strokeWidth="1" opacity="0.5" />
+        {/* white spots along edge */}
+        <circle cx={cx-26} cy={cy-14} r={2.2} fill="white" opacity="0.9" />
+        <circle cx={cx-30} cy={cy-5} r={1.8} fill="white" opacity="0.85" />
+        <circle cx={cx-22} cy={cy-18} r={1.5} fill="white" opacity="0.8" />
+        <circle cx={cx-14} cy={cy-20} r={1.4} fill="white" opacity="0.75" />
 
-        {/* Left lower wing */}
-        <path
-          d={`M ${cx} ${cy} C ${cx-14} ${cy+4}, ${cx-28} ${cy+16}, ${cx-22} ${cy+22} C ${cx-16} ${cy+26}, ${cx-6} ${cy+16}, ${cx} ${cy}`}
-          fill="#7C5CBF"
-          opacity="0.88"
-        />
-        <circle cx={cx-16} cy={cy+16} r={3} fill="#D88A6E" opacity="0.65" />
+        {/* ── Left lower wing ── */}
+        <path d={`M${cx},${cy} C${cx-12},${cy+5} ${cx-26},${cy+18} ${cx-20},${cy+24} C${cx-14},${cy+28} ${cx-5},${cy+17} ${cx},${cy}`}
+          fill="#E07820" />
+        <path d={`M${cx},${cy} C${cx-12},${cy+5} ${cx-26},${cy+18} ${cx-20},${cy+24} C${cx-14},${cy+28} ${cx-5},${cy+17} ${cx},${cy}`}
+          fill="none" stroke="#1A1209" strokeWidth="2.5" />
+        <circle cx={cx-18} cy={cx-4} r={2} fill="white" opacity="0.85" />
+        <circle cx={cx-22} cy={cy+20} r={2.2} fill="white" opacity="0.9" />
+        <circle cx={cx-12} cy={cy+24} r={1.6} fill="white" opacity="0.8" />
 
-        {/* Right upper wing */}
-        <path
-          d={`M ${cx} ${cy} C ${cx+16} ${cy-20}, ${cx+34} ${cy-22}, ${cx+30} ${cy-4} C ${cx+26} ${cy+8}, ${cx+10} ${cy+6}, ${cx} ${cy}`}
-          fill="#8B6FE8"
-          opacity="0.92"
-        />
-        <circle cx={cx+20} cy={cy-10} r={4} fill="rgba(255,255,255,0.2)" />
-        <circle cx={cx+26} cy={cy-2} r={2.5} fill="#D88A6E" opacity="0.7" />
+        {/* ── Right upper wing ── */}
+        <path d={`M${cx},${cy} C${cx+14},${cy-18} ${cx+32},${cy-20} ${cx+28},${cy-3} C${cx+24},${cy+10} ${cx+9},${cy+7} ${cx},${cy}`}
+          fill="#E07820" />
+        <path d={`M${cx},${cy} C${cx+14},${cy-18} ${cx+32},${cy-20} ${cx+28},${cy-3} C${cx+24},${cy+10} ${cx+9},${cy+7} ${cx},${cy}`}
+          fill="none" stroke="#1A1209" strokeWidth="2.5" />
+        <path d={`M${cx},${cy} C${cx+10},${cy-8} ${cx+22},${cy-12} ${cx+26},${cy-6}`}
+          fill="none" stroke="#1A1209" strokeWidth="1" opacity="0.5" />
+        <circle cx={cx+26} cy={cy-14} r={2.2} fill="white" opacity="0.9" />
+        <circle cx={cx+30} cy={cy-5} r={1.8} fill="white" opacity="0.85" />
+        <circle cx={cx+22} cy={cy-18} r={1.5} fill="white" opacity="0.8" />
+        <circle cx={cx+14} cy={cy-20} r={1.4} fill="white" opacity="0.75" />
 
-        {/* Right lower wing */}
-        <path
-          d={`M ${cx} ${cy} C ${cx+14} ${cy+4}, ${cx+28} ${cy+16}, ${cx+22} ${cy+22} C ${cx+16} ${cy+26}, ${cx+6} ${cy+16}, ${cx} ${cy}`}
-          fill="#7C5CBF"
-          opacity="0.88"
-        />
-        <circle cx={cx+16} cy={cy+16} r={3} fill="#D88A6E" opacity="0.65" />
+        {/* ── Right lower wing ── */}
+        <path d={`M${cx},${cy} C${cx+12},${cy+5} ${cx+26},${cy+18} ${cx+20},${cy+24} C${cx+14},${cy+28} ${cx+5},${cy+17} ${cx},${cy}`}
+          fill="#E07820" />
+        <path d={`M${cx},${cy} C${cx+12},${cy+5} ${cx+26},${cy+18} ${cx+20},${cy+24} C${cx+14},${cy+28} ${cx+5},${cy+17} ${cx},${cy}`}
+          fill="none" stroke="#1A1209" strokeWidth="2.5" />
+        <circle cx={cx+22} cy={cy+20} r={2.2} fill="white" opacity="0.9" />
+        <circle cx={cx+12} cy={cy+24} r={1.6} fill="white" opacity="0.8" />
       </motion.g>
 
-      {/* Body */}
-      <ellipse cx={cx} cy={cy} rx={2.5} ry={10} fill="#2D4030" />
-      <ellipse cx={cx} cy={cy-10} rx={3.5} ry={4} fill="#3D6B52" />
+      {/* Body — black like a real monarch */}
+      <ellipse cx={cx} cy={cy+2} rx={2.8} ry={11} fill="#1A1209" />
+      <ellipse cx={cx} cy={cy-9} rx={4} ry={4.5} fill="#1A1209" />
+      {/* white head dots */}
+      <circle cx={cx-2} cy={cy-11} r={1} fill="white" opacity="0.7" />
+      <circle cx={cx+2} cy={cy-11} r={1} fill="white" opacity="0.7" />
 
       {/* Antennae */}
-      <motion.line
-        x1={cx-1} y1={cy-13} x2={cx-12} y2={cy-26}
-        stroke="#2D4030" strokeWidth="1.2" strokeLinecap="round"
-        animate={{ rotate: [-15, 15, -15] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+      <motion.line x1={cx-1} y1={cy-13} x2={cx-11} y2={cy-26}
+        stroke="#1A1209" strokeWidth="1.3" strokeLinecap="round"
+        animate={{ rotate: [-12, 12, -12] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         style={{ transformOrigin: `${cx-1}px ${cy-13}px` }}
       />
-      <circle cx={cx-12} cy={cy-26} r={2} fill="#D88A6E" />
-      <motion.line
-        x1={cx+1} y1={cy-13} x2={cx+12} y2={cy-26}
-        stroke="#2D4030" strokeWidth="1.2" strokeLinecap="round"
-        animate={{ rotate: [12, -12, 12] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.25 }}
+      <circle cx={cx-11} cy={cy-26} r={2.2} fill="#1A1209" />
+      <motion.line x1={cx+1} y1={cy-13} x2={cx+11} y2={cy-26}
+        stroke="#1A1209" strokeWidth="1.3" strokeLinecap="round"
+        animate={{ rotate: [10, -10, 10] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
         style={{ transformOrigin: `${cx+1}px ${cy-13}px` }}
       />
-      <circle cx={cx+12} cy={cy-26} r={2} fill="#D88A6E" />
+      <circle cx={cx+11} cy={cy-26} r={2.2} fill="#1A1209" />
 
-      {/* Landed: soft glow ring */}
       {landed && (
-        <motion.ellipse
-          cx={cx} cy={cy+14} rx={18} ry={5}
-          fill="rgba(139,111,232,0.15)"
+        <motion.ellipse cx={cx} cy={cy+16} rx={20} ry={5}
+          fill="rgba(224,120,32,0.15)"
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         />
       )}
     </svg>
@@ -172,8 +170,8 @@ export default function ButterflyButton() {
     <motion.div
       animate={{ x: pos.x, y: pos.y }}
       transition={{
-        x: { type: 'spring', stiffness: tired ? 50 : 260, damping: tired ? 16 : 20 },
-        y: { type: 'spring', stiffness: tired ? 50 : 260, damping: tired ? 16 : 20 },
+        x: { type: 'spring', stiffness: tired ? 22 : 65, damping: tired ? 18 : 28 },
+        y: { type: 'spring', stiffness: tired ? 22 : 65, damping: tired ? 18 : 28 },
       }}
       onClick={tired ? () => navigate('/philosophy') : undefined}
       style={{
@@ -193,7 +191,7 @@ export default function ButterflyButton() {
           style={{
             position: 'absolute', bottom: -22, left: '50%', transform: 'translateX(-50%)',
             whiteSpace: 'nowrap', fontSize: 11, fontWeight: 600,
-            color: '#8B6FE8', letterSpacing: '0.04em', fontFamily: 'Inter, sans-serif',
+            color: '#E07820', letterSpacing: '0.04em', fontFamily: 'Inter, sans-serif',
           }}
         >
           follow me →
