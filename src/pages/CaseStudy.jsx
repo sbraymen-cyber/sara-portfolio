@@ -94,6 +94,7 @@ export const STUDIES = {
       { era: 'V2', label: 'The Sidebar Agent', body: 'Persistent right-panel with direct filter access. The agent could build a complete search on your behalf — shifting from advisor to collaborator.', img: '/case-studies/broadstreet-ai/screen-3.webp' },
       { era: 'V3', label: 'Structured Components', body: 'Mid-conversation UI handoffs: date pickers, map selections, ICD browsers surfaced at the moment they\'re needed. Prose when prose is enough.', img: '/case-studies/broadstreet-ai/v2-icd-codes.png' },
     ],
+    video: { src: '/case-studies/broadstreet-ai/demo.mp4', caption: 'Live demo — John Snow filling search filters from a natural language prompt' },
     approachColumns: true,
     approach: [
       { title: 'Doing, not just telling', body: "John Snow makes selections on your behalf — it fills filters, not just describes them. It steps back the moment you don't need it." },
@@ -517,6 +518,65 @@ function AgentMap({ accent }) {
   );
 }
 
+const FRAME_STYLE = {
+  border: '10px solid #FAFAF7',
+  boxShadow: '0 6px 28px rgba(26,29,26,0.1), 0 1px 4px rgba(26,29,26,0.06)',
+  borderRadius: 12,
+  overflow: 'hidden',
+};
+
+function VideoPlayer({ src, caption }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  function play() {
+    setPlaying(true);
+    requestAnimationFrame(() => videoRef.current?.play());
+  }
+
+  return (
+    <div style={{ marginTop: 56 }}>
+      <div style={{ position: 'relative', ...FRAME_STYLE, background: '#0a0a0a', cursor: playing ? 'default' : 'pointer' }}
+        onClick={!playing ? play : undefined}>
+        <video
+          ref={videoRef}
+          src={src}
+          controls={playing}
+          playsInline
+          preload="metadata"
+          style={{ width: '100%', display: 'block', maxHeight: 600, objectFit: 'contain' }}
+        />
+        {!playing && (
+          <div style={{
+            position: 'absolute', inset: 0,
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(0,0,0,0.38)',
+          }}>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                width: 68, height: 68, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.95)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M8 5.5l11 6.5-11 6.5V5.5z" fill="#1a1d1a"/>
+              </svg>
+            </motion.div>
+            <p style={{ marginTop: 16, fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 500, letterSpacing: '0.04em' }}>
+              Click to watch
+            </p>
+          </div>
+        )}
+      </div>
+      {caption && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, paddingLeft: 4 }}>{caption}</p>}
+    </div>
+  );
+}
+
 function Carousel({ slides, accent, accentRgb, compact }) {
   const [idx, setIdx] = useState(0);
 
@@ -639,7 +699,7 @@ export default function CaseStudy() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {study.teamProcess.images.map((img, i) => (
                 <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.5, delay: i * 0.1 }} style={{ margin: 0 }}>
-                  <div style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border-md)', background: 'var(--bg-elevated)' }}>
+                  <div style={{ ...FRAME_STYLE }}>
                     <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', display: 'block' }} />
                   </div>
                   {img.caption && <figcaption style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, lineHeight: 1.5 }}>{img.caption}</figcaption>}
@@ -683,7 +743,7 @@ export default function CaseStudy() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 20 : 28 }}>
               {study.fieldPhotos.map((img, i) => (
                 <motion.figure key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0, margin: '0px 0px 200px 0px' }} transition={{ duration: 0.5, delay: i * 0.1 }} style={{ margin: 0 }}>
-                  <div style={{ borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border-md)', background: 'var(--bg-elevated)' }}>
+                  <div style={{ ...FRAME_STYLE }}>
                     <img src={img.src} alt={img.caption} loading="lazy" style={{ width: '100%', display: 'block' }} />
                   </div>
                   {img.caption && <figcaption style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 10, lineHeight: 1.5 }}>{img.caption}</figcaption>}
@@ -727,7 +787,7 @@ export default function CaseStudy() {
               {evolution.map((item, i) => (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column' }}>
                   {item.img && (
-                    <div style={{ borderRadius: 10, overflow: 'hidden', border: '1px solid var(--border-md)', marginBottom: 16, background: 'var(--bg-elevated)', height: 220 }}>
+                    <div style={{ ...FRAME_STYLE, marginBottom: 16, height: 220 }}>
                       <img src={item.img} alt={item.label} style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }} />
                     </div>
                   )}
@@ -807,6 +867,9 @@ export default function CaseStudy() {
             <Carousel slides={study.images} accent={accent} accentRgb={accentRgb} compact={study.compactCarousel} />
           )
         )}
+
+        {/* Video */}
+        {study.video && <VideoPlayer src={study.video.src} caption={study.video.caption} />}
 
         {/* Pull quote */}
         {pullQuote && <div style={{ paddingTop: 56, borderTop: '1px solid var(--border)', marginTop: 56 }}>
