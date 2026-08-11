@@ -79,96 +79,93 @@ function ButterflySVG({ landed }) {
 
       {/* ══ WING FLAP GROUP ══ */}
       <motion.g
-        animate={landed ? {scaleX:1} : {scaleX:[1,.06,1,.04,1]}}
+        animate={landed ? {scaleX:1} : {scaleX:[1,.08,1,.06,1]}}
         transition={landed
-          ? {duration:.5,ease:[.16,1,.3,1]}
-          : {duration:1.8,repeat:Infinity,ease:[.45,0,.55,1]}}
-        style={{transformOrigin:'85px 56px'}}
+          ? {duration:.6,ease:[.16,1,.3,1]}
+          : {duration:3.2,repeat:Infinity,ease:[.45,0,.55,1]}}
+        style={{transformOrigin:'85px 58px'}}
       >
 
-        {/* ════ LEFT FOREWING ════ */}
-        {/* Black backing = creates thick border */}
-        <path d="M 85,26 C 73,8 50,0 20,6 C 2,10 -5,26 5,40 C 13,52 36,60 64,64 C 75,66 85,60 85,52 Z" fill={BLK}/>
-        {/* Orange fill — inset ~9px to leave border */}
-        <path d="M 85,30 C 75,14 54,7 28,13 C 12,17 7,31 15,42 C 22,52 43,58 68,61 C 77,63 85,57 85,52 Z" fill="url(#fg)"/>
-        {/* ── Cell veins ── */}
-        {/* Main radial vein 1 (upper) */}
-        <path d="M 85,44 C 66,36 44,26 22,16" fill="none" stroke={BLK} strokeWidth="2.4"/>
-        {/* Radial 2 */}
-        <path d="M 85,46 C 66,40 46,34 26,30" fill="none" stroke={BLK} strokeWidth="2"/>
-        {/* Radial 3 */}
-        <path d="M 85,48 C 68,46 50,44 32,44" fill="none" stroke={BLK} strokeWidth="2"/>
-        {/* Median */}
-        <path d="M 85,50 C 70,50 54,52 40,54" fill="none" stroke={BLK} strokeWidth="1.8"/>
-        {/* Cubital */}
-        <path d="M 85,51 C 74,54 62,58 52,60" fill="none" stroke={BLK} strokeWidth="1.6"/>
-        {/* Discal cell cross-vein */}
-        <path d="M 44,26 C 42,32 40,40 44,48" fill="none" stroke={BLK} strokeWidth="1.8"/>
-        {/* ── Apex white spots ── */}
-        <circle cx="19" cy="5"  r="4"   fill="white" opacity=".95"/>
-        <circle cx="31" cy="2"  r="3.2" fill="white" opacity=".9"/>
-        <circle cx="43" cy="0"  r="2.8" fill="white" opacity=".86"/>
-        <circle cx="55" cy="0"  r="2.4" fill="white" opacity=".82"/>
-        <circle cx="65" cy="2"  r="2"   fill="white" opacity=".78"/>
-        {/* ── Outer margin spots ── */}
-        <circle cx="3"  cy="22" r="3.2" fill="white" opacity=".9"/>
-        <circle cx="2"  cy="34" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="4"  cy="44" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="9"  cy="53" r="2.4" fill="white" opacity=".82"/>
-        {/* ── Lower border spots ── */}
-        <circle cx="22" cy="63" r="2.4" fill="white" opacity=".84"/>
-        <circle cx="34" cy="65" r="2"   fill="white" opacity=".8"/>
-        <circle cx="45" cy="65" r="1.8" fill="white" opacity=".76"/>
+        {/* ════ LEFT FOREWING — elongated triangle, proper monarch shape ════ */}
+        {/* Black backing */}
+        <path d="M 85,28 C 76,12 52,2 24,6 C 8,10 2,22 6,36 C 10,48 20,56 85,54 Z" fill={BLK}/>
+        {/* Orange inset */}
+        <path d="M 85,30 C 78,16 56,8 30,12 C 16,15 10,26 14,38 C 18,49 30,54 85,52 Z" fill="url(#fg)"/>
+        {/* Veins — fan from body out */}
+        <path d="M 85,42 C 64,34 40,22 18,12"  fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,44 C 64,38 42,30 22,24"  fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,46 C 66,44 46,40 28,38"  fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,48 C 70,48 52,48 36,50"  fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,50 C 74,52 62,54 50,54"  fill="none" stroke={BLK} strokeWidth="1.6"/>
+        {/* Discal cross-vein */}
+        <path d="M 38,22 C 36,30 36,40 40,48"  fill="none" stroke={BLK} strokeWidth="1.8"/>
+        {/* Apex spots */}
+        <circle cx="22" cy="5"  r="4"   fill="white" opacity=".95"/>
+        <circle cx="34" cy="2"  r="3.2" fill="white" opacity=".9"/>
+        <circle cx="46" cy="0"  r="2.8" fill="white" opacity=".86"/>
+        <circle cx="58" cy="1"  r="2.4" fill="white" opacity=".82"/>
+        <circle cx="68" cy="3"  r="2"   fill="white" opacity=".78"/>
+        {/* Outer margin spots */}
+        <circle cx="4"  cy="22" r="3.2" fill="white" opacity=".9"/>
+        <circle cx="3"  cy="34" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="5"  cy="45" r="2.6" fill="white" opacity=".84"/>
+        {/* Lower border spots */}
+        <circle cx="16" cy="55" r="2.4" fill="white" opacity=".84"/>
+        <circle cx="28" cy="57" r="2"   fill="white" opacity=".8"/>
+        <circle cx="40" cy="57" r="1.8" fill="white" opacity=".76"/>
 
-        {/* ════ LEFT HINDWING ════ */}
-        <path d="M 85,52 C 68,62 36,70 26,86 C 18,98 30,108 50,104 C 68,100 85,84 85,68 Z" fill={BLK}/>
-        <path d="M 85,55 C 70,65 42,72 34,86 C 27,97 37,104 54,100 C 70,96 85,81 85,68 Z" fill="url(#hg)"/>
+        {/* ════ LEFT HINDWING — wide rounded fan ════ */}
+        {/* Black backing */}
+        <path d="M 85,54 C 70,58 44,64 28,78 C 14,90 18,106 36,108 C 54,110 72,100 85,72 Z" fill={BLK}/>
+        {/* Orange inset */}
+        <path d="M 85,57 C 72,61 48,68 34,80 C 22,91 26,104 40,105 C 56,106 72,97 85,72 Z" fill="url(#hg)"/>
         {/* Hindwing veins */}
-        <path d="M 85,62 C 68,68 48,76 36,86" fill="none" stroke={BLK} strokeWidth="2.2"/>
-        <path d="M 85,66 C 72,72 56,80 46,90" fill="none" stroke={BLK} strokeWidth="2"/>
-        <path d="M 85,60 C 72,64 56,70 46,76" fill="none" stroke={BLK} strokeWidth="1.8"/>
-        <path d="M 85,58 C 76,60 64,64 56,68" fill="none" stroke={BLK} strokeWidth="1.6"/>
+        <path d="M 85,63 C 70,68 52,76 38,86"  fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,67 C 72,74 58,82 48,92"  fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,61 C 74,65 60,70 50,76"  fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,59 C 78,62 68,66 60,70"  fill="none" stroke={BLK} strokeWidth="1.6"/>
         {/* Hindwing spots */}
-        <circle cx="25" cy="88"  r="3.4" fill="white" opacity=".92"/>
-        <circle cx="28" cy="99"  r="3"   fill="white" opacity=".88"/>
-        <circle cx="38" cy="107" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="50" cy="108" r="2.4" fill="white" opacity=".82"/>
-        <circle cx="62" cy="105" r="2.2" fill="white" opacity=".8"/>
+        <circle cx="26" cy="82"  r="3.2" fill="white" opacity=".92"/>
+        <circle cx="22" cy="94"  r="2.8" fill="white" opacity=".88"/>
+        <circle cx="28" cy="104" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="40" cy="108" r="2.4" fill="white" opacity=".82"/>
+        <circle cx="52" cy="108" r="2.2" fill="white" opacity=".8"/>
+        <circle cx="63" cy="104" r="2"   fill="white" opacity=".78"/>
 
         {/* ════ RIGHT FOREWING (mirror) ════ */}
-        <path d="M 85,26 C 97,8 120,0 150,6 C 168,10 175,26 165,40 C 157,52 134,60 106,64 C 95,66 85,60 85,52 Z" fill={BLK}/>
-        <path d="M 85,30 C 95,14 116,7 142,13 C 158,17 163,31 155,42 C 148,52 127,58 102,61 C 93,63 85,57 85,52 Z" fill="url(#fgR)"/>
-        <path d="M 85,44 C 104,36 126,26 148,16" fill="none" stroke={BLK} strokeWidth="2.4"/>
-        <path d="M 85,46 C 104,40 124,34 144,30" fill="none" stroke={BLK} strokeWidth="2"/>
-        <path d="M 85,48 C 102,46 120,44 138,44" fill="none" stroke={BLK} strokeWidth="2"/>
-        <path d="M 85,50 C 100,50 116,52 130,54" fill="none" stroke={BLK} strokeWidth="1.8"/>
-        <path d="M 85,51 C 96,54 108,58 118,60" fill="none" stroke={BLK} strokeWidth="1.6"/>
-        <path d="M 126,26 C 128,32 130,40 126,48" fill="none" stroke={BLK} strokeWidth="1.8"/>
-        <circle cx="151" cy="5"  r="4"   fill="white" opacity=".95"/>
-        <circle cx="139" cy="2"  r="3.2" fill="white" opacity=".9"/>
-        <circle cx="127" cy="0"  r="2.8" fill="white" opacity=".86"/>
-        <circle cx="115" cy="0"  r="2.4" fill="white" opacity=".82"/>
-        <circle cx="105" cy="2"  r="2"   fill="white" opacity=".78"/>
-        <circle cx="167" cy="22" r="3.2" fill="white" opacity=".9"/>
-        <circle cx="168" cy="34" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="166" cy="44" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="161" cy="53" r="2.4" fill="white" opacity=".82"/>
-        <circle cx="148" cy="63" r="2.4" fill="white" opacity=".84"/>
-        <circle cx="136" cy="65" r="2"   fill="white" opacity=".8"/>
-        <circle cx="125" cy="65" r="1.8" fill="white" opacity=".76"/>
+        <path d="M 85,28 C 94,12 118,2 146,6 C 162,10 168,22 164,36 C 160,48 150,56 85,54 Z" fill={BLK}/>
+        <path d="M 85,30 C 92,16 114,8 140,12 C 154,15 160,26 156,38 C 152,49 140,54 85,52 Z" fill="url(#fgR)"/>
+        <path d="M 85,42 C 106,34 130,22 152,12" fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,44 C 106,38 128,30 148,24" fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,46 C 104,44 124,40 142,38" fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,48 C 100,48 118,48 134,50" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,50 C 96,52 108,54 120,54"  fill="none" stroke={BLK} strokeWidth="1.6"/>
+        <path d="M 132,22 C 134,30 134,40 130,48" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <circle cx="148" cy="5"  r="4"   fill="white" opacity=".95"/>
+        <circle cx="136" cy="2"  r="3.2" fill="white" opacity=".9"/>
+        <circle cx="124" cy="0"  r="2.8" fill="white" opacity=".86"/>
+        <circle cx="112" cy="1"  r="2.4" fill="white" opacity=".82"/>
+        <circle cx="102" cy="3"  r="2"   fill="white" opacity=".78"/>
+        <circle cx="166" cy="22" r="3.2" fill="white" opacity=".9"/>
+        <circle cx="167" cy="34" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="165" cy="45" r="2.6" fill="white" opacity=".84"/>
+        <circle cx="154" cy="55" r="2.4" fill="white" opacity=".84"/>
+        <circle cx="142" cy="57" r="2"   fill="white" opacity=".8"/>
+        <circle cx="130" cy="57" r="1.8" fill="white" opacity=".76"/>
 
         {/* ════ RIGHT HINDWING (mirror) ════ */}
-        <path d="M 85,52 C 102,62 134,70 144,86 C 152,98 140,108 120,104 C 102,100 85,84 85,68 Z" fill={BLK}/>
-        <path d="M 85,55 C 100,65 128,72 136,86 C 143,97 133,104 116,100 C 100,96 85,81 85,68 Z" fill="url(#hgR)"/>
-        <path d="M 85,62 C 102,68 122,76 134,86" fill="none" stroke={BLK} strokeWidth="2.2"/>
-        <path d="M 85,66 C 98,72 114,80 124,90"  fill="none" stroke={BLK} strokeWidth="2"/>
-        <path d="M 85,60 C 98,64 114,70 124,76"  fill="none" stroke={BLK} strokeWidth="1.8"/>
-        <path d="M 85,58 C 94,60 106,64 114,68"  fill="none" stroke={BLK} strokeWidth="1.6"/>
-        <circle cx="145" cy="88"  r="3.4" fill="white" opacity=".92"/>
-        <circle cx="142" cy="99"  r="3"   fill="white" opacity=".88"/>
-        <circle cx="132" cy="107" r="2.8" fill="white" opacity=".86"/>
-        <circle cx="120" cy="108" r="2.4" fill="white" opacity=".82"/>
-        <circle cx="108" cy="105" r="2.2" fill="white" opacity=".8"/>
+        <path d="M 85,54 C 100,58 126,64 142,78 C 156,90 152,106 134,108 C 116,110 98,100 85,72 Z" fill={BLK}/>
+        <path d="M 85,57 C 98,61 122,68 136,80 C 148,91 144,104 130,105 C 114,106 98,97 85,72 Z" fill="url(#hgR)"/>
+        <path d="M 85,63 C 100,68 118,76 132,86"  fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,67 C 98,74 112,82 122,92"   fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,61 C 96,65 110,70 120,76"   fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,59 C 92,62 102,66 110,70"   fill="none" stroke={BLK} strokeWidth="1.6"/>
+        <circle cx="144" cy="82"  r="3.2" fill="white" opacity=".92"/>
+        <circle cx="148" cy="94"  r="2.8" fill="white" opacity=".88"/>
+        <circle cx="142" cy="104" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="130" cy="108" r="2.4" fill="white" opacity=".82"/>
+        <circle cx="118" cy="108" r="2.2" fill="white" opacity=".8"/>
+        <circle cx="107" cy="104" r="2"   fill="white" opacity=".78"/>
       </motion.g>
 
       {/* ══ BODY ══ */}
