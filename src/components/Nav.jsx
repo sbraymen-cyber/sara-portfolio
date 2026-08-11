@@ -7,14 +7,13 @@ const LINKS = [
   ['Experience', '#experience'],
   ['Resume', '/resume'],
   ['Contact', '#contact'],
-  ['Side Projects', '/explorations'],
+  ['LinkedIn ↗', 'https://linkedin.com/in/braymen'],
 ];
 
 const MOBILE_LINKS = [
   ['Work', '#work'],
   ['Resume', '/resume'],
   ['Contact', '#contact'],
-  ['Side Projects', '/explorations'],
 ];
 
 export default function Nav() {
@@ -63,6 +62,7 @@ export default function Nav() {
           boxShadow: '0 2px 16px rgba(26,29,26,0.06), inset 0 1px 0 rgba(255,255,255,0.8)',
         }}>
           {links.map(([label, href]) => {
+            const isExternal = href.startsWith('http');
             const isPage = href.startsWith('/') && !href.startsWith('/#');
             const linkStyle = {
               fontSize: isMobile ? 12 : 13,
@@ -80,6 +80,8 @@ export default function Nav() {
             const hoverOff = e => { e.currentTarget.style.color = 'var(--text-2)'; e.currentTarget.style.background = 'transparent'; };
             return isPage
               ? <Link key={label} to={href} style={linkStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>{label}</Link>
+              : isExternal
+              ? <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>{label}</a>
               : <a key={label} href={navHref(href)} style={linkStyle} onMouseEnter={hoverOn} onMouseLeave={hoverOff}>{label}</a>;
           })}
         </div>

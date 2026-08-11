@@ -98,7 +98,7 @@ export default function Hero() {
           fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
           textTransform: 'uppercase', color: 'var(--accent)', marginBottom: isMobile ? 14 : 28,
         }}>
-          Senior Product Designer & Manager · Boulder, CO
+          Senior Product Designer · Boulder, CO
         </motion.p>
 
         <motion.div {...fadeUp(0.3)} style={{ marginBottom: isMobile ? 20 : 32 }}>

@@ -8,7 +8,7 @@ const JOBS = [
 ];
 
 const EDUCATION = [
-  { degree: 'MS, Innovation Management & Entrepreneurship', school: 'Brown University', period: '2026 – 2028', current: true },
+  { degree: 'MS, Innovation Management & Entrepreneurship', school: 'Brown University', period: 'Starting 2027', deferred: true },
   { degree: 'Certificate, User Experience Design', school: 'UC Berkeley Extension', period: '2021' },
   { degree: 'BS, Management Information Systems (Programming)', school: 'Iowa State University', period: '2015 – 2019' },
   { degree: 'BS, Accounting', school: 'Iowa State University', period: '2015 – 2019' },
@@ -74,6 +74,7 @@ export default function Experience() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
                     <span style={{ fontSize: 13, color: 'var(--text-2)' }}>{ed.school}</span>
                     {ed.current && <span style={chipStyle('#fff', 'var(--accent)', 'var(--accent)')}>Expected</span>}
+                  {ed.deferred && <span style={chipStyle('var(--accent)', 'transparent', 'var(--border-md)')}>Admitted · Deferred</span>}
                   </div>
                 </div>
               ))}

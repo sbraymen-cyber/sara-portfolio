@@ -16,9 +16,10 @@ const PROJECTS = [
   },
   {
     slug: 'sar-consumer',
-    company: 'Sar — Passion project',
-    title: 'Sar: Zero-Friction Receipt',
-    desc: 'An ongoing passion project — designing and building a full business ecosystem around receipt digitization. Consumer app, merchant app, marketing site, and a Square integration, all in parallel.',
+    company: 'Sar, Inc.',
+    tag: 'Side project',
+    title: 'Zero-Friction Digital Receipt',
+    desc: 'Designing and building a full product ecosystem around receipt digitization — consumer app, merchant dashboard, marketing site, and a Square integration, all in parallel.',
     accent: 'var(--accent-warm)',
     accentRgb: '160,72,37',
     img: '/case-studies/sar-consumer/website-consumer.png',
@@ -219,6 +220,7 @@ function Card({ project: p, index, isMobile, onRequestAccess }) {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-3)', letterSpacing: '0.05em' }}>{num}</span>
           <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-3)' }}>{p.company}</span>
+          {p.tag && <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-3)', border: '1px solid var(--border-md)', borderRadius: 100, padding: '2px 8px', marginLeft: 6 }}>{p.tag}</span>}
         </div>
         <motion.span
           variants={{ hovered: { color: 'var(--text-1)', x: 3 } }}
