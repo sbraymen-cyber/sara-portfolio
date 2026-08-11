@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-const W = 110, H = 88;
+const W = 120, H = 96;
 const FLEE_RADIUS = 140;
-const INK = '#0E0900';
+const BLK = '#180A00';   // warm deep black
+const ORG = '#F07800';   // vivid monarch orange
+const ORG2 = '#FFB040';  // lighter highlight
+const ORG3 = '#C85A00';  // deep shadow in cells
 
 function safePos(avoidX, avoidY) {
   const pad = 40;
@@ -27,192 +30,187 @@ function VortexTransition() {
   return (
     <>
       <style>{`
-        @keyframes vRing { 0%{transform:rotate(0deg) scale(0.1);opacity:.85} 100%{transform:rotate(600deg) scale(9);opacity:0} }
-        @keyframes vFill { 0%{opacity:0} 55%{opacity:1} 100%{opacity:1;background:#F7F6F2} }
+        @keyframes vR{0%{transform:rotate(0deg) scale(.1);opacity:.9}100%{transform:rotate(600deg) scale(9);opacity:0}}
+        @keyframes vF{0%{opacity:0}55%{opacity:1}100%{opacity:1;background:#F7F6F2}}
       `}</style>
-      <div style={{
-        position:'fixed',inset:0,zIndex:9998,pointerEvents:'none',
-        animation:'vFill 1.05s ease forwards',
-        display:'flex',alignItems:'center',justifyContent:'center',
-      }}>
-        {[0,0.07,0.14].map((delay,i)=>(
-          <div key={i} style={{
-            position:'absolute',width:80,height:80,borderRadius:'50%',
-            border:`${3-i}px solid rgba(201,107,16,${0.6-i*0.15})`,
-            animation:`vRing ${0.88+i*0.06}s cubic-bezier(0.2,0,0.8,1) ${delay}s forwards`,
-          }}/>
+      <div style={{position:'fixed',inset:0,zIndex:9998,pointerEvents:'none',
+        animation:'vF 1.05s ease forwards',display:'flex',alignItems:'center',justifyContent:'center'}}>
+        {[0,.07,.14].map((d,i)=>(
+          <div key={i} style={{position:'absolute',width:80,height:80,borderRadius:'50%',
+            border:`${3-i}px solid rgba(240,120,0,${.6-i*.15})`,
+            animation:`vR ${.88+i*.06}s cubic-bezier(.2,0,.8,1) ${d}s forwards`}}/>
         ))}
       </div>
     </>
   );
 }
 
+// ─── The butterfly SVG ─────────────────────────────────────────────────────
+// Drawn top-down, spread-wing, illustration style to match the reference.
+// Viewbox 0 0 170 136 → rendered at W×H via SVG scaling.
+// Body centre: x=85, y=58
 function ButterflySVG({ landed }) {
-  // viewBox is 140 × 110, scaled to W × H
-  // body center x=70, y=55
   return (
-    <svg
-      width={W} height={H}
-      viewBox="0 0 140 110"
-      style={{ display:'block', overflow:'visible',
-        filter:'drop-shadow(0 5px 16px rgba(120,55,5,0.2))' }}
-    >
+    <svg width={W} height={H} viewBox="0 0 170 136"
+      style={{display:'block',overflow:'visible',
+        filter:'drop-shadow(0 6px 18px rgba(120,50,0,.22))'}}>
       <defs>
-        {/* Forewing gradient — warm amber, lighter toward inner wing */}
-        <radialGradient id="bfwL" cx="70%" cy="40%" r="60%">
-          <stop offset="0%"   stopColor="#EDAA4A"/>
-          <stop offset="55%"  stopColor="#C8690E"/>
-          <stop offset="100%" stopColor="#9E4A04"/>
+        <radialGradient id="fg" cx="60%" cy="38%" r="62%">
+          <stop offset="0%"  stopColor={ORG2}/>
+          <stop offset="45%" stopColor={ORG}/>
+          <stop offset="100%" stopColor={ORG3}/>
         </radialGradient>
-        <radialGradient id="bfwR" cx="30%" cy="40%" r="60%">
-          <stop offset="0%"   stopColor="#EDAA4A"/>
-          <stop offset="55%"  stopColor="#C8690E"/>
-          <stop offset="100%" stopColor="#9E4A04"/>
+        <radialGradient id="hg" cx="55%" cy="32%" r="58%">
+          <stop offset="0%"  stopColor={ORG2}/>
+          <stop offset="50%" stopColor={ORG}/>
+          <stop offset="100%" stopColor={ORG3}/>
         </radialGradient>
-        {/* Hindwing — deeper, slightly different hue */}
-        <radialGradient id="bhwL" cx="75%" cy="35%" r="65%">
-          <stop offset="0%"   stopColor="#D4862A"/>
-          <stop offset="60%"  stopColor="#A85208"/>
-          <stop offset="100%" stopColor="#7A3202"/>
+        <radialGradient id="fgR" cx="40%" cy="38%" r="62%">
+          <stop offset="0%"  stopColor={ORG2}/>
+          <stop offset="45%" stopColor={ORG}/>
+          <stop offset="100%" stopColor={ORG3}/>
         </radialGradient>
-        <radialGradient id="bhwR" cx="25%" cy="35%" r="65%">
-          <stop offset="0%"   stopColor="#D4862A"/>
-          <stop offset="60%"  stopColor="#A85208"/>
-          <stop offset="100%" stopColor="#7A3202"/>
+        <radialGradient id="hgR" cx="45%" cy="32%" r="58%">
+          <stop offset="0%"  stopColor={ORG2}/>
+          <stop offset="50%" stopColor={ORG}/>
+          <stop offset="100%" stopColor={ORG3}/>
         </radialGradient>
       </defs>
 
-      {/* ════ Wing group — scaleX for flutter ════ */}
+      {/* ══ WING FLAP GROUP ══ */}
       <motion.g
-        animate={landed ? {scaleX:1} : {scaleX:[1,0.07,1,0.05,1]}}
+        animate={landed ? {scaleX:1} : {scaleX:[1,.06,1,.04,1]}}
         transition={landed
-          ? {duration:0.5,ease:[0.16,1,0.3,1]}
-          : {duration:1.7,repeat:Infinity,ease:[0.42,0,0.58,1]}}
-        style={{transformOrigin:'70px 50px'}}
+          ? {duration:.5,ease:[.16,1,.3,1]}
+          : {duration:1.8,repeat:Infinity,ease:[.45,0,.55,1]}}
+        style={{transformOrigin:'85px 56px'}}
       >
 
-        {/* ── LEFT FOREWING ── */}
-        {/* Black backing = border */}
-        <path d="M 70,28 C 60,12 40,2 14,6 C 2,10 -3,24 6,36 C 13,46 30,53 54,57 C 63,59 70,55 70,49 Z"
-          fill={INK}/>
-        {/* Orange fill inset */}
-        <path d="M 70,31 C 62,17 44,8 20,12 C 10,15 6,27 13,36 C 19,45 35,51 57,54 C 65,56 70,52 70,49 Z"
-          fill="url(#bfwL)"/>
-        {/* Veins */}
-        <path d="M 70,44 C 54,38 36,28 18,16" fill="none" stroke={INK} strokeWidth="1.2" opacity="0.55"/>
-        <path d="M 70,46 C 52,44 34,42 16,40" fill="none" stroke={INK} strokeWidth="1"   opacity="0.45"/>
-        <path d="M 70,47 C 55,49 38,51 24,49" fill="none" stroke={INK} strokeWidth="0.9" opacity="0.38"/>
-        <path d="M 70,42 C 56,34 42,22 28,13" fill="none" stroke={INK} strokeWidth="1"   opacity="0.45"/>
-        <path d="M 70,43 C 60,37 50,28 38,20" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.32"/>
-        {/* White spots — apex row */}
-        <circle cx="14" cy="5"   r="3.2" fill="white" opacity="0.93"/>
-        <circle cx="26" cy="2"   r="2.6" fill="white" opacity="0.88"/>
-        <circle cx="37" cy="1"   r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="47" cy="2"   r="1.8" fill="white" opacity="0.78"/>
-        {/* Outer margin spots */}
-        <circle cx="3"  cy="26"  r="2.6" fill="white" opacity="0.88"/>
-        <circle cx="3"  cy="37"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="7"  cy="47"  r="2.4" fill="white" opacity="0.86"/>
-        {/* Lower border spots */}
-        <circle cx="20" cy="56"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="32" cy="58"  r="1.8" fill="white" opacity="0.78"/>
-        <circle cx="43" cy="58"  r="1.6" fill="white" opacity="0.74"/>
+        {/* ════ LEFT FOREWING ════ */}
+        {/* Black backing = creates thick border */}
+        <path d="M 85,26 C 73,8 50,0 20,6 C 2,10 -5,26 5,40 C 13,52 36,60 64,64 C 75,66 85,60 85,52 Z" fill={BLK}/>
+        {/* Orange fill — inset ~9px to leave border */}
+        <path d="M 85,30 C 75,14 54,7 28,13 C 12,17 7,31 15,42 C 22,52 43,58 68,61 C 77,63 85,57 85,52 Z" fill="url(#fg)"/>
+        {/* ── Cell veins ── */}
+        {/* Main radial vein 1 (upper) */}
+        <path d="M 85,44 C 66,36 44,26 22,16" fill="none" stroke={BLK} strokeWidth="2.4"/>
+        {/* Radial 2 */}
+        <path d="M 85,46 C 66,40 46,34 26,30" fill="none" stroke={BLK} strokeWidth="2"/>
+        {/* Radial 3 */}
+        <path d="M 85,48 C 68,46 50,44 32,44" fill="none" stroke={BLK} strokeWidth="2"/>
+        {/* Median */}
+        <path d="M 85,50 C 70,50 54,52 40,54" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        {/* Cubital */}
+        <path d="M 85,51 C 74,54 62,58 52,60" fill="none" stroke={BLK} strokeWidth="1.6"/>
+        {/* Discal cell cross-vein */}
+        <path d="M 44,26 C 42,32 40,40 44,48" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        {/* ── Apex white spots ── */}
+        <circle cx="19" cy="5"  r="4"   fill="white" opacity=".95"/>
+        <circle cx="31" cy="2"  r="3.2" fill="white" opacity=".9"/>
+        <circle cx="43" cy="0"  r="2.8" fill="white" opacity=".86"/>
+        <circle cx="55" cy="0"  r="2.4" fill="white" opacity=".82"/>
+        <circle cx="65" cy="2"  r="2"   fill="white" opacity=".78"/>
+        {/* ── Outer margin spots ── */}
+        <circle cx="3"  cy="22" r="3.2" fill="white" opacity=".9"/>
+        <circle cx="2"  cy="34" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="4"  cy="44" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="9"  cy="53" r="2.4" fill="white" opacity=".82"/>
+        {/* ── Lower border spots ── */}
+        <circle cx="22" cy="63" r="2.4" fill="white" opacity=".84"/>
+        <circle cx="34" cy="65" r="2"   fill="white" opacity=".8"/>
+        <circle cx="45" cy="65" r="1.8" fill="white" opacity=".76"/>
 
-        {/* ── LEFT HINDWING ── */}
-        <path d="M 70,49 C 56,58 28,64 20,78 C 13,88 24,96 42,92 C 58,88 70,74 70,64 Z"
-          fill={INK}/>
-        <path d="M 70,51 C 58,60 32,66 26,78 C 20,86 29,92 44,88 C 59,84 70,71 70,64 Z"
-          fill="url(#bhwL)"/>
+        {/* ════ LEFT HINDWING ════ */}
+        <path d="M 85,52 C 68,62 36,70 26,86 C 18,98 30,108 50,104 C 68,100 85,84 85,68 Z" fill={BLK}/>
+        <path d="M 85,55 C 70,65 42,72 34,86 C 27,97 37,104 54,100 C 70,96 85,81 85,68 Z" fill="url(#hg)"/>
         {/* Hindwing veins */}
-        <path d="M 70,57 C 56,62 38,68 26,76" fill="none" stroke={INK} strokeWidth="1.1" opacity="0.5"/>
-        <path d="M 70,61 C 60,66 46,73 38,80" fill="none" stroke={INK} strokeWidth="0.9" opacity="0.42"/>
-        <path d="M 70,55 C 58,58 44,62 34,66" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.35"/>
+        <path d="M 85,62 C 68,68 48,76 36,86" fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,66 C 72,72 56,80 46,90" fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,60 C 72,64 56,70 46,76" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,58 C 76,60 64,64 56,68" fill="none" stroke={BLK} strokeWidth="1.6"/>
         {/* Hindwing spots */}
-        <circle cx="19" cy="80"  r="3"   fill="white" opacity="0.92"/>
-        <circle cx="24" cy="90"  r="2.6" fill="white" opacity="0.87"/>
-        <circle cx="35" cy="95"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="46" cy="94"  r="2"   fill="white" opacity="0.8"/>
+        <circle cx="25" cy="88"  r="3.4" fill="white" opacity=".92"/>
+        <circle cx="28" cy="99"  r="3"   fill="white" opacity=".88"/>
+        <circle cx="38" cy="107" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="50" cy="108" r="2.4" fill="white" opacity=".82"/>
+        <circle cx="62" cy="105" r="2.2" fill="white" opacity=".8"/>
 
-        {/* ── RIGHT FOREWING (mirror) ── */}
-        <path d="M 70,28 C 80,12 100,2 126,6 C 138,10 143,24 134,36 C 127,46 110,53 86,57 C 77,59 70,55 70,49 Z"
-          fill={INK}/>
-        <path d="M 70,31 C 78,17 96,8 120,12 C 130,15 134,27 127,36 C 121,45 105,51 83,54 C 75,56 70,52 70,49 Z"
-          fill="url(#bfwR)"/>
-        <path d="M 70,44 C 86,38 104,28 122,16" fill="none" stroke={INK} strokeWidth="1.2" opacity="0.55"/>
-        <path d="M 70,46 C 88,44 106,42 124,40" fill="none" stroke={INK} strokeWidth="1"   opacity="0.45"/>
-        <path d="M 70,47 C 85,49 102,51 116,49" fill="none" stroke={INK} strokeWidth="0.9" opacity="0.38"/>
-        <path d="M 70,42 C 84,34 98,22 112,13"  fill="none" stroke={INK} strokeWidth="1"   opacity="0.45"/>
-        <path d="M 70,43 C 80,37 90,28 102,20"  fill="none" stroke={INK} strokeWidth="0.8" opacity="0.32"/>
-        <circle cx="126" cy="5"   r="3.2" fill="white" opacity="0.93"/>
-        <circle cx="114" cy="2"   r="2.6" fill="white" opacity="0.88"/>
-        <circle cx="103" cy="1"   r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="93"  cy="2"   r="1.8" fill="white" opacity="0.78"/>
-        <circle cx="137" cy="26"  r="2.6" fill="white" opacity="0.88"/>
-        <circle cx="137" cy="37"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="133" cy="47"  r="2.4" fill="white" opacity="0.86"/>
-        <circle cx="120" cy="56"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="108" cy="58"  r="1.8" fill="white" opacity="0.78"/>
-        <circle cx="97"  cy="58"  r="1.6" fill="white" opacity="0.74"/>
+        {/* ════ RIGHT FOREWING (mirror) ════ */}
+        <path d="M 85,26 C 97,8 120,0 150,6 C 168,10 175,26 165,40 C 157,52 134,60 106,64 C 95,66 85,60 85,52 Z" fill={BLK}/>
+        <path d="M 85,30 C 95,14 116,7 142,13 C 158,17 163,31 155,42 C 148,52 127,58 102,61 C 93,63 85,57 85,52 Z" fill="url(#fgR)"/>
+        <path d="M 85,44 C 104,36 126,26 148,16" fill="none" stroke={BLK} strokeWidth="2.4"/>
+        <path d="M 85,46 C 104,40 124,34 144,30" fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,48 C 102,46 120,44 138,44" fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,50 C 100,50 116,52 130,54" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,51 C 96,54 108,58 118,60" fill="none" stroke={BLK} strokeWidth="1.6"/>
+        <path d="M 126,26 C 128,32 130,40 126,48" fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <circle cx="151" cy="5"  r="4"   fill="white" opacity=".95"/>
+        <circle cx="139" cy="2"  r="3.2" fill="white" opacity=".9"/>
+        <circle cx="127" cy="0"  r="2.8" fill="white" opacity=".86"/>
+        <circle cx="115" cy="0"  r="2.4" fill="white" opacity=".82"/>
+        <circle cx="105" cy="2"  r="2"   fill="white" opacity=".78"/>
+        <circle cx="167" cy="22" r="3.2" fill="white" opacity=".9"/>
+        <circle cx="168" cy="34" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="166" cy="44" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="161" cy="53" r="2.4" fill="white" opacity=".82"/>
+        <circle cx="148" cy="63" r="2.4" fill="white" opacity=".84"/>
+        <circle cx="136" cy="65" r="2"   fill="white" opacity=".8"/>
+        <circle cx="125" cy="65" r="1.8" fill="white" opacity=".76"/>
 
-        {/* ── RIGHT HINDWING (mirror) ── */}
-        <path d="M 70,49 C 84,58 112,64 120,78 C 127,88 116,96 98,92 C 82,88 70,74 70,64 Z"
-          fill={INK}/>
-        <path d="M 70,51 C 82,60 108,66 114,78 C 120,86 111,92 96,88 C 81,84 70,71 70,64 Z"
-          fill="url(#bhwR)"/>
-        <path d="M 70,57 C 84,62 102,68 114,76" fill="none" stroke={INK} strokeWidth="1.1" opacity="0.5"/>
-        <path d="M 70,61 C 80,66 94,73 102,80"  fill="none" stroke={INK} strokeWidth="0.9" opacity="0.42"/>
-        <path d="M 70,55 C 82,58 96,62 106,66"  fill="none" stroke={INK} strokeWidth="0.8" opacity="0.35"/>
-        <circle cx="121" cy="80"  r="3"   fill="white" opacity="0.92"/>
-        <circle cx="116" cy="90"  r="2.6" fill="white" opacity="0.87"/>
-        <circle cx="105" cy="95"  r="2.2" fill="white" opacity="0.84"/>
-        <circle cx="94"  cy="94"  r="2"   fill="white" opacity="0.8"/>
+        {/* ════ RIGHT HINDWING (mirror) ════ */}
+        <path d="M 85,52 C 102,62 134,70 144,86 C 152,98 140,108 120,104 C 102,100 85,84 85,68 Z" fill={BLK}/>
+        <path d="M 85,55 C 100,65 128,72 136,86 C 143,97 133,104 116,100 C 100,96 85,81 85,68 Z" fill="url(#hgR)"/>
+        <path d="M 85,62 C 102,68 122,76 134,86" fill="none" stroke={BLK} strokeWidth="2.2"/>
+        <path d="M 85,66 C 98,72 114,80 124,90"  fill="none" stroke={BLK} strokeWidth="2"/>
+        <path d="M 85,60 C 98,64 114,70 124,76"  fill="none" stroke={BLK} strokeWidth="1.8"/>
+        <path d="M 85,58 C 94,60 106,64 114,68"  fill="none" stroke={BLK} strokeWidth="1.6"/>
+        <circle cx="145" cy="88"  r="3.4" fill="white" opacity=".92"/>
+        <circle cx="142" cy="99"  r="3"   fill="white" opacity=".88"/>
+        <circle cx="132" cy="107" r="2.8" fill="white" opacity=".86"/>
+        <circle cx="120" cy="108" r="2.4" fill="white" opacity=".82"/>
+        <circle cx="108" cy="105" r="2.2" fill="white" opacity=".8"/>
       </motion.g>
 
-      {/* ════ Body ════ */}
+      {/* ══ BODY ══ */}
       {/* Abdomen */}
-      <ellipse cx="70" cy="62" rx="3.2" ry="16" fill={INK}/>
-      {/* Body white spots (abdomen segments) */}
-      <circle cx="70" cy="54" r="1.3" fill="white" opacity="0.55"/>
-      <circle cx="70" cy="59" r="1.2" fill="white" opacity="0.5"/>
-      <circle cx="70" cy="64" r="1.2" fill="white" opacity="0.48"/>
-      <circle cx="70" cy="69" r="1.1" fill="white" opacity="0.44"/>
+      <ellipse cx="85" cy="72" rx="4" ry="22" fill={BLK}/>
+      {/* white abdominal bands */}
+      {[62,68,74,80,86].map(y => (
+        <ellipse key={y} cx="85" cy={y} rx="3.2" ry="1.2" fill="rgba(255,255,255,.18)"/>
+      ))}
       {/* Thorax */}
-      <ellipse cx="70" cy="46" rx="4.5" ry="6" fill={INK}/>
+      <ellipse cx="85" cy="50" rx="5.5" ry="8" fill={BLK}/>
       {/* Head */}
-      <circle cx="70" cy="38" r="5" fill={INK}/>
-      {/* Head white dots */}
-      <circle cx="67.5" cy="36" r="1.4" fill="white" opacity="0.65"/>
-      <circle cx="72.5" cy="36" r="1.4" fill="white" opacity="0.65"/>
+      <circle cx="85" cy="40" r="6" fill={BLK}/>
+      {/* Head spots */}
+      <circle cx="82" cy="38" r="1.8" fill="white" opacity=".55"/>
+      <circle cx="88" cy="38" r="1.8" fill="white" opacity=".55"/>
 
-      {/* ════ Antennae ════ */}
-      <motion.path
-        d="M 68.5,34 Q 56,20 47,5"
-        fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round"
-        animate={{rotate:[-7,7,-7]}}
-        transition={{duration:2.8,repeat:Infinity,ease:'easeInOut'}}
-        style={{transformOrigin:'68.5px 34px'}}
+      {/* ══ ANTENNAE ══ */}
+      <motion.path d="M 83,35 Q 68,18 56,4"
+        fill="none" stroke={BLK} strokeWidth="1.8" strokeLinecap="round"
+        animate={{rotate:[-6,6,-6]}}
+        transition={{duration:3,repeat:Infinity,ease:'easeInOut'}}
+        style={{transformOrigin:'83px 35px'}}
       />
-      <circle cx="47" cy="5" r="3.2" fill={INK}/>
-      {/* Club tip highlight */}
-      <circle cx="46" cy="4" r="1.2" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="56" cy="4" r="3.8" fill={BLK}/>
+      <circle cx="55" cy="3" r="1.5" fill="rgba(255,255,255,.35)"/>
 
-      <motion.path
-        d="M 71.5,34 Q 84,20 93,5"
-        fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round"
-        animate={{rotate:[6,-6,6]}}
-        transition={{duration:2.8,repeat:Infinity,ease:'easeInOut',delay:0.45}}
-        style={{transformOrigin:'71.5px 34px'}}
+      <motion.path d="M 87,35 Q 102,18 114,4"
+        fill="none" stroke={BLK} strokeWidth="1.8" strokeLinecap="round"
+        animate={{rotate:[5,-5,5]}}
+        transition={{duration:3,repeat:Infinity,ease:'easeInOut',delay:.5}}
+        style={{transformOrigin:'87px 35px'}}
       />
-      <circle cx="93" cy="5" r="3.2" fill={INK}/>
-      <circle cx="94" cy="4" r="1.2" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="114" cy="4" r="3.8" fill={BLK}/>
+      <circle cx="115" cy="3" r="1.5" fill="rgba(255,255,255,.35)"/>
 
-      {/* Landed shadow */}
       {landed && (
-        <motion.ellipse cx="70" cy="108" rx="28" ry="5"
-          fill="rgba(180,80,10,0.12)"
+        <motion.ellipse cx="85" cy="133" rx="32" ry="5"
+          fill="rgba(200,90,0,.1)"
           initial={{opacity:0,scaleX:0}}
           animate={{opacity:1,scaleX:1}}
-          transition={{duration:0.6}}
+          transition={{duration:.7}}
         />
       )}
     </svg>
@@ -232,7 +230,7 @@ export default function ButterflyButton() {
 
   useEffect(() => {
     const t = setTimeout(() => {
-      setPos({ x: window.innerWidth * 0.15, y: window.innerHeight * 0.72 });
+      setPos({ x: window.innerWidth * 0.14, y: window.innerHeight * 0.72 });
       setVisible(true);
     }, 3200);
     return () => clearTimeout(t);
@@ -286,16 +284,15 @@ export default function ButterflyButton() {
           width:W, height:H,
         }}
       >
-        <ButterflySVG landed={tired} />
+        <ButterflySVG landed={tired}/>
         {showLabel && (
           <motion.div
-            initial={{opacity:0,y:4}}
-            animate={{opacity:1,y:0}}
-            transition={{duration:0.4}}
+            initial={{opacity:0,y:4}} animate={{opacity:1,y:0}}
+            transition={{duration:.4}}
             style={{
               position:'absolute', bottom:-22, left:'50%', transform:'translateX(-50%)',
               whiteSpace:'nowrap', fontSize:11, fontWeight:600,
-              color:'#C96B10', letterSpacing:'0.05em', fontFamily:'Inter, sans-serif',
+              color:'#C96B10', letterSpacing:'.05em', fontFamily:'Inter, sans-serif',
             }}
           >
             catch me →
