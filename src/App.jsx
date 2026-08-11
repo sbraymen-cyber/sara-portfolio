@@ -15,7 +15,6 @@ const Play = lazy(() => import('./pages/Play'));
 const Philosophy = lazy(() => import('./pages/Philosophy'));
 import SaraBot from './components/SaraBot';
 import Caterpillar from './components/Caterpillar';
-import ButterflyButton from './components/ButterflyButton';
 import { useBreakpoint } from './hooks/useBreakpoint';
 import './index.css';
 
@@ -111,7 +110,6 @@ export default function App() {
   return (
     <>
       {!isMobile && <CursorGlow />}
-      {!isMobile && <ButterflyButton />}
       <Nav />
       <SaraBot />
       <Caterpillar />
